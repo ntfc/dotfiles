@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+# powerdown - powersave script
+
+if [[ $EUID != 0 ]]; then
+  echo "[powerdown] must be run as root"
+  exit 1
+fi
+
+# please use this with xset dpms, hdparm
+# autosuspend value for usb on battery: default = 2 (or 10)
+AUTOSUSPEND=10
+USBPOWER=auto
+# default governor on battery: default = powersave
+#GOVERNOR=powersave
+GOVERNOR=ondemand
+# second cpu online on battery: default = 1
+CPU_ONLINE=0
+# disk powersave on battery: default = min_power
+POWER_MANAG_POLICY=min_power
+# default brightness on battery: default = 15
+BRIGHTNESS=0
+# default pcie_aspm policy: default = powersave
+ASPM=powersave
+# default nmi_watchdog on battery: default = 0
+NMI_WATCHDOG=0
+# default readahead on battery: default = 6144
+READAHED=4096
+# Sound card power save on battery: default = 1
+SND_POWERSAVE=1
+# Sound card power save controller on battery: default = Y
+SND_POWERSAVE_CONT=Y
+# Disk standby (spindown) timeout on battery: default = 0?
+SPINDOWN=6
+# Set Advanced Power Management setting on battery: default = 128
+APM_LEVEL=254
+# fs readahead on battery: default = 256
+HDPARM_READAHEAD=2048
+# wireless and ethernet devices
+WLAN0=wlp3s0
+ETH0=enp6s0
+ETH1=enp0s29f7u1
+# runtime pm for pci devices
+RUNTIME_PM=auto
+
+# get the directory where this script and powerdown-functions are
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/powerdown-functions"
+source $DIR "powerdown"
+
+# bus
+# already done
+# for i in /sys/bus/*/devices/*/power/control; do opt $i auto; done
+
+# nmi_watchdog
+opt /proc/sys/kernel/nmi_watchdog $NMI_WATCHDOG
+
+# aspm
+opt /sys/module/pcie_aspm/parameters/policy $ASPM
+
+# remount noatime
+# check this out... already done on /etc/fstab
+#for dev in $(awk '/^\/dev\/sd/ {print $1}' /etc/mtab); do run mount -o remount,noatime $dev; done
+
+# usb autosuspend
+for i in /sys/bus/usb/devices/*/power/autosuspend; do opt $i $AUTOSUSPEND; done
+for i in /sys/bus/usb/devices/*/power/control; do opt $i $USBPOWER; done
+
+# cpu
+#for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do opt $i $GOVERNOR; done
+run /home/nc/.scripts/cpupower-set $GOVERNOR &
+# turn cpu1 off
+#for i in /sys/devices/system/cpu/cpu*/online; do opt $i $CPU_ONLINE; done
+
+# kernel write mode
+opt /proc/sys/vm/laptop_mode 5
+opt /proc/sys/vm/dirty_ratio 90
+opt /proc/sys/vm/dirty_background_ratio 1
+opt /proc/sys/vm/dirty_expire_centisecs 60000
+#opt /proc/sys/vm/dirty_writeback_centisecs 60000
+# powermod value is 1500 instead of 60000
+opt /proc/sys/vm/dirty_writeback_centisecs 1500
+
+# Disk powersave
+run hdparm -S $SPINDOWN -B $APM_LEVEL -a $HDPARM_READAHEAD /dev/sda
+for dev in $(awk '/^\/dev\/sd/ {print $1}' /etc/mtab); do run blockdev --setra $READAHED $dev; done
+for i in /sys/class/scsi_host/host*/link_power_management_policy; do opt $i $POWER_MANAG_POLICY; done
+
+# wireless powersave
+run iwconfig $WLAN0 power on
+run ethtool -s $ETH0 wol d
+run ethtool -s $ETH1 wol d
+
+# Runtime PM for PCI devices
+for i in /sys/bus/pci/devices/*/power/control; do opt $i $RUNTIME_PM; done
+
+# Screen powersave
+for i in /sys/class/backlight/acpi_video*/brightness; do opt $i $BRIGHTNESS; done
+#opt /sys/module/i915/parameters/i915_enable_rc6 1
+#opt /sys/module/i915/parameters/i915_enable_fbc 1
+
+# Disable webcam
+unload uvcvideo
+unload videodev
+
+## Disable bluetooth
+unload btusb
+unload bluetooth
+
+# Sound card powersave
+opt /sys/module/snd_hda_intel/parameters/power_save $SND_POWERSAVE
+opt /sys/module/snd_hda_intel/parameters/power_save_controller $SND_POWERSAVE_CONT
+#opt /sys/module/snd_ac97_codec/parameters/power_save 1
+
+# composition, if present
+if [[ -n `pidof compton` ]]; then
+  echo "Compton running, trying to kill it.."
+  run kill -9 `pidof compton` &> /dev/null || echo "Error killing compton"
+fi
+

@@ -1,0 +1,30 @@
+style "simple-black-window"
+{
+    bg[NORMAL] = "#000000"
+    XfceNotifyWindow::border-color = "#000000"
+    XfceNotifyWindow::border-radius = 10.0
+    XfceNotifyWindow::border-width-hover = 0.0
+}
+class "XfceNotifyWindow" style "simple-black-window"
+
+style "simple-black-button"
+{
+    bg[NORMAL] = "#202020"
+    bg[PRELIGHT] = "#404040"
+    fg[NORMAL] = "#ffffff"
+    fg[PRELIGHT] = "#ffffff"
+}
+widget_class "XfceNotifyWindow.*.GtkButton*" style "simple-black-button"
+
+style "simple-black-text"
+{
+    fg[NORMAL] = "#ffffff"
+    GtkWidget::link-color = "#a7a7a7"
+}
+widget_class "XfceNotifyWindow.*.<GtkLabel>" style "simple-black-text"
+
+style "simple-black-summary"
+{
+    font_name = "Bold"
+}
+widget "XfceNotifyWindow.*.summary" style "simple-black-summary"

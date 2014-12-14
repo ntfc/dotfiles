@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+# powerdown - powerup
+
+if [[ $EUID != 0 ]]; then
+  echo "[powerdown] must be run as root"
+  exit 1
+fi
+
+# autosuspend value for usb on ac: default = 2
+AUTOSUSPEND=2
+USBPOWER=on
+# default governor on ac: default = ondemand
+GOVERNOR=ondemand
+# second cpu online on ac: default = 1
+CPU_ONLINE=1
+# disk powersave on ac: default = max_performance
+POWER_MANAG_POLICY=max_performance
+# default brightness on ac: default = 15
+BRIGHTNESS=15
+# default pcie_aspm policy: default = default
+ASPM=default
+# default nmi_watchdog on ac: default = 0
+NMI_WATCHDOG=1
+# default readahead on ac: default = 256
+READAHED=256
+# Sound card power save on ac: default = 0
+SND_POWERSAVE=0
+# Sound card power save controller on ac: default = N
+SND_POWERSAVE_CONT=N
+# Disk standby (spindown) timeout on battery: default = 0?
+SPINDOWN=6
+# Set Advanced Power Management setting on battery: default = 128
+APM_LEVEL=128
+# fs readahead on battery: default = 256
+HDPARM_READAHEAD=256
+# wireless and ethernet devices
+WLAN0=wlp3s0
+ETH0=enp6s0
+ETH1=enp0s29f7u1
+# runtime pm for pci devices
+RUNTIME_PM=on
+
+# get the directory where this script and powerdown-functions are
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/powerdown-functions"
+source $DIR "powerup"
+
+# nmi_watchdog
+opt /proc/sys/kernel/nmi_watchdog $NMI_WATCHDOG
+
+# aspm
+opt /sys/module/pcie_aspm/parameters/policy $ASPM
+
+# usb autosuspend
+for i in /sys/bus/usb/devices/*/power/autosuspend; do opt $i $AUTOSUSPEND; done
+for i in /sys/bus/usb/devices/*/power/control; do opt $i $USBPOWER; done
+
+# cpu
+#for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do opt $i $GOVERNOR; done
+run /home/nc/.scripts/cpupower-set $GOVERNOR &
+for i in /sys/devices/system/cpu/cpu*/online; do opt $i $CPU_ONLINE; done
+
+# kernel write mode
+opt /proc/sys/vm/laptop_mode 0
+opt /proc/sys/vm/dirty_ratio 40
+opt /proc/sys/vm/dirty_background_ratio 10
+opt /proc/sys/vm/dirty_expire_centisecs 3000
+opt /proc/sys/vm/dirty_writeback_centisecs 500
+
+# Disk powersave
+run hdparm -S $SPINDOWN -B $APM_LEVEL -a $HDPARM_READAHEAD /dev/sda
+for dev in $(awk '/^\/dev\/sd/ {print $1}' /etc/mtab); do run blockdev --setra $READAHED $dev; done
+for i in /sys/class/scsi_host/host*/link_power_management_policy; do opt $i $POWER_MANAG_POLICY; done
+
+# wireless and ethernet powersave
+run iwconfig $WLAN0 power off
+run ethtool -s $ETH0 wol d
+run ethtool -s $ETH1 wol d
+
+# Screen powersave
+for i in /sys/class/backlight/acpi_video*/brightness; do opt $i $BRIGHTNESS; done
+
+# Runtime PM for PCI devices
+for i in /sys/bus/pci/devices/*/power/control; do opt $i $RUNTIME_PM; done
+
+# Enable webcam
+load uvcvideo
+load videodev
+
+## Disable bluetooth
+#load btusb
+#load bluetooth
+
+# Sound card powersave
+opt /sys/module/snd_hda_intel/parameters/power_save $SND_POWERSAVE
+opt /sys/module/snd_hda_intel/parameters/power_save_controller $SND_POWERSAVE_CONT
+#opt /sys/module/snd_ac97_codec/parameters/power_save 1
+
+# irqbalance
+#run systemctl stop irqbalance.service
+
+# composition and skippy-xd
+if [ $DISPLAY ]; then
+  echo "Ok, I am on a X session"
+  if [[ -z `pidof compton` ]]; then
+    echo "compton not running, starting compton.."
+    su nc -c '/usr/bin/compton --config /home/nc/.compton.conf -b' \
+      &> /dev/null || echo "cannot run compton.."
+  else
+    echo "compton already running, nothing else to do"
+  fi
+else
+  echo "Hmm, I am not on a X session.. Try to run anyway.."
+  su nc -c 'export DISPLAY=:0.0 ; /usr/bin/compton --config /home/nc/.compton.conf -b' \
+      &> /dev/null || echo "could not run compton.."
+fi
+

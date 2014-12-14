@@ -1,0 +1,11 @@
+*.swp
+*.log
+*.log*
+*.cache
+*.cap
+*.bak
+Dropbox/*
+Downloads/*
+projects/*
+/NetBeansProjects/*
+.ssh/*

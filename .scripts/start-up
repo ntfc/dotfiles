@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# more low level stuff, like X or audio stuff
+[ -f ~/.scripts/start-up-lowlevel ] && ~/.scripts/start-up-lowlevel &
+
+# openbox stuff, including systray
+# see ~/.config/openbox/autostart
+
+# "desktop" backgroud
+[ -x /usr/bin/feh ] && (sleep 2s && feh --image-bg black --bg-center --no-fehbg ~/Pictures/desktop.jpg) &
+
+# clipboard manager
+clipit &
+
+# volume
+#volumeicon &
+pasystray &
+
+# battery
+cbatticon -i notification &
+
+# screen powersave
+xset +dpms 
+xset dpms 0 0 300 &
+
+# disable touchpad accelaration
+(sleep 1s && xinput set-ptr-feedback `xinput list | grep 'Elantech Touchpad' | awk '{print $6}' | tail -c 3` 4 1 1) &
+xset m 0 0 &
+
+# xscreensaver
+( ( sleep 10 && /usr/bin/xscreensaver -no-splash -display :0.0 ) & )
+# automatically lock when suspending/hibernating
+(sleep 12s && xss-lock -- xscreensaver-command -lock)  &

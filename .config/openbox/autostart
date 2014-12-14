@@ -1,0 +1,10 @@
+#
+# These things are run when an Openbox X Session is started.
+#
+
+[ -f ~/.scripts/openbox/setlayout ] && ~/.scripts/openbox/setlayout 0 2 2 0 &
+
+# systray and clock
+(sleep 0.2s && stalonetray -c ~/.config/stalonetrayrc) &
+(sleep 1s && lal -b --color "#000000" -s 14 -f " %a %d  %H:%M:%S" -w 150 -t "Oxygen") &
+

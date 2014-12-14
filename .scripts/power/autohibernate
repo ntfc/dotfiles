@@ -1,0 +1,53 @@
+#!/bin/bash
+# Script to auto hibernate laptop when battery in on critical leve (<3%) or user defined
+# This is executed only when computer is running on Battery!
+# This is called by /etc/pm/power.d/powersave
+
+function autohibernate() {
+STATUS_FILE=/sys/class/power_supply/BAT0/status
+ENERGY_NOW_FILE=/sys/class/power_supply/BAT0/energy_now
+ENERGY_FULL_FILE=/sys/class/power_supply/BAT0/energy_full
+
+MIN_BATT=100
+CRI_BATT=3
+
+read STATUS < $STATUS_FILE
+
+WARNED=false # did the low battery warning appeared?
+
+echo "Started autohibernate script..."
+while [[ "$STATUS" == "Discharging" ]]; do
+  read full < $ENERGY_FULL_FILE
+  read now < $ENERGY_NOW_FILE
+
+
+  let percentage=($now * 100)
+  let percentage=($percentage / $full)
+  
+  if [[ $percentage -le $CRI_BAT ]]; then
+    GOOD_TO_GO="GO"
+    break
+  fi
+  if [ $percentage -le $MIN_BATT ] && [ $WARNED == false ]; then
+    if [[ $EUID -ne 0 ]]; then
+      notify-send "Warning" "<b>Low battery</b>" -i notification-battery-low -u critical
+    else
+      # it's not working, gotta fix this...
+      # display problem..
+      su nc -c "export DISPLAY=0.0 ; notify-send 'Warning' '<b>Low battery</b>' -i notification-battery-low -u critical"
+    fi
+    WARNED=true # low battery warning appeared
+  fi
+
+  # execute this loop every 10seconds
+  sleep 10s
+  # read status file on every loop end
+  read STATUS < $STATUS_FILE
+done
+
+if [[ -n "$GOOD_TO_GO" ]]; then
+  systemctl hibernate
+fi
+}
+
+autohibernate &

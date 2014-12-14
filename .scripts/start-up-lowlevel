@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# More low level stuff.
+# Put here pulseaudio, font or X related scripts
+#
+# start pulseaudio
+/usr/bin/start-pulseaudio-x11 &
+
+# xfonts, so i can use terminus font and others
+xset +fp /home/nc/.fonts/dwm
+xset +fp /usr/share/fonts/local
+xset fp rehash &
+
+# Xresources
+xrdb -merge /home/nc/.Xresources
+

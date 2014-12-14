@@ -1,0 +1,46 @@
+#!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+	echo "This script must be run by root!" 1>&2
+	exit 1
+fi
+
+GOVERNORS=('powersave' 'ondemand' 'performance');
+POLICY=$(cpupower frequency-info -p | tail -n1 | awk '{print $3}')
+
+# if governor is passed as parameter
+if [ -n "$1" ]; then
+	# governor $1 already set
+	if [ "$1" = "$POLICY" ]; then
+		exit
+	fi
+	for pol in ${GOVERNORS[@]}; do
+		# searchs the parameter in the governors array
+		if [ "$1" = "$pol" ]; then
+			# governor exists
+			SET="$1"
+		fi
+	done
+else
+	case "$POLICY" in
+		'powersave')
+			# change to ondemand
+			SET="ondemand"
+			;;
+		'ondemand')
+			# change to performance
+			SET="performance"
+			;;
+		'performance')
+			# change to powersave
+			SET="powersave"
+			;;
+	esac
+fi
+
+if [ -n "$SET" ]; then
+	# change frequency
+	cpupower frequency-set -g "$SET"
+	ICON='cpupower'
+	TITLE='CPU governor'
+	su nc -c "export DISPLAY=:0.0 ; notify-send '$TITLE' '<b>$SET</b>' -i '$ICON'"
+fi
