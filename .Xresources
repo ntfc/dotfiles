@@ -34,7 +34,7 @@ xscreensaver.passwd.thermometer.width:       4
 ! urxvt ----------------------------------------------------------------------
 !
 ! Compile xft: Attempt to find a visual with the given bit depth;
-! URxvt*depth: bitdepth
+URxvt*depth: 32
 
 ! Compile xft: Turn on/off double-buffering for xft (default
 ! URxvt*buffered: boolean
@@ -43,10 +43,10 @@ xscreensaver.passwd.thermometer.width:       4
 ! URxvt*geometry: geom
 
 ! Use the specified colour as the windows background colour [default
-! URxvt*background: colour
+URxvt*background: black
 
 ! Use the specified colour as the windows foreground colour [default
-! URxvt*foreground: colour
+URxvt*foreground: white
 
 ! Use the specified colour for the colour value n, where 0-7
 ! URxvt*colorn: colour
@@ -91,7 +91,7 @@ xscreensaver.passwd.thermometer.width:       4
 ! URxvt*fadeColor: colour
 
 ! Set the application icon pixmap; option -icon.
-! URxvt*iconFile: file
+URxvt*iconFile: /usr/share/icons/gnome-colors-common/scalable/apps/terminal.svg
 
 ! Use the specified colour for the scrollbar [default #B2B2B2].
 ! URxvt*scrollColor: colour
@@ -103,7 +103,9 @@ xscreensaver.passwd.thermometer.width:       4
 ! URxvt*borderColor: colour
 
 ! Select the fonts to be used. This is a comma separated list of font
-! URxvt*font: fontlist
+URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12:antialias=false
+
+URxvt*letterSpace: -2
 
 ! URxvt*boldFont: fontlist
 
@@ -141,16 +143,16 @@ xscreensaver.passwd.thermometer.width:       4
 ! URxvt*print-pipe: string
 
 ! Set scrollbar style to rxvt, plain, next or xterm. plain is the
-! URxvt*scrollstyle: mode
+URxvt*scrollstyle: plain
 
 ! Set the scrollbar width in pixels.
-! URxvt*thickness: number
+URxvt*thickness: 10
 
 ! True: enable the scrollbar [default]; option -sb. False: disable
 ! URxvt*scrollBar: boolean
 
 ! True: place the scrollbar on the right of the window; option -sr.
-! URxvt*scrollBar_right: boolean
+URxvt*scrollBar_right: true
 
 ! True: display an rxvt scrollbar without a trough; option -st.
 ! URxvt*scrollBar_floating: boolean
@@ -159,13 +161,13 @@ xscreensaver.passwd.thermometer.width:       4
 ! URxvt*scrollBar_align: mode
 
 ! True: scroll to bottom when tty receives output; option -si.
-! URxvt*scrollTtyOutput: boolean
+URxvt*scrollTtyOutput: false
 
 ! True: scroll with scrollback buffer when tty receives new lines
-! URxvt*scrollWithBuffer: boolean
+URxvt*scrollWithBuffer: false
 
 ! True: scroll to bottom when a non-special key is pressed. Special
-! URxvt*scrollTtyKeypress: boolean
+URxvt*scrollTtyKeypress: true
 
 ! Save number lines in the scrollback buffer [default 64]. This
 ! URxvt*saveLines: number
@@ -301,3 +303,8 @@ xscreensaver.passwd.thermometer.width:       4
 ! Turn on/off ISO 14755 5.2 mode (default enabled).
 ! URxvt*iso14755_52: boolean
 
+! Support Ctrl+arrows for word jumping
+URxvt.keysym.Control-Up:   \033[1;5A
+URxvt.keysym.Control-Down:    \033[1;5B
+URxvt.keysym.Control-Left:    \033[1;5D
+URxvt.keysym.Control-Right:    \033[1;5C
