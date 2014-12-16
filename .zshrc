@@ -22,6 +22,9 @@ unsetopt beep
 # End of lines configured by zsh-newuser-install
 
 # My configs
+# load my aliases
+source ~/.scripts/aliasrc
+
 autoload -U promptinit
 promptinit
 prompt redhat # set redhat prompt. CHANGE when using custom prompt

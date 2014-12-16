@@ -1,0 +1,16 @@
+map <Right> navigate next
+map <Left> navigate previous
+
+# fullscreen
+map [fullscreen] a adjust_window best-fit
+map [fullscreen] s adjust_window width
+map [fullscreen] q quit
+map [fullscreen] <C-n> toggle_statusbar
+map [fullscreen] / search
+map [fullscreen] <Down> scroll down
+map [fullscreen] <Up> scroll up
+#map [fullscreen] <Button1> focus_inputbar
+
+# options
+set font "droid sans normal 9.5"
+set show-v-scrollbar true

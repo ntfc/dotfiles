@@ -14,3 +14,5 @@ xset fp rehash &
 # Xresources
 xrdb -merge ~/.Xresources
 
+# turn num lock on
+numlockx on &

@@ -288,12 +288,26 @@
         <desktop>yes</desktop>
       </action>
     </keybind>
-    <keybind key="S-A-c">
-      <action name="Close"/>
-    </keybind>
     <keybind key="S-A-Return">
       <action name="Execute">
-        <command>urxvt</command>
+        <command>~/.scripts/exec-terminal</command>
+        <startupnotify>
+          <enabled>yes</enabled>
+          <wmclass>urxvt</wmclass>
+          <name>urxvt</name>
+        </startupnotify>
+      </action>
+    </keybind>
+    <keybind key="S-A-c">
+      <action name="if">
+        <title>urxvt</title>
+        <name>urxvt</name>
+        <then>
+          <action name="Focus"/>
+        </then>
+        <else>
+          <action name="Close"/>
+        </else>
       </action>
     </keybind>
     <keybind key="S-W-Up">
