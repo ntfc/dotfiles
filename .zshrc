@@ -24,6 +24,7 @@ unsetopt beep
 # My configs
 # load my aliases
 source ~/.scripts/aliasrc
+source ~/.scripts/gitaliasrc
 
 autoload -U promptinit
 promptinit
