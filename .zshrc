@@ -1,6 +1,6 @@
 # The following lines were added by compinstall
 
-zstyle ':completion:*' completer _list _expand _complete _ignored _approximate
+zstyle ':completion:*' completer  _expand _complete _ignored _approximate
 zstyle ':completion:*' max-errors 1
 zstyle ':completion:*' menu select rehash true
 zstyle :compinstall filename '/home/nc/.zshrc'

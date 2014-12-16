@@ -1,0 +1,160 @@
+#!/bin/bash
+# Control the pulseaudio volume
+#####
+# To fix acpi problem, export this:
+# export PULSE_RUNTIME_PATH="/run/user/your_uid/pulse/"
+# and then call this script with su nc
+#####
+function usage() {
+  echo "pacontrol - volume control for pulseaudio"
+  echo "USAGE: pacontrol [OPTION] [NOTIFY]"
+  echo "  OPTION:"
+  echo "    mute: toggle mute"
+  echo "    up: increase volume"
+  echo "    down: decrease volume"
+  echo "    status: get volume in %"
+  echo " NOTIFY:"
+  echo "    1 or 0 (default=0) to show or not the notification bubble"
+}
+
+# $1 = line
+function vol_status() {
+  let line=$1
+  let line=($line + 6)
+  
+  # find the volume of the default sink
+  # volume is the %
+  # NOTE: with pulseaudio update, print $3 was changed to print $5
+  local volume=`pacmd list-sinks|awk 'NR=="'"$line"'"{print $5}'|sed '{s/%//}'`
+
+  echo "$volume"
+}
+
+# $1 = line
+function is_muted() {
+  let line=$1
+  # add 10 for "muted" line
+  let line=($line + 10)
+  # get mute status 
+  mute=`pacmd list-sinks|awk 'NR==i"'"$line"'"{print $2}'`
+  # reset line value
+  let line=($line - 10)
+  [[ "$mute" == "yes" ]] && let mute=1 # unmute
+  [[ "$mute" == "no" ]] && let mute=0 # mute
+
+  echo $mute
+}
+
+# $1 = sink
+# $2 = line
+function mute() {
+  sink=$1
+  let line=$2
+
+  muted=$(is_muted $line)
+
+  [[ $muted == 1 ]] && let val=0 # unmute
+  [[ $muted == 0 ]] && let val=1 # mute
+
+  pacmd set-sink-mute "$sink" $val > /dev/null 2>&1
+}
+
+# $1 = sink
+# $2 = line
+# $3 = up or down
+function vol_control {
+  sink=$1
+  let line=$2
+  opt=$3
+
+  # find the volume of the default sink
+  # volume is the %
+  volume=$(vol_status $line)
+
+  if [[ "$opt" == "down" ]]; then
+    let volume=$volume-5
+  else
+    let volume=$volume+5
+  fi
+
+  # volume is %, but pulseaudio requires a value between 0-65535
+  let volume=($volume * 65535); let volume=($volume / 100)
+  
+  # increase or decrease volume
+  case "$opt" in
+    'up')
+      [[ $volume -gt 65535 ]] && let volume=65535
+      ;;
+    'down')
+      [[ $volume -lt 0 ]] && let volume=0
+      ;;
+  esac
+
+  pacmd set-sink-volume $sink $volume > /dev/null 2>&1
+}
+case "$1" in
+  mute|up|down|status)
+    ;;
+  *)
+    usage
+    exit
+    ;;
+esac
+
+# can only be executed as normal user
+if [[ "$EUID" != "`id nc -u`" ]]; then
+  echo "Script cannot be executed by user $EUID, only by nc"
+  exit 1
+fi
+
+# $1 may be 'mute', 'up' or 'down'
+# find default sink
+#sink=`pacmd info | grep -i "default sink name" | awk '{print $4}'`
+sink=`pactl info | grep -i "default sink" | awk '{print $3}'`
+
+# get line# of start of definition for default sink (plus 1, actually)
+let line_nr=`pacmd list-sinks | grep -n $sink | sed '{s/://}' | awk '{print $1}'`
+
+case "$1" in
+  'up')
+    vol_control $sink $line_nr $1
+    vol_status $line_nr
+    ;;
+  'down')
+    vol_control $sink $line_nr $1
+    vol_status $line_nr
+    ;;
+  'mute')
+    mute $sink $line_nr
+    ;;
+  'status')
+    vol_status $line_nr
+    if [[ $(is_muted $line_nr) == 1 ]]; then
+      echo "mute"
+    else
+      echo "unmute"
+    fi
+esac
+
+if [[ "$2" == "1" ]]; then
+  # test whether volnoti is running or not
+  if [[ -n `pidof volnoti` ]]; then
+    NOTIFY=true
+  else
+    NOTIFY=false
+  fi
+  # notify or not
+  if [[ $NOTIFY == true ]]; then
+    MUTED=$(is_muted $line_nr)
+    if [[ $MUTED == 1 ]]; then # muted
+      echo "muted"
+      volnoti-show -m
+    else
+      vol=$(vol_status $line_nr)
+      echo $vol
+      volnoti-show $vol
+    fi
+  fi
+else
+  NOTIFY=false
+fi

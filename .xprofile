@@ -2,11 +2,3 @@
 
 # execute X programs at startup
 [ -f ~/.scripts/start-up ] && ~/.scripts/start-up &
-
-# xflux
-#/home/nc/.scripts/braga &
-
-# volume notification daemon
-if [[ -z `pidof volnoti` ]]; then
-  volnoti -t 2 &
-fi

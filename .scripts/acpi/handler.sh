@@ -41,8 +41,24 @@ case "$1" in
 				su nc -c 'export DISPLAY=:0.0 ; xscreensaver-command -lock' &
 			;;
 			00000033) # screen on
-
-				
+			;;
+			00000040|00000041|00000043|00000045) # multimedia keys
+				/home/nc/.scripts/acpi/mpd-control "$3"
+			;;
+			00000032) # mute
+				su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/" ; \
+					export DISPLAY=:0.0 ; \
+					/home/nc/.scripts/pacontrol mute 1' &
+			;;
+			00000031) # vol down
+				su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/" ; \
+					export DISPLAY=:0.0 ; \
+					/home/nc/.scripts/pacontrol down 1' &
+			;;
+			00000030) # vol up
+				su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/" ; \
+					export DISPLAY=:0.0 ; \
+					/home/nc/.scripts/pacontrol up 1' &
 			;;
 		esac
 	;;

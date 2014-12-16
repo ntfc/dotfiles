@@ -110,7 +110,7 @@ if [ $DISPLAY ]; then
   fi
 else
   echo "Hmm, I am not on a X session.. Try to run anyway.."
-  su nc -c 'export DISPLAY=:0.0 ; /usr/bin/compton --config /home/nc/.compton.conf -b' \
+  su nc -c 'export DISPLAY=:0.0 ; /usr/bin/compton --config /home/nc/.config/compton.conf -b' \
       &> /dev/null || echo "could not run compton.."
 fi
 

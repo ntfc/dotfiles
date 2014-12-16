@@ -7,14 +7,22 @@
 # see ~/.config/openbox/autostart
 
 # "desktop" backgroud
-[ -x /usr/bin/feh ] && (sleep 2s && feh --image-bg black --bg-center --no-fehbg ~/Pictures/desktop.jpg) &
+(sleep 2s && feh --image-bg black --bg-center --no-fehbg ~/Pictures/desktop.jpg) &
+
+# volume notification daemon
+if [ -z `pidof volnoti` ]; then
+	volnoti -t 1 &
+fi
+
+# composite
+(sleep 2s && /usr/bin/compton --config /home/nc/.config/compton.conf -b) &
 
 # clipboard manager
 clipit &
 
 # volume
-#volumeicon &
-pasystray &
+volumeicon &
+#pasystray &
 
 # battery
 cbatticon -i notification &
