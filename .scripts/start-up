@@ -18,7 +18,7 @@ fi
 (sleep 2s && /usr/bin/compton --config /home/nc/.config/compton.conf -b) &
 
 # clipboard manager
-clipit &
+copyq &
 
 # volume
 volumeicon &

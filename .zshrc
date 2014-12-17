@@ -89,6 +89,8 @@ key[PageDown]=${terminfo[knp]}
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 
+# reverse search with Ctrl+R
+bindkey '^R' history-incremental-search-backward
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
