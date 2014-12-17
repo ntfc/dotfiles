@@ -301,7 +301,7 @@
     <keybind key="S-A-c">
       <action name="if">
         <title>urxvt</title>
-        <name>urxvt</name>
+        <class>urxvt</class>
         <then>
           <action name="Focus"/>
         </then>

@@ -2,7 +2,8 @@
 
 zstyle ':completion:*' completer  _expand _complete _ignored _approximate
 zstyle ':completion:*' max-errors 1
-zstyle ':completion:*' menu select rehash true
+zstyle ':completion:*' menu select 
+zstyle ':completion:*' rehash true
 zstyle :compinstall filename '/home/nc/.zshrc'
 
 # auto completion for command aliases
