@@ -68,9 +68,9 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[PageDown]}"     ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
 # Use Ctrl-Left and Ctrl-Right as backward and forward word
-# In xterm, Ctrl-Left outputs 5D and Ctrl-Right outputs 5C
-bindkey ';5D' backward-word
-bindkey ';5C' forward-word
+# use 'cat > /dev/null' to discover key-definition
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
 
 
 # Finally, make sure the terminal is in application mode, when zle is
