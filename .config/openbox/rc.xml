@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
+<openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
     <strength>10</strength>
     <screen_edge_strength>20</screen_edge_strength>
@@ -299,15 +299,8 @@
       </action>
     </keybind>
     <keybind key="S-A-c">
-      <action name="if">
-        <title>urxvt</title>
-        <class>urxvt</class>
-        <then>
-          <action name="Focus"/>
-        </then>
-        <else>
-          <action name="Close"/>
-        </else>
+      <action name="Execute">
+        <command>~/.scripts/close-terminal</command>
       </action>
     </keybind>
     <keybind key="S-W-Up">

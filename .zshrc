@@ -2,7 +2,7 @@
 
 zstyle ':completion:*' completer  _expand _complete _ignored _approximate
 zstyle ':completion:*' max-errors 1
-zstyle ':completion:*' menu select 
+zstyle ':completion:*' menu select=2 # menu if items > 2
 zstyle ':completion:*' rehash true
 zstyle :compinstall filename '/home/nc/.zshrc'
 
