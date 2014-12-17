@@ -40,7 +40,7 @@ URxvt*depth: 32
 ! URxvt*buffered: boolean
 
 ! Create the window with the specified X window geometry [default
-! URxvt*geometry: geom
+URxvt*geometry: 128x40
 
 ! Use the specified colour as the windows background colour [default
 URxvt*background: black
@@ -119,7 +119,7 @@ URxvt*letterSpace: -2
 ! URxvt*intensityStyles: boolean
 
 ! Set window title string, the default title is the command-line
-! URxvt*title: string
+URxvt*title: urxvt
 
 ! Set the name used to label the windows icon or displayed in an
 ! URxvt*iconName: string

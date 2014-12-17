@@ -33,6 +33,23 @@ prompt redhat # set redhat prompt. CHANGE when using custom prompt
 # load colors
 autoload -U colors
 colors
+
+# Set the prompt
+setopt prompt_subst
+# Show Git branch/tag, or name-rev if on detached head
+parse_git_branch() {
+  ((git symbolic-ref -q HEAD | cut -d'/' -f3) || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+}
+# If inside a Git repository, print its branch and state
+git_prompt_string() {
+  local git_where="$(parse_git_branch)"
+  [ -n "$git_where" ] && echo "%{$fg[blue]%}[$git_where]%{$reset_color%}"
+}
+
+PROMPT="%{$fg[green]%}[%n@%m %1~] %{$reset_color%}%# "
+# Set the right-hand prompt to the current branch
+RPROMPT='$(git_prompt_string)'
+
 # End of my configs
 
 ####################################
