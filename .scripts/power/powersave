@@ -1,7 +1,7 @@
 #!/bin/bash
 if [[ $EUID -ne 0 ]]; then
-	echo "This script must be run as root" 1>&2
-	exit 1
+  echo "This script must be run as root" 1>&2
+  exit 1
 fi
 
 # aspm
@@ -29,7 +29,7 @@ for i in /sys/bus/{pci,spi,i2c}/devices/*/power/control; do echo auto > $i;done
 
 # SATA powersave
 #default = max_performance
-for i in /sys/class/scsi_host/host*/link_power_management_policy; do echo	min_power > $i; done
+for i in /sys/class/scsi_host/host*/link_power_management_policy; do echo min_power > $i; done
 
 # readahead
 for dev in /dev/sd[a-z]; do blockdev --setra 3072 $dev; done

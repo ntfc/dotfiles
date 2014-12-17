@@ -11,7 +11,7 @@
 
 # volume notification daemon
 if [ -z `pidof volnoti` ]; then
-	volnoti -t 1 &
+  volnoti -t 1 &
 fi
 
 # composite
