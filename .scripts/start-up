@@ -39,3 +39,6 @@ xset m 0 0 &
 ( ( sleep 10 && /usr/bin/xscreensaver -no-splash -display :0.0 ) & )
 # automatically lock when suspending/hibernating
 (sleep 12s && xss-lock -- xscreensaver-command -lock)  &
+
+# start a urxvt daemon
+urxvtd -q -o -f &

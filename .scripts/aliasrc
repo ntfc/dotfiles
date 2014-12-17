@@ -10,6 +10,8 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 alias rsync='rsync -v'
 
+alias mpd-start='~/.scripts/exec-mpd'
+
 # aliases arguments is zsh: http://struct.tumblr.com/post/20358217330/arguments-passed-to-an-alias-in-zsh-the-right
 start.service () { sudo systemctl start $1.service }
 restart.service () { sudo systemctl restart $1.service }

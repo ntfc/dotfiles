@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# start mpd, mpdscribble and mpn
+
+if [[ -z `pidof "mpd"` ]]; then
+  echo "Starting mpd.."
+  /usr/bin/mpd /home/nc/.config/mpd/mpd.conf &
+fi
+
+sleep 1s
+
+# only start mpdscribble and mpn if mpd is running
+if [[ ! -z `pidof mpd` ]]; then
+  if [[ -z `pidof "mpdscribble"` ]]; then
+    echo "Starting mpdscribble.."
+    mpdscribble &
+  fi
+  
+  if [[ $DISPLAY ]]; then
+    if [[ -z `pidof -x "mpn"` ]]; then
+      echo "Starting mpn.."
+      mpn &
+    fi
+  fi
+fi

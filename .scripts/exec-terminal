@@ -3,7 +3,6 @@
 # If a terminal is already open, focus on it. If not, execute a new one
 #
 
-TERM_CMD=urxvt
 TERM_NAME=urxvt
 TERM_CLASS=URxvt
 
@@ -21,7 +20,11 @@ while read -r line; do
 done <<< "$OPEN_TERMS"
 
 if [[ "$IS_OPEN" == "no" ]]; then # execute new TERM_CMD
-	$TERM_CMD
+	if [[ ! -z `pidof urxvtd` ]]; then # execute urxvt client
+		urxvtc &
+	else
+		urxvt &
+	fi
 else # focus on currently open TERM_NAME
 	wmctrl -xa $TERM_NAME
 fi

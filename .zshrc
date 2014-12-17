@@ -121,3 +121,7 @@ man() {
           LESS_TERMCAP_us=$(printf "\e[1;32m") \
               man "$@"
 }
+
+# If not running interactively, do not do anything
+[[ $- != *i* ]] && return
+[[ -z "$TMUX" ]] && exec tmux
