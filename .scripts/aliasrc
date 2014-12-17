@@ -1,6 +1,6 @@
 # Alias to be used in bash/zsh
 
-# alias sudo='sudo '
+alias sudo='sudo '
 
 alias rm='rm -iv'
 alias cp='cp -iv'

@@ -861,7 +861,13 @@
     </application>
     <application class="URxvt" name="urxvt" type="normal">
       <maximized>default</maximized>
-    <decor>default</decor></application>
+      <decor>default</decor>
+      <position force="yes">
+        <x>center</x>
+        <y>center</y>
+      </position>
+      <skip_taskbar>no</skip_taskbar>
+    </application>
     
   <application class="Spotify" name="spotify" type="normal"><decor>no</decor></application>
 </applications>
