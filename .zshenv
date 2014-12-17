@@ -9,3 +9,8 @@ export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 
 # editor
 export EDITOR='vim'
+# Browser
+export BROWSER='chromium'
+
+# pulseaudio with X11
+export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/"
