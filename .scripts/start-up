@@ -44,4 +44,4 @@ xset m 0 0 &
 urxvtd -q -o -f &
 
 # dropbox 
-dropboxd &
+(sleep 2s && dropboxd) &

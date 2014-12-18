@@ -1,0 +1,128 @@
+"""""""""""""""""""""""""""""""
+" Vundle
+"""""""""""""""""""""""""""""""
+set nocompatible
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+"""""""""""""""""""""""""""""""
+" Custom
+"""""""""""""""""""""""""""""""
+" show invisible characters
+" show tab as →, new line as ¬
+set list
+set listchars=tab:→\ ,eol:¬,
+
+
+colorscheme railscasts
+
+set number " line number
+
+set laststatus=2 " show status line
+set cursorline " highlight current line
+
+set autoindent
+set smartindent
+set ruler " always show current position
+syntax enable
+
+" insert space characters whenever tab is pressed
+set expandtab
+" To insert a Tab use: Ctrl-V<Tab>
+set tabstop=2
+set shiftwidth=2
+
+set wrap " wrap visually
+set linebreak " wrap at a character in the breakat option (spaces, tabs, ., ;,)
+" prevent vim from automatically inserting line breaks in newly entered text
+set wrapmargin=0
+set formatoptions+=1
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+set showmatch " puts the cursor at the previous matching braket. visual only
+set gfn=DejaVu\ Sans\ Mono\ 10
+
+set shell=/usr/bin/zsh
+" enable mouse
+set mouse=a
+set showcmd " Show (partial) command in status line
+
+set hlsearch " highlight search results
+
+set textwidth=80
+
+" keys delay?? https://news.ycombinator.com/item?id=4246452
+set timeout timeoutlen=1000 ttimeoutlen=100
+
+" unicode
+" http://vim.wikia.com/wiki/Working_with_Unicode
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
+set backupdir=/tmp
+set directory=/tmp
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" On insert mode, Shift-Tab to unindent
+inoremap <S-Tab> <C-D>
+" On visual mode, use tab and shift tab to indent the current selected text
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" maps NERDTree to F10
+noremap <silent> <F10> :NERDTreeToggle<CR>
+noremap! <silent> <F10> <ESC>:NERDTreeToggle<CR>
+" tells NERDTree to use ASCII chars
+let g:NERDTreeDirArrows=0
+" How can I close vim if the only window left open is a NERDTree?
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-latex
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add a column at the 81 character position, only in latex
+autocmd FileType tex set colorcolumn=+1 
+
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+
+" TIP: if you write your \label's as \label{fig:something}, then if you
+" type in \ref{fig: and press <C-n> you will automatically cycle through
+" all the figure labels. Very useful
+set iskeyword+=:
+
+" automatically spell check tex files
+autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_us
+" use Ctrl+N and Ctrl+P in insert mode
+set complete+=kspell
