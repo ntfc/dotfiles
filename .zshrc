@@ -23,6 +23,8 @@ unsetopt beep
 # End of lines configured by zsh-newuser-install
 
 # My configs
+# rehash automatically
+setopt nohashdirs
 # load my aliases
 source ~/.scripts/aliasrc
 source ~/.scripts/gitaliasrc
