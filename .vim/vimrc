@@ -23,6 +23,10 @@ filetype plugin indent on    " required
 set list
 set listchars=tab:→\ ,eol:¬,
 
+" show italics in vim terminal
+" https://www.reddit.com/r/vim/comments/24g8r8/italics_in_terminal_vim_and_tmux/
+set t_ZH=[3m
+set t_ZR=[23m
 
 colorscheme railscasts
 

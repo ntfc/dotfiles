@@ -67,7 +67,7 @@ hi PMenuThumb                guibg=#AAAAAA gui=NONE
 
 
 "rubyComment
-hi Comment                   guifg=#AF8700 guibg=#121212 gui=italic ctermfg=136 ctermbg=233
+hi Comment                   guifg=#AF8700 guibg=#121212 gui=italic cterm=italic ctermfg=136 ctermbg=233
 hi Todo                      guifg=#BC9458 guibg=NONE gui=italic ctermfg=94
 
 "rubyPseudoVariable

@@ -103,17 +103,14 @@ URxvt*iconFile: /usr/share/icons/gnome-colors-common/scalable/apps/terminal.svg
 ! URxvt*borderColor: colour
 
 ! Select the fonts to be used. This is a comma separated list of font
-URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12:antialias=false
+URxvt*font: xft:Bitstream Vera Sans Mono:style=Roman:pixelsize=12:antialias=false
+URxvt*boldFont: xft:Bitstream Vera Sans Mono:style=Bold:pixelsize=12:antialias=false
+URxvt*italicFont: xft:Bitstream Vera Sans Mono:style=Oblique:pixelsize=12:antialias=false
+! The font list to use for displaying bold, italic or bold italic
+URxvt*boldItalicFont: fontlist
 
 URxvt*letterSpace: -2
 
-! URxvt*boldFont: fontlist
-
-! 
-! URxvt*italicFont: fontlist
-
-! The font list to use for displaying bold, italic or bold italic
-! URxvt*boldItalicFont: fontlist
 
 ! When font styles are not enabled, or this option is enabled (True,
 ! URxvt*intensityStyles: boolean
