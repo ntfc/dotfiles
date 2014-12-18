@@ -6,5 +6,5 @@
 
 # systray and clock
 (sleep 0.2s && stalonetray -c ~/.config/stalonetrayrc) &
-(sleep 1s && lal -b --color "#000000" -s 14 -f " %a %d  %H:%M:%S" -w 150 -t "Terminus") &
+(sleep 1s && lal -b --color "#000000" -s 14 -f " %a %d  %H:%M:%S" -w 130 -t "Droid Sans") &
 
