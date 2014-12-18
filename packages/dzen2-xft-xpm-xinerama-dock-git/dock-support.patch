@@ -1,0 +1,16 @@
+--- src/dzen/main.c	2014-12-18 22:46:22.881274304 +0000
++++ main.c	2014-12-18 22:46:07.458024526 +0000
+@@ -435,6 +435,13 @@
+ 				(unsigned char *)&desktop,
+ 				1
+ 				);
++
++    /* XXX set to “withdrawn” */
++    XWMHints wm_hints;
++    wm_hints.initial_state = WithdrawnState;
++    wm_hints.icon_window = wm_hints.window_group = w;
++    wm_hints.flags = StateHint | IconWindowHint | IconPositionHint | WindowGroupHint;
++    XSetWMHints(dpy, w, &wm_hints);
+ 	}
+ 
+ }
