@@ -182,7 +182,7 @@ URxvt*scrollTtyKeypress: true
 ! URxvt*skipBuiltinGlyphs: boolean
 
 ! Specifies the terminal type name to be set in the TERM environment
-! URxvt*termName: termname
+URxvt*termName: rxvt-unicode-256color
 
 ! Specifies number of lines (pixel height) to insert between each row
 ! URxvt*lineSpace: number
