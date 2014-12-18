@@ -15,3 +15,7 @@ export EDITOR='vim'
 
 # pulseaudio with X11
 export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/"
+
+# java stuff
+# done in /etc/environment as explained here:
+# https://wiki.archlinux.org/index.php/Java_Runtime_Environment_Fonts
