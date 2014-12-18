@@ -1,13 +1,9 @@
 #!/bin/bash
 #
-# called from /etc/acpi/events/power. This script should deal with $1:
-#  * ac_adapter
-#  * button/power
-#  * button/sleep
-#  * button/lid
-# 
-# if $4 = 00000000, battery ON, otherwise, battery OFF
+# called from /etc/acpi/events/anything This script should deal with everything
+# acpid related.
 #
+# todo: update these values...
 # $1 = ac_adapter|button/power|button/sleep|button/lid
 # $2 = 
 # $3 = 

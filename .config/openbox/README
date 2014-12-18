@@ -1,3 +1,0 @@
-# Shortcuts
-- Shift+Alt+c: closes current window, except when window is a urxvt
-- Shift+Alt+Return: executes a new urxvt/tmux, and if one is already created, focus on it, otherwise, create a new one
