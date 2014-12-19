@@ -161,7 +161,7 @@
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>1106</floatingX>
     <floatingY>766</floatingY>
-    <noStrut>yes</noStrut>
+    <noStrut>no</noStrut>
     <stacking>Above</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
     <direction>Horizontal</direction>

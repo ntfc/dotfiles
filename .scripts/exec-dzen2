@@ -1,0 +1,36 @@
+#!/bin/sh
+
+SLEEP=1
+#############################################
+# Dzen configuration/settings
+#############################################
+FONT="Inconsolata"
+FG='#ffffff'
+BG='#121212'
+SCREEN_W=`xrandr |  sed -ne 's/.*current \([^ ]*\).*/\1/p'`
+HEIGHT=24
+# width is 85% of screen width
+WIDTH=`echo "$SCREEN_W"*0.85 | bc | awk '{printf("%d",$1 + 0.5)}'`
+POP_UP_WIDTH=200
+ALIGN=r
+
+DZEN="dzen2 -fn $FONT -fg $FG -bg $BG -dock -p -h $HEIGHT -tw $WIDTH -ta $ALIGN \
+  -e 'leaveslave=collapse;entertitle=uncollapse,ungrabkeys;leavetitle=collapse;"
+
+SEP="|"
+#BAT="^i($HOME/.scripts/dzen2/icons/sm4tik/bat_full_02.xbm)"
+BAT100="^i($HOME/.scripts/dzen2/icons/bat_full.xbm)"
+BAT66="^i($HOME/.scripts/dzen2/icons/bat_66.xbm)"
+BAT33="^i($HOME/.scripts/dzen2/icons/bat_33.xbm)"
+BAT0="^i($HOME/.scripts/dzen2/icons/bat_0.xbm)"
+
+# Infinite loop
+while :; do
+  CLOCK=`date +"%a %d  %H:%M:%S"`
+
+
+  # sleep
+  sleep $SLEEP
+  # output
+  echo "$BAT0 3% $BAT33 33% $BAT66 66% $BAT100 100% $SEP $CLOCK $PADDING"
+done | $DZEN

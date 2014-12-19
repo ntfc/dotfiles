@@ -56,6 +56,8 @@ case "$1" in
           export DISPLAY=:0.0 ; \
           /home/nc/.scripts/pacontrol up 1' &
       ;;
+      00000055) # calculator
+        su nc -c 'export DISPLAY=:0.0 ; /usr/bin/speedcrunch' &
     esac
   ;;
 esac
