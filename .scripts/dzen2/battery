@@ -1,0 +1,55 @@
+#!/bin/sh
+
+ICO_PATH="$HOME/.scripts/dzen2/icons/"
+
+AC_ONLINE=$(cat /sys/class/power_supply/AC0/online)
+BAT_ONLINE=$(cat /sys/class/power_supply/BAT0/status)
+
+ENERGY_NOW=$(cat /sys/class/power_supply/BAT0/energy_now)
+ENERGY_FULL=$(cat /sys/class/power_supply/BAT0/energy_full)
+
+ENERGY_PERCENTAGE=`expr $ENERGY_NOW \* 100`
+ENERGY_PERCENTAGE=`expr $ENERGY_PERCENTAGE / $ENERGY_FULL`
+
+FLASH=0
+
+if [[ "$AC_ONLINE" == "1" ]]; then # battery is charging
+  ICO="^i("$ICO_PATH"/windelicato/ac_01.xbm)"
+
+elif [[ "$AC_ONLINE" == "0" && "$BAT_ONLINE" == "Discharging" ]]; then
+  if [[ "$ENERGY_PERCENTAGE" -ge "90" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery90.xbm)"
+  elif [[ "$ENERGY_PERCENTAGE" -ge "80" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery80.xbm)"
+  elif [[ "$ENERGY_PERCENTAGE" -ge "70" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery70.xbm)"
+  elif [[ "$ENERGY_PERCENTAGE" -ge "60" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery60.xbm)"
+  elif [[ "$ENERGY_PERCENTAGE" -ge "50" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery50.xbm)"
+  elif [[ "$ENERGY_PERCENTAGE" -ge "40" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery40.xbm)"
+  elif [[ "$ENERGY_PERCENTAGE" -ge "30" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery30.xbm)"
+  elif [[ "$ENERGY_PERCENTAGE" -ge "20" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery20.xbm)"
+  elif [[ "$ENERGY_PERCENTAGE" -ge "10" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery10.xbm)"
+  elif [[ "$ENERGY_PERCENTAGE" -lt "10" ]]; then
+    ICO="^i("$ICO_PATH"/windelicato/battery10.xbm)"
+    FLASH=1
+  fi
+else
+  echo "Unknown"
+fi
+
+if [[ "$FLASH" -eq 1 ]]; then
+  # flash battery icon in red
+  if [[ $((`date +"%S"` % 2)) -eq 0 ]]; then
+    echo "^bg(red)$ICO $ENERGY_PERCENTAGE%^bg()^fg()"
+  else
+    echo "^bg()$ICO $ENERGY_PERCENTAGE%^bg()^fg()"
+  fi
+else
+  echo "$ICO $ENERGY_PERCENTAGE%^bg()^fg()"
+fi

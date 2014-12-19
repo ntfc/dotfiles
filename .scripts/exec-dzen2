@@ -1,16 +1,38 @@
 #!/bin/sh
 
 SLEEP=1
+STALONETRAY_CFG="$HOME/.config/stalonetrayrc"
+
+function tray_height() {
+  # extract the icon_size of stalonetray (the first two numbers)
+  TRAY_ICO_SIZE=$(egrep "^icon_size.*" $STALONETRAY_CFG | egrep -o '[0-9]{2}')
+  echo $TRAY_ICO_SIZE
+}
+
+function dzen_width() {
+  # extract the geometry width of stalonetray (the first 2 number).
+  TRAY_GEOMETRY=$(egrep "^geometry.*" $STALONETRAY_CFG | egrep -o '[0-9]{2}')
+  # extract the icon_size of stalonetray (the first two numbers)
+  TRAY_ICO_SIZE=$(egrep "^icon_size.*" $STALONETRAY_CFG | egrep -o '[0-9]{2}')
+  # the actual width of stalonetray is TRAY_GEOMETRY x TRAY_ICO_SIZE
+  TRAY_WIDTH=$((TRAY_GEOMETRY*TRAY_ICO_SIZE))
+
+  # get screen width
+  SCREEN_WIDTH=`xrandr |  sed -ne 's/.*current \([^ ]*\).*/\1/p'`
+
+  # dzen width = SCREEN_WIDTH - TRAY_WIDTH
+  DZEN_WIDTH=$(($SCREEN_WIDTH-$TRAY_WIDTH))
+  echo $DZEN_WIDTH
+}
+
 #############################################
 # Dzen configuration/settings
 #############################################
-FONT="Inconsolata"
-FG='#ffffff'
-BG='#121212'
-SCREEN_W=`xrandr |  sed -ne 's/.*current \([^ ]*\).*/\1/p'`
-HEIGHT=24
-# width is 85% of screen width
-WIDTH=`echo "$SCREEN_W"*0.85 | bc | awk '{printf("%d",$1 + 0.5)}'`
+FONT="-*-terminus-medium-*-normal-*-13-*-*-*-*-*-*-*"
+FG='#000000'
+BG='#3b73bd'
+HEIGHT=$(tray_height)
+WIDTH=$(dzen_width)
 POP_UP_WIDTH=200
 ALIGN=r
 
@@ -18,19 +40,16 @@ DZEN="dzen2 -fn $FONT -fg $FG -bg $BG -dock -p -h $HEIGHT -tw $WIDTH -ta $ALIGN 
   -e 'leaveslave=collapse;entertitle=uncollapse,ungrabkeys;leavetitle=collapse;"
 
 SEP="|"
-#BAT="^i($HOME/.scripts/dzen2/icons/sm4tik/bat_full_02.xbm)"
-BAT100="^i($HOME/.scripts/dzen2/icons/bat_full.xbm)"
-BAT66="^i($HOME/.scripts/dzen2/icons/bat_66.xbm)"
-BAT33="^i($HOME/.scripts/dzen2/icons/bat_33.xbm)"
-BAT0="^i($HOME/.scripts/dzen2/icons/bat_0.xbm)"
 
 # Infinite loop
 while :; do
   CLOCK=`date +"%a %d  %H:%M:%S"`
 
-
+  BAT=$($HOME/.scripts/dzen2/battery)
   # sleep
   sleep $SLEEP
   # output
-  echo "$BAT0 3% $BAT33 33% $BAT66 66% $BAT100 100% $SEP $CLOCK $PADDING"
+  echo "$BAT $SEP $CLOCK $PADDING"
+
 done | $DZEN
+
