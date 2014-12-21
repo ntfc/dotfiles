@@ -1,0 +1,22 @@
+#!/bin/sh
+
+ICO_PATH="$HOME/.scripts/dzen2/icons/"
+
+PULSE=$($HOME/.scripts/pacontrol status)
+
+VOLUME=$(echo $PULSE | awk '{print $1'})
+STATUS=$(echo $PULSE | awk '{print $2'})
+
+if [[ "$STATUS" == "mute" ]]; then
+  ICO="$ICO_PATH/volume-mute.xbm"
+else
+  if [[ "$VOLUME" -ge 66 ]]; then
+    ICO="$ICO_PATH/volume100.xbm"
+  elif [[ "$VOLUME" -ge 33 ]]; then
+    ICO="$ICO_PATH/volume66.xbm"
+  else
+    ICO="$ICO_PATH/volume33.xbm"
+  fi
+fi
+
+echo -n "^i($ICO) $VOLUME%"

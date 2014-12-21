@@ -2,6 +2,7 @@
 
 SLEEP=1
 STALONETRAY_CFG="$HOME/.config/stalonetrayrc"
+ICO_PATH="$HOME/.scripts/dzen2/icons/"
 
 function tray_height() {
   # extract the icon_size of stalonetray (the first two numbers)
@@ -43,13 +44,14 @@ SEP="|"
 
 # Infinite loop
 while :; do
-  CLOCK=`date +"%a %d  %H:%M:%S"`
+  CLOCK="^ca(1,gsimplecal)"`date +"%a %d %H:%M:%S"`"^ca()"
 
   BAT=$($HOME/.scripts/dzen2/battery)
+  SOUND="^ca(1,pavucontrol)$($HOME/.scripts/dzen2/sound)^ca()"
   # sleep
   sleep $SLEEP
   # output
-  echo "$BAT $SEP $CLOCK $PADDING"
+  echo "$SOUND $SEP $BAT $SEP $CLOCK $PADDING"
 
 done | $DZEN
 

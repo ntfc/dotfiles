@@ -21,11 +21,11 @@ fi
 copyq &
 
 # volume
-volumeicon &
+#volumeicon &
 #pasystray &
 
 # battery
-cbatticon -i notification &
+#cbatticon -i notification &
 
 # screen powersave
 xset +dpms 
