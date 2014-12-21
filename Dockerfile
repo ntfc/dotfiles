@@ -7,6 +7,7 @@ RUN apt-get update && \
 
 RUN wget http://dl.acestream.org/debian/7/acestream_3.0.5.1_debian_7.4_x86_64.tar.gz && \
     tar zxvf acestream_3.0.5.1_debian_7.4_x86_64.tar.gz && \
+    rm acestream_3.0.5.1_debian_7.4_x86_64.tar.gz && \ 
     mv acestream_3.0.5.1_debian_7.4_x86_64 acestream
 ADD /launch.sh /launch.sh
 RUN useradd -ms /bin/bash acestream
