@@ -1,0 +1,23 @@
+#!/bin/sh
+
+ICO_PATH="$HOME/.scripts/dzen2/icons/"
+ICO="$ICO_PATH/windelicato/note.xbm"
+
+if [[ -z "`pidof mpd`" ]]; then
+  # mpd not running
+  exit
+fi
+
+SONG=$(mpc current | cut -c 1-100)
+
+NEXT="^ca(1,mpc next -q)^i($ICO_PATH/windelicato/next.xbm)^ca()"
+PREV="^ca(1,mpc prev- q)^i($ICO_PATH/windelicato/prev.xbm)^ca()"
+TOGGLE="^ca(1,mpc toggle -q)"
+if [[ "`mpc | sed '2q;d' | awk '{print $1}'`" == "[playing]" ]]; then
+  TOGGLE+="^i($ICO_PATH/windelicato/pause.xbm)"
+else
+  TOGGLE+="^i($ICO_PATH/windelicato/play.xbm)"
+fi
+TOGGLE+="^ca()"
+
+echo -n "^i($ICO) $SONG $PREV $TOGGLE $NEXT"

@@ -40,7 +40,7 @@ ALIGN=r
 DZEN="dzen2 -fn $FONT -fg $FG -bg $BG -dock -p -h $HEIGHT -tw $WIDTH -ta $ALIGN \
   -e 'leaveslave=collapse;entertitle=uncollapse,ungrabkeys;leavetitle=collapse;"
 
-SEP="|"
+SEP=""
 
 # Infinite loop
 while :; do
@@ -48,10 +48,13 @@ while :; do
 
   BAT=$($HOME/.scripts/dzen2/battery)
   SOUND="^ca(1,pavucontrol)$($HOME/.scripts/dzen2/sound)^ca()"
+  MPD=$($HOME/.scripts/dzen2/mpd)
+
   # sleep
   sleep $SLEEP
+
   # output
-  echo "$SOUND $SEP $BAT $SEP $CLOCK $PADDING"
+  echo "$MPD $SEP $SOUND $SEP $BAT $SEP $CLOCK $PADDING"
 
 done | $DZEN
 
