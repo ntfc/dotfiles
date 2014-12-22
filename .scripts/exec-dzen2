@@ -15,12 +15,13 @@ while :; do
   MPD=$($HOME/.scripts/dzen2/mpd)
   CPU=$(cat "$CPU_TMP")
   MEM=$($HOME/.scripts/dzen2/memory)
+  NETWORK=$($HOME/.scripts/dzen2/network)
 
   # sleep
   sleep $SLEEP
 
   # output
-  echo "$MPD $SEP $CPU $SEP $MEM $SEP $SOUND $SEP $BAT $SEP $PADDING"
+  echo "$MPD $SEP $CPU $SEP $MEM $SEP $NETWORK $SEP $SOUND $SEP $BAT $SEP $PADDING"
 
 done | $DZEN
 
