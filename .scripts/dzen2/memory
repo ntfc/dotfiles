@@ -1,0 +1,11 @@
+#!/bin/sh
+
+. $HOME/.scripts/dzen2/dzen2rc
+
+# in MB
+USAGE=$(free -m | awk '/Mem:/ {print $3"/"$2}')
+
+# in %
+USAGE_PERC=$(free -m | awk '/Mem:/ {print int(($3/$2)*100)}')
+
+echo "^i($ICO_PATH/windelicato/mem.xbm) $USAGE_PERC% $USAGE"
