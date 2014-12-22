@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ICO_PATH="$HOME/.scripts/dzen2/icons/"
+. $HOME/.scripts/dzen2/dzen2rc
 
 PULSE=$($HOME/.scripts/pacontrol status)
 

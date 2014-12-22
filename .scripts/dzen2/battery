@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ICO_PATH="$HOME/.scripts/dzen2/icons/"
+. $HOME/.scripts/dzen2/dzen2rc
 
 AC_ONLINE=$(cat /sys/class/power_supply/AC0/online)
 BAT_ONLINE=$(cat /sys/class/power_supply/BAT0/status)
