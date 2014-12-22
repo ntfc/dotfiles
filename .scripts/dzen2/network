@@ -1,0 +1,17 @@
+#!/bin/sh
+
+. $HOME/.scripts/dzen2/dzen2rc
+
+STATE=$(connmanctl state | grep "State = " | awk '{print $3}')
+
+if [[ "$STATE" == "online" ]]; then
+  INTERFACES="$(connmanctl technologies)"
+  ETH_LINE_NR=$(echo "$INTERFACES" | grep -n "Name = Wired" | cut -d : -f1)
+  WLAN_LINE_NR=$(echo "$INTERFACES" | grep -n "Name = WiFi" | cut -d : -f1)
+
+  ETH="$(sed -n $ETH_LINE_NR,`expr $ETH_LINE_NR + 4`p <<< "$INTERFACES")"
+  WLAN="$(sed -n $WLAN_LINE_NR,`expr $WLAN_LINE_NR + 4`p <<< "$INTERFACES")"
+
+else # do not output anything
+  exit
+fi
