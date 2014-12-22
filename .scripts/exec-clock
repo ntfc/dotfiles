@@ -1,23 +1,8 @@
 #!/bin/sh
 
-SLEEP=1
-STALONETRAY_CFG="$HOME/.config/stalonetrayrc"
+. $HOME/.scripts/dzen2/dzen2rc
 
-function tray_height() {
-  # extract the icon_size of stalonetray (the first two numbers)
-  TRAY_ICO_SIZE=$(egrep "^icon_size.*" $STALONETRAY_CFG | egrep -o '[0-9]{2}')
-  echo $TRAY_ICO_SIZE
-}
-
-FONT="Inconsolata-12:Bold"
-FG='#aaaaaa'
-BG='#1d1d1d'
-HEIGHT=$(tray_height)
-WIDTH=140
-POP_UP_WIDTH=200
-ALIGN=r
-
-DZEN="dzen2 -fn $FONT -fg $FG -bg $BG -dock -p -h $HEIGHT -tw $WIDTH -ta $ALIGN \
+DZEN="dzen2 -fn $CLOCK_FONT -fg $FG -bg $BG -dock -p -h $CLOCK_HEIGHT -tw $CLOCK_WIDTH -ta $ALIGN \
   -e 'leaveslave=collapse;entertitle=uncollapse,ungrabkeys;leavetitle=collapse;"
 
 while true; do
