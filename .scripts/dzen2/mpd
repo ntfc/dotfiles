@@ -21,4 +21,4 @@ else
 fi
 TOGGLE+="^ca()"
 
-echo -n "^i($ICO) $PADDING $SONG $PREV $TOGGLE $NEXT"
+echo -n "^i($ICO) $PADDING $SONG $PADDING $PREV $TOGGLE $NEXT"

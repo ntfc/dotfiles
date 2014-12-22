@@ -50,3 +50,8 @@ WIDTH=$(dzen_width)
 # Clock dimensions
 ##########################
 CLOCK_HEIGHT=$(tray_height)
+
+##########################
+# Fifo's
+##########################
+CPU_TMP=/tmp/cpu_tmp

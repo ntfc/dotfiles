@@ -5,17 +5,21 @@
 DZEN="dzen2 -fn $FONT -fg $FG -bg $BG -dock -p -h $HEIGHT -tw $WIDTH -ta $ALIGN \
   -e 'leaveslave=collapse;entertitle=uncollapse,ungrabkeys;leavetitle=collapse;"
 
+# execute cpu script that write cpu info to a tmp file
+$HOME/.scripts/dzen2/cpu &
+
 # Infinite loop
 while :; do
   BAT=$($HOME/.scripts/dzen2/battery)
   SOUND="^ca(1,pavucontrol)$($HOME/.scripts/dzen2/sound)^ca()"
   MPD=$($HOME/.scripts/dzen2/mpd)
+  CPU=$(cat "$CPU_TMP")
 
   # sleep
   sleep $SLEEP
 
   # output
-  echo "$MPD $SEP $SOUND $SEP $BAT $SEP $PADDING"
+  echo "$MPD $SEP $CPU $SEP $SOUND $SEP $BAT $SEP $PADDING"
 
 done | $DZEN
 
