@@ -45,3 +45,6 @@ urxvtd -q -o -f &
 
 # dropbox 
 (sleep 2s && dropboxd) &
+
+# turn num lock on
+(sleep 3s && numlockx on) &

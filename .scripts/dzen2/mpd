@@ -3,6 +3,7 @@
 ICO_PATH="$HOME/.scripts/dzen2/icons/"
 ICO="$ICO_PATH/windelicato/note.xbm"
 
+
 if [[ -z "`pidof mpd`" ]]; then
   # mpd not running
   exit
@@ -20,4 +21,4 @@ else
 fi
 TOGGLE+="^ca()"
 
-echo -n "^i($ICO) $SONG $PREV $TOGGLE $NEXT"
+echo -n "^i($ICO) $PAD $SONG $PREV $TOGGLE $NEXT"

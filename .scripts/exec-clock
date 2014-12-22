@@ -1,0 +1,31 @@
+#!/bin/sh
+
+SLEEP=1
+STALONETRAY_CFG="$HOME/.config/stalonetrayrc"
+
+function tray_height() {
+  # extract the icon_size of stalonetray (the first two numbers)
+  TRAY_ICO_SIZE=$(egrep "^icon_size.*" $STALONETRAY_CFG | egrep -o '[0-9]{2}')
+  echo $TRAY_ICO_SIZE
+}
+
+FONT="Inconsolata-12:Bold"
+FG='#aaaaaa'
+BG='#1d1d1d'
+HEIGHT=$(tray_height)
+WIDTH=140
+POP_UP_WIDTH=200
+ALIGN=r
+
+DZEN="dzen2 -fn $FONT -fg $FG -bg $BG -dock -p -h $HEIGHT -tw $WIDTH -ta $ALIGN \
+  -e 'leaveslave=collapse;entertitle=uncollapse,ungrabkeys;leavetitle=collapse;"
+
+while true; do
+  CLOCK="^ca(1,gsimplecal)"`date +"%a %d %H:%M:%S"`"^ca()"
+  
+  # sleep
+  sleep $SLEEP
+
+  # output
+  echo "$PADDING $CLOCK $PADDING"
+done | $DZEN

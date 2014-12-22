@@ -4,9 +4,9 @@
 
 [ -f ~/.scripts/openbox/setlayout ] && (~/.scripts/openbox/setlayout 0 2 2 0) &
 
-(sleep 0.5s && stalonetray -c ~/.config/stalonetrayrc) &
-# dzen2 provides a clock
-#(sleep 1.0s && lal -b --color "#000000" -s 14 -f " %a %d  %H:%M:%S" -w 130 -t "Droid Sans") &
-#
-# systray, clock, all dock-able apps
-(sleep 1.5s && ~/.scripts/exec-dzen2) &
+# dzen2 statusbar
+(sleep 1s && ~/.scripts/exec-dzen2) &
+# systray
+(sleep 2s && stalonetray -c ~/.config/stalonetrayrc) &
+# clock
+(sleep 3s && ~/.scripts/exec-clock) &

@@ -3,6 +3,7 @@
 SLEEP=1
 STALONETRAY_CFG="$HOME/.config/stalonetrayrc"
 ICO_PATH="$HOME/.scripts/dzen2/icons/"
+CLOCK_WIDTH=$(egrep "^WIDTH=.*" $HOME/.scripts/exec-clock | egrep -o '[0-9]{3}')
 
 function tray_height() {
   # extract the icon_size of stalonetray (the first two numbers)
@@ -12,26 +13,27 @@ function tray_height() {
 
 function dzen_width() {
   # extract the geometry width of stalonetray (the first 2 number).
-  TRAY_GEOMETRY=$(egrep "^geometry.*" $STALONETRAY_CFG | egrep -o '[0-9]{2}')
+  TRAY_GEOMETRY=$(egrep "^geometry.*" $STALONETRAY_CFG | egrep -o '[0-9]+' | head -1)
   # extract the icon_size of stalonetray (the first two numbers)
-  TRAY_ICO_SIZE=$(egrep "^icon_size.*" $STALONETRAY_CFG | egrep -o '[0-9]{2}')
+  TRAY_ICO_SIZE=$(egrep "^icon_size.*" $STALONETRAY_CFG | egrep -o '[0-9]+' | head -1)
   # the actual width of stalonetray is TRAY_GEOMETRY x TRAY_ICO_SIZE
   TRAY_WIDTH=$((TRAY_GEOMETRY*TRAY_ICO_SIZE))
 
   # get screen width
   SCREEN_WIDTH=`xrandr |  sed -ne 's/.*current \([^ ]*\).*/\1/p'`
 
-  # dzen width = SCREEN_WIDTH - TRAY_WIDTH
-  DZEN_WIDTH=$(($SCREEN_WIDTH-$TRAY_WIDTH))
+  # dzen width = SCREEN_WIDTH - TRAY_WIDTH - CLOCK_WIDTH
+  DZEN_WIDTH=$(($SCREEN_WIDTH-$TRAY_WIDTH-$CLOCK_WIDTH-02))
   echo $DZEN_WIDTH
 }
+
 
 #############################################
 # Dzen configuration/settings
 #############################################
 FONT="-*-terminus-medium-*-normal-*-13-*-*-*-*-*-*-*"
-FG='#000000'
-BG='#3b73bd'
+FG='#aaaaaa'
+BG='#1d1d1d'
 HEIGHT=$(tray_height)
 WIDTH=$(dzen_width)
 POP_UP_WIDTH=200
@@ -40,12 +42,11 @@ ALIGN=r
 DZEN="dzen2 -fn $FONT -fg $FG -bg $BG -dock -p -h $HEIGHT -tw $WIDTH -ta $ALIGN \
   -e 'leaveslave=collapse;entertitle=uncollapse,ungrabkeys;leavetitle=collapse;"
 
-SEP=""
+SEP="^fg(#2f2f2f)^r(1x18)^fg()"
+PADDING="^fg($BG)^r(2x24)^fg()"
 
 # Infinite loop
 while :; do
-  CLOCK="^ca(1,gsimplecal)"`date +"%a %d %H:%M:%S"`"^ca()"
-
   BAT=$($HOME/.scripts/dzen2/battery)
   SOUND="^ca(1,pavucontrol)$($HOME/.scripts/dzen2/sound)^ca()"
   MPD=$($HOME/.scripts/dzen2/mpd)
@@ -54,7 +55,7 @@ while :; do
   sleep $SLEEP
 
   # output
-  echo "$MPD $SEP $SOUND $SEP $BAT $SEP $CLOCK $PADDING"
+  echo "$MPD $SEP $SOUND $SEP $BAT $SEP $PADDING"
 
 done | $DZEN
 
