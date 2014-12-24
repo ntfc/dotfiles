@@ -48,3 +48,6 @@ urxvtd -q -o -f &
 
 # turn num lock on
 (sleep 3s && numlockx on) &
+
+# thunar daemon
+thunar --daemon &
