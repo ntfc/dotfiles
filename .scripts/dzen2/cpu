@@ -2,7 +2,7 @@
 
 . $HOME/.scripts/dzen2/dzen2rc
 
-CPU_SLEEP=120
+CPU_SLEEP=30
 
 TEMP=$(cat /sys/class/thermal/thermal_zone0/temp)
 TEMP=$(($TEMP/1000))

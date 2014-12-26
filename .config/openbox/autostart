@@ -4,9 +4,10 @@
 
 [ -f ~/.scripts/openbox/setlayout ] && (~/.scripts/openbox/setlayout 0 2 2 0) &
 
-# dzen2 statusbar
-(sleep 1s && ~/.scripts/exec-dzen2) &
-# systray
-(sleep 2s && stalonetray -c ~/.config/stalonetrayrc) &
+# this is still not in the right order.....
 # clock
-(sleep 3s && ~/.scripts/exec-clock) &
+(sleep 1s && ~/.scripts/exec-clock) &
+# systray
+(sleep 0.2s && stalonetray -c ~/.config/stalonetrayrc) &
+# dzen2 statusbar
+(~/.scripts/exec-dzen2) &
