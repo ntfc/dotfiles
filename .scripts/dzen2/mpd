@@ -12,7 +12,7 @@ fi
 SONG=$(mpc current | cut -c 1-100)
 
 NEXT="^ca(1,mpc next -q)^i($ICO_PATH/windelicato/next.xbm)^ca()"
-PREV="^ca(1,mpc prev- q)^i($ICO_PATH/windelicato/prev.xbm)^ca()"
+PREV="^ca(1,mpc prev -q)^i($ICO_PATH/windelicato/prev.xbm)^ca()"
 TOGGLE="^ca(1,mpc toggle -q)"
 if [[ "`mpc | sed '2q;d' | awk '{print $1}'`" == "[playing]" ]]; then
   TOGGLE+="^i($ICO_PATH/windelicato/pause.xbm)"
