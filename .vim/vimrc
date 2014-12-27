@@ -12,6 +12,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'wting/rust.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'vim-latex/vim-latex'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -132,3 +133,21 @@ set iskeyword+=:
 autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_us
 " use Ctrl+N and Ctrl+P in insert mode
 set complete+=kspell
+
+let g:Tex_DefaultTargetFormat = 'pdf'
+
+"http://vim-latex.sourceforge.net/documentation/latex-suite.html#Tex_MultipleCompileFormats
+let g:Tex_MultipleCompileFormats='dvi,pdf'
+
+let g:Tex_UseMakefile=1
+
+" I don't like to execute zathura this way, because all stdout/stderr is dumped
+" into vim.. So I use g:Tex_ViewRuleComplete_<format>
+let g:Tex_ViewRule_dvi='zathura'
+let g:Tex_ViewRule_pdf='zathura'
+let g:Tex_ViewRule_ps ='zathura'
+
+" http://vim-latex.sourceforge.net/documentation/latex-suite.html#Tex_ViewRuleComplete_format
+let g:Tex_ViewRuleComplete_pdf='zathura $*.pdf &>/dev/null &'
+let g:Tex_ViewRuleComplete_ps ='zathura $*.ps  &>/dev/null &'
+let g:Tex_ViewRuleComplete_dvi='zathura $*.dvi &>/dev/null &'
