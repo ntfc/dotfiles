@@ -1,8 +1,8 @@
 """""""""""""""""""""""""""""""
 " Vundle
 """""""""""""""""""""""""""""""
-set nocompatible
-filetype off
+set nocompatible " required
+filetype off " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -49,11 +49,15 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
-set wrap " wrap visually
+set wrap " wrap visually. for specific file wrapping, see .vim/ftplugin
+" default behavior: don't wrap automatically by setting textwidth to 0. in
+" .vim/ftplugin, alter this value if you want automatic wrapping for tex, C,
+" Java, etc..
+set textwidth=0
 set linebreak " wrap at a character in the breakat option (spaces, tabs, ., ;,)
-" prevent vim from automatically inserting line breaks in newly entered text
+"" prevent vim from automatically inserting line breaks in newly entered text
 set wrapmargin=0
-set formatoptions+=1
+set formatoptions+=l
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -67,8 +71,6 @@ set mouse=a
 set showcmd " Show (partial) command in status line
 
 set hlsearch " highlight search results
-
-set textwidth=80
 
 " keys delay?? https://news.ycombinator.com/item?id=4246452
 set timeout timeoutlen=1000 ttimeoutlen=100
@@ -111,9 +113,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-latex
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Add a column at the 81 character position, only in latex
-autocmd FileType tex set colorcolumn=+1 
-
+" Check .vim/ftplugin for some file type definitions
+"
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
@@ -129,8 +130,6 @@ let g:tex_flavor='latex'
 " all the figure labels. Very useful
 set iskeyword+=:
 
-" automatically spell check tex files
-autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_us
 " use Ctrl+N and Ctrl+P in insert mode
 set complete+=kspell
 
@@ -142,11 +141,11 @@ let g:Tex_MultipleCompileFormats='dvi,pdf'
 let g:Tex_UseMakefile=1
 
 " I don't like to execute zathura this way, because all stdout/stderr is dumped
-" into vim.. So I use g:Tex_ViewRuleComplete_<format>
+" into vim.. So I use g:Tex_ViewRuleComplete_<format>. I could also use xdg-open
+" instead of zathura, but well..
 let g:Tex_ViewRule_dvi='zathura'
 let g:Tex_ViewRule_pdf='zathura'
 let g:Tex_ViewRule_ps ='zathura'
-
 " http://vim-latex.sourceforge.net/documentation/latex-suite.html#Tex_ViewRuleComplete_format
 let g:Tex_ViewRuleComplete_pdf='zathura $*.pdf &>/dev/null &'
 let g:Tex_ViewRuleComplete_ps ='zathura $*.ps  &>/dev/null &'
