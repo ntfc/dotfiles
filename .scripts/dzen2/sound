@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# define 3 clickable actions:
+#  - mouse1: open pavucontrol
+#  - mouse4: volume up
+#  - mouse5: volume down
+
 . $HOME/.scripts/dzen2/dzen2rc
 
 PULSE=$($HOME/.scripts/pacontrol status)
@@ -21,4 +26,7 @@ else
   fi
 fi
 
-echo -n "^i($ICO) $VOLUME%"
+MOUSE4="$HOME/.scripts/pacontrol up 1" # wheel up
+MOUSE5="$HOME/.scripts/pacontrol down 1" # wheel down
+
+echo -n "^ca(4,$MOUSE4)^ca(5,$MOUSE5)^i($ICO) $VOLUME%^ca()^ca()"
