@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# clickable areas:
+#  - 3 control buttons: prev, next and toggle
+#  - on the area of the 3 control buttons, mouse wheel adjusts mpd volume
+
 . $HOME/.scripts/dzen2/dzen2rc
 
 ICO="$ICO_PATH/windelicato/note.xbm"
@@ -21,4 +25,8 @@ else
 fi
 TOGGLE+="^ca()"
 
-echo -n "^i($ICO) $PADDING $SONG $PADDING $PREV $TOGGLE $NEXT"
+MPD_UP="/usr/bin/mpc volume +2"
+MPD_DOWN="/usr/bin/mpc volume -2"
+
+BUTTONS="^ca(4,$MPD_UP)^ca(5,$MPD_DOWN)$PREV $TOGGLE $NEXT^ca()^ca()"
+echo -n "^i($ICO) $PADDING $SONG $PADDING $BUTTONS"
