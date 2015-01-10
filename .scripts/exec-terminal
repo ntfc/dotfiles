@@ -8,8 +8,6 @@
 TERM_NAME=urxvt
 TERM_CLASS=URxvt
 
-[[ -z "$TMUX" ]] && urxvtc; exit
-
 # find all windows with urxvt (title, name, class). this might contain a
 # browser window that contains urxvt in the title
 OPEN_TERMS=$(wmctrl -lx | grep $TERM_NAME)
