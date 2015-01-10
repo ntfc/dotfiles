@@ -103,14 +103,14 @@ if [ $DISPLAY ]; then
   echo "Ok, I am on a X session"
   if [[ -z `pidof compton` ]]; then
     echo "compton not running, starting compton.."
-    su nc -c '/usr/bin/compton --config /home/nc/.config/compton.conf -b' \
+    su ntfc -c '/usr/bin/compton --config /home/ntfc/.config/compton.conf -b' \
       &> /dev/null || echo "cannot run compton.."
   else
     echo "compton already running, nothing else to do"
   fi
 else
   echo "Hmm, I am not on a X session.. Try to run anyway.."
-  su nc -c 'export DISPLAY=:0.0 ; /usr/bin/compton --config /home/nc/.config/compton.conf -b' \
+  su ntfc -c 'export DISPLAY=:0.0 ; /usr/bin/compton --config /home/ntfc/.config/compton.conf -b' \
       &> /dev/null || echo "could not run compton.."
 fi
 

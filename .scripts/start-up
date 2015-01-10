@@ -1,44 +1,10 @@
 #!/bin/sh
+#
+# $1 = session name (openbox, mate)
+#
 
 # more low level stuff, like X or audio stuff
 [ -f ~/.scripts/start-up-lowlevel ] && ~/.scripts/start-up-lowlevel &
-
-# openbox stuff, including systray
-# see ~/.config/openbox/autostart
-
-# "desktop" backgroud
-(sleep 2s && feh --image-bg black --bg-center --no-fehbg ~/Pictures/desktop.jpg) &
-
-# volume notification daemon
-if [ -z `pidof volnoti` ]; then
-  volnoti -t 1 &
-fi
-
-# composite
-(sleep 2s && /usr/bin/compton --config /home/nc/.config/compton.conf -b) &
-
-# clipboard manager
-copyq &
-
-# volume
-#volumeicon &
-#pasystray &
-
-# battery
-#cbatticon -i notification &
-
-# screen powersave
-xset +dpms 
-xset dpms 0 0 300 &
-
-# disable touchpad accelaration
-(sleep 1s && xinput set-ptr-feedback `xinput list | grep 'Elantech Touchpad' | awk '{print $6}' | tail -c 3` 4 1 1) &
-xset m 0 0 &
-
-# xscreensaver
-( ( sleep 10 && /usr/bin/xscreensaver -no-splash -display :0.0 ) & )
-# automatically lock when suspending/hibernating
-(sleep 12s && xss-lock -- xscreensaver-command -lock)  &
 
 # start a urxvt daemon
 urxvtd -q -o -f &
@@ -46,8 +12,50 @@ urxvtd -q -o -f &
 # dropbox 
 (sleep 2s && dropboxd) &
 
-# turn num lock on
-(sleep 3s && numlockx on) &
-
 # thunar daemon
 thunar --daemon &
+
+# clipboard manager
+copyq &
+
+# screen powersave
+xset +dpms 
+xset dpms 0 0 300 &
+
+# /etc/xdg/autostart/nm-applet.desktop
+nm-applet &
+
+# composite
+(sleep 2s && /usr/bin/compton --config ~/.config/compton.conf -b) &
+
+case "$1" in
+  "openbox")
+    # openbox stuff, including systray
+    # see ~/.config/openbox/autostart
+
+    # "desktop" backgroud
+    (sleep 2s && feh --image-bg black --bg-center --no-fehbg ~/Pictures/desktop.jpg) &
+
+    # volume notification daemon
+    if [ -z `pidof volnoti` ]; then
+      volnoti -t 1 &
+    fi
+
+    # volume
+    #volumeicon &
+    #pasystray &
+
+    # battery
+    #cbatticon -i notification &
+
+    # disable touchpad accelaration
+    xset m 0 0 &
+
+    # xscreensaver
+    ( ( sleep 10 && /usr/bin/xscreensaver -no-splash -display :0.0 ) & )
+    # automatically lock when suspending/hibernating
+    (sleep 12s && xss-lock -- xscreensaver-command -lock)  &
+    ;;
+  "mate")
+    ;;
+esac

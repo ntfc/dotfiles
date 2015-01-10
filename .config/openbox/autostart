@@ -6,8 +6,8 @@
 
 # this is still not in the right order.....
 # clock
-(sleep 1s && ~/.scripts/exec-clock) &
+#(sleep 1s && ~/.scripts/exec-clock) &
 # systray
 (sleep 0.2s && stalonetray -c ~/.config/stalonetrayrc) &
 # dzen2 statusbar
-(~/.scripts/exec-dzen2) &
+#(~/.scripts/exec-dzen2) &

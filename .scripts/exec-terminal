@@ -1,10 +1,14 @@
 #!/bin/sh
 #
-# If a terminal is already open, focus on it. If not, execute a new one
+# If a terminal is already open, focus on it. If not, execute a new one.
+# ONLY works if tmux is running
 #
+
 
 TERM_NAME=urxvt
 TERM_CLASS=URxvt
+
+[[ -z "$TMUX" ]] && urxvtc; exit
 
 # find all windows with urxvt (title, name, class). this might contain a
 # browser window that contains urxvt in the title

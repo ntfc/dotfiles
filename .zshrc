@@ -57,7 +57,10 @@ RPROMPT='$(git_prompt_string)'
 ####################################
 autoload zkbd
 # https://wiki.archlinux.org/index.php/Zsh#Alternative_method_without_using_terminfo
-source ~/.zkbd/rxvt-unicode-256color.zkbd
+[[ -f ~/.zkbd/rxvt-unicode-256color ]] && source ~/.zkbd/rxvt-unicode-256color
+
+# vi mode
+bindkey -v
 
 # setup key accordingly
 [[ -n "${key[Home]}"      ]] && bindkey  "${key[Home]}"      beginning-of-line
@@ -122,4 +125,4 @@ man() {
 
 # If not running interactively, do not do anything
 [[ $- != *i* ]] && return
-[[ -z "$TMUX" ]] && exec tmux -2
+#[[ -z "$TMUX" ]] && exec tmux -2

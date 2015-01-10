@@ -1,5 +1,5 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.32 for nc on Sun Dec 14 19:44:37 2014.
+# Written by xscreensaver-demo 5.32 for ntfc on Sat Jan 10 17:57:55 2015.
 # http://www.jwz.org/xscreensaver/
 
 timeout:	0:10:00
@@ -29,7 +29,7 @@ dpmsQuickOff:	True
 dpmsStandby:	2:00:00
 dpmsSuspend:	2:00:00
 dpmsOff:	4:00:00
-grabDesktopImages:  True
+grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: False
 imageDirectory:	
