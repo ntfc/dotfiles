@@ -57,5 +57,6 @@ case "$1" in
     (sleep 12s && xss-lock -- xscreensaver-command -lock)  &
     ;;
   "mate")
+    redshift &
     ;;
 esac

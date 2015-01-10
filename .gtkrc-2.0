@@ -1,9 +1,8 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-include "/home/ntfc/.gtkrc-2.0.mine"
 gtk-theme-name="BlueMenta"
-gtk-icon-theme-name="mate"
+gtk-icon-theme-name="Fog"
 gtk-font-name="Sans 10"
 gtk-cursor-theme-name="mate"
 gtk-cursor-theme-size=18
@@ -17,3 +16,4 @@ gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintmedium"
 gtk-xft-rgba="none"
+include "/home/ntfc/.gtkrc-2.0.mine"
