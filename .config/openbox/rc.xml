@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
+<?xml version="1.0" ?><openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
     <strength>10</strength>
     <screen_edge_strength>20</screen_edge_strength>
@@ -865,5 +864,9 @@
     <application class="Spotify" name="spotify" type="normal">
       <decor>no</decor>
     </application>
-  </applications>
+  <application class="Spring Tool Suite" name="Spring Tool Suite" type="dialog"><decor>no</decor></application>
+<application class="Spring Tool Suite" name="Spring Tool Suite" type="normal"><decor>no</decor></application>
+<application class="Eclipse" name="Eclipse" type="dialog"/>
+<application class="Eclipse" name="Eclipse" type="normal"><decor>no</decor></application>
+</applications>
 </openbox_config>
