@@ -92,7 +92,7 @@ URxvt*foreground: white
 
 ! Set the application icon pixmap; option -icon.
 !URxvt*iconFile: /usr/share/icons/gnome-colors-common/scalable/apps/terminal.svg
-URxvt*iconFile: /usr/share/icons/Faba/64x64/apps/utilities-terminal.svg
+URxvt*iconFile: /usr/share/icons/mate/48x48/apps/utilities-terminal.png
 
 ! Use the specified colour for the scrollbar [default #B2B2B2].
 ! URxvt*scrollColor: colour
@@ -270,6 +270,7 @@ URxvt*termName: rxvt-unicode-256color
 
 ! Comma-separated list(s) of perl extension scripts (default:
 ! URxvt*perl-ext: string
+URxvt*perl-ext: selection-to-clipboard
 
 ! Perl code to be evaluated when all extensions have been registered.
 ! URxvt*perl-eval: string

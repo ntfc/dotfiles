@@ -23,16 +23,16 @@
        mouse into it, also raise the window -->
   </focus>
   <placement>
-    <policy>Smart</policy>
+    <policy>UnderMouse</policy>
     <!-- 'Smart' or 'UnderMouse' -->
     <center>yes</center>
     <!-- whether to place windows in the center of the free area found or
        the top left corner -->
-    <monitor>Active</monitor>
+    <monitor>Mouse</monitor>
     <!-- with Smart placement on a multi-monitor system, try to place new windows
        on: 'Any' - any monitor, 'Mouse' - where the mouse is, 'Active' - where
        the active window is, 'Primary' - only on the primary monitor -->
-    <primaryMonitor>Active</primaryMonitor>
+    <primaryMonitor>Mouse</primaryMonitor>
     <!-- The monitor where Openbox should place popup dialogs such as the
        focus cycling popup, or the desktop switch popup.  It can be an index
        from 1, specifying a particular monitor.  Or it can be one of the
@@ -40,7 +40,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Clearlooks</name>
+    <name>Turquoise Nights Ob</name>
     <titleLayout>LIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -161,7 +161,7 @@
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>1106</floatingX>
     <floatingY>766</floatingY>
-    <noStrut>no</noStrut>
+    <noStrut>yes</noStrut>
     <stacking>Above</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
     <direction>Horizontal</direction>
@@ -387,7 +387,7 @@
     <!-- number of pixels the mouse must move before a drag begins -->
     <doubleClickTime>200</doubleClickTime>
     <!-- in milliseconds (1000 = 1 second) -->
-    <screenEdgeWarpTime>400</screenEdgeWarpTime>
+    <screenEdgeWarpTime>500</screenEdgeWarpTime>
     <!-- Time before changing desktops when the pointer touches the edge of the
        screen while moving a window, in milliseconds (1000 = 1 second).
        Set this to 0 to disable warping -->
@@ -871,8 +871,13 @@
     <application class="Spring Tool Suite" name="Spring Tool Suite" type="normal">
       <decor>no</decor>
     </application>
-    <application class="Eclipse" name="Eclipse" type="dialog"/>
+    <application class="Eclipse" name="Eclipse" type="dialog">
+      <decor>no</decor>
+    </application>
     <application class="Eclipse" name="Eclipse" type="normal">
+      <decor>no</decor>
+    </application>
+    <application class="NetBeans IDE 8.0.2" name="sun-awt-X11-XDialogPeer" type="dialog">
       <decor>no</decor>
     </application>
   </applications>
