@@ -42,5 +42,5 @@ if [ -n "$SET" ]; then
   cpupower frequency-set -g "$SET"
   ICON='cpupower'
   TITLE='CPU governor'
-  su nc -c "export DISPLAY=:0.0 ; notify-send '$TITLE' '<b>$SET</b>' -i '$ICON'"
+  su ntfc -c "export DISPLAY=:0.0 ; notify-send '$TITLE' '<b>$SET</b>' -i '$ICON'"
 fi

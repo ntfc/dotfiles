@@ -4,57 +4,7 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-# aspm
-# default = [default] performance powersave
-echo powersave > /sys/module/pcie_aspm/parameters/policy
+USER=ntfc
+[[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && /home/$USER/.scripts/power/powerup &> /dev/null &
+[[ $(cat /sys/class/power_supply/AC/online) -eq 0 ]] && /home/$USER/.scripts/power/powerdown &> /dev/null &
 
-# Disable nmi watchdog
-# default = 1
-echo 0 > /proc/sys/kernel/nmi_watchdog
-
-# Disk write mode
-echo 5 > /proc/sys/vm/laptop_mode
-echo 90 > /proc/sys/vm/dirty_ratio
-echo 1 > /proc/sys/vm/dirty_background_ratio
-echo 60000 > /proc/sys/vm/dirty_writeback_centisecs
-
-# BUS powersave
-for i in /sys/bus/{pci,spi,i2c}/devices/*/power/control; do echo auto > $i;done
-
-# USB powersave
-# default = 2
-#for i in /sys/bus/usb/devices/*/power/autosuspend; do echo 1 > $i; done
-#default = done auto on auto auto ...
-#for i in /sys/bus/usb/devices/*/power/control; do echo auto > $i; done
-
-# SATA powersave
-#default = max_performance
-for i in /sys/class/scsi_host/host*/link_power_management_policy; do echo min_power > $i; done
-
-# readahead
-#for dev in /dev/sd[a-z]; do blockdev --setra 3072 $dev; done
-
-# Sound card powersave
-# default = 0
-echo 1 > /sys/module/snd_hda_intel/parameters/power_save
-# default = N
-echo Y > /sys/module/snd_hda_intel/parameters/power_save_controller
-
-# Disable webcam
-# already done in rc.local
-#modprobe -r uvcvideo
-
-# wlan0/eth0 powersave
-iwconfig wlan0 power on
-ethtool -s wlan0 wol d
-ethtool -s eth0 wol d
-
-# Screen powersave
-for i in /sys/class/backlight/acpi_video*/brightness; do echo 0 > $i; done
-
-# cpupower
-cpupower frequency-set -g powersave
-
-# irqbalance
-echo "Start irqbalance...."
-/etc/rc.d/irqbalance start

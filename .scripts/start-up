@@ -20,7 +20,7 @@ xset +dpms
 xset dpms 0 0 300 &
 
 # /etc/xdg/autostart/nm-applet.desktop
-nm-applet &
+#nm-applet &
 
 # composite
 (sleep 2s && /usr/bin/compton --config ~/.config/compton.conf -b) &
@@ -48,6 +48,8 @@ case "$1" in
     # disable touchpad accelaration
     xset m 0 0 &
 
+    # connman notifications
+    connman-notify &
     # dropbox 
     (sleep 2s && dropboxd) &
 

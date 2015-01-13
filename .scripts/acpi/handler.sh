@@ -54,4 +54,13 @@ case "$1" in
           export DISPLAY=:0.0 ; \
           /home/$USER/.scripts/pacontrol mute 1' &
   ;;
+  cd/play)
+    [[ ! -z "`pidof spotify`" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -p' &
+  ;;
+  cd/next)
+    [[ ! -z "`pidof spotify`" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -n' &
+  ;;
+  cd/prev)
+    [[ ! -z "`pidof spotify`" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -r' &
+  ;;
 esac
