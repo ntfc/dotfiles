@@ -6,6 +6,7 @@ if [[ $EUID != 0 ]]; then
   exit 1
 fi
 
+USER=ntfc
 # autosuspend value for usb on ac: default = 2
 AUTOSUSPEND=2
 USBPOWER=on
@@ -56,7 +57,7 @@ for i in /sys/bus/usb/devices/*/power/control; do opt $i $USBPOWER; done
 
 # cpu
 #for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do opt $i $GOVERNOR; done
-run /home/nc/.scripts/cpupower-set $GOVERNOR &
+run /home/$USER/.scripts/cpupower-set $GOVERNOR &
 for i in /sys/devices/system/cpu/cpu*/online; do opt $i $CPU_ONLINE; done
 
 # kernel write mode
@@ -67,9 +68,9 @@ opt /proc/sys/vm/dirty_expire_centisecs 3000
 opt /proc/sys/vm/dirty_writeback_centisecs 500
 
 # Disk powersave
-run hdparm -S $SPINDOWN -B $APM_LEVEL -a $HDPARM_READAHEAD /dev/sda
-for dev in $(awk '/^\/dev\/sd/ {print $1}' /etc/mtab); do run blockdev --setra $READAHED $dev; done
-for i in /sys/class/scsi_host/host*/link_power_management_policy; do opt $i $POWER_MANAG_POLICY; done
+#run hdparm -S $SPINDOWN -B $APM_LEVEL -a $HDPARM_READAHEAD /dev/sda
+#for dev in $(awk '/^\/dev\/sd/ {print $1}' /etc/mtab); do run blockdev --setra $READAHED $dev; done
+#for i in /sys/class/scsi_host/host*/link_power_management_policy; do opt $i $POWER_MANAG_POLICY; done
 
 # wireless and ethernet powersave
 run iwconfig $WLAN0 power off
@@ -114,3 +115,4 @@ else
       &> /dev/null || echo "could not run compton.."
 fi
 
+run light -S $(light -m)

@@ -102,8 +102,8 @@ case "$1" in
 esac
 
 # can only be executed as normal user
-if [[ "$EUID" != "`id nc -u`" ]]; then
-  echo "Script cannot be executed by user $EUID, only by nc"
+if [[ "$EUID" == "0" ]]; then
+  echo "Script cannot be executed by user $EUID, only by a normal user"
   exit 1
 fi
 

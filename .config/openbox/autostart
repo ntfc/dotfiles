@@ -8,6 +8,7 @@
 # clock
 #(sleep 1s && ~/.scripts/exec-clock) &
 # systray
-(sleep 0.2s && stalonetray -c ~/.config/stalonetrayrc) &
+(sleep 0.1s && stalonetray -c ~/.config/stalonetrayrc) &
+(sleep 0.5s && lal -f " %a %d  %H:%M:%S " -b --font "Inconsolata" -s 16 -w 160) &
 # dzen2 statusbar
 #(~/.scripts/exec-dzen2) &
