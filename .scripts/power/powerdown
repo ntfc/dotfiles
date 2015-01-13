@@ -112,7 +112,7 @@ opt /sys/module/snd_hda_intel/parameters/power_save_controller $SND_POWERSAVE_CO
 #opt /sys/module/snd_ac97_codec/parameters/power_save 1
 
 # composition, if present
-if [[ -n `pidof compton` ]]; then
+if [[ ! -z "`pidof compton`" ]]; then
   echo "Compton running, trying to kill it.."
   run kill -9 `pidof compton` &> /dev/null || echo "Error killing compton"
 fi

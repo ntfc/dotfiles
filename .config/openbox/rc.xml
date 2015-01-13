@@ -381,6 +381,11 @@
         <x>25</x>
       </action>
     </keybind>
+    <keybind key="C-A-l">
+      <action name="Execute">
+        <command>xscreensaver-command -lock</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>5</dragThreshold>

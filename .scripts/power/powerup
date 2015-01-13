@@ -102,7 +102,7 @@ opt /sys/module/snd_hda_intel/parameters/power_save_controller $SND_POWERSAVE_CO
 # composition and skippy-xd
 if [ $DISPLAY ]; then
   echo "Ok, I am on a X session"
-  if [[ -z `pidof compton` ]]; then
+  if [[ -z "`pidof compton`" ]]; then
     echo "compton not running, starting compton.."
     su ntfc -c '/usr/bin/compton --config /home/ntfc/.config/compton.conf -b' \
       &> /dev/null || echo "cannot run compton.."
