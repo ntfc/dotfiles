@@ -157,7 +157,7 @@
     <right>0</right>
   </margins>
   <dock>
-    <position>BottomRight</position>
+    <position>BottomLeft</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>1106</floatingX>
     <floatingY>766</floatingY>
