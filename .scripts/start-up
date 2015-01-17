@@ -31,7 +31,7 @@ case "$1" in
     # see ~/.config/openbox/autostart
 
     # "desktop" backgroud
-    (feh --image-bg black --bg-scale --no-fehbg ~/Pictures/sea.jpg) &
+    (feh --image-bg black --bg-center --no-fehbg ~/Pictures/sea.jpg) &
 
     # volume notification daemon
     if [ -z `pidof volnoti` ]; then

@@ -1,5 +1,5 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.32 for ntfc on Tue Jan 13 21:20:36 2015.
+# Written by xscreensaver-demo 5.32 for ntfc on Wed Jan 14 22:15:20 2015.
 # http://www.jwz.org/xscreensaver/
 
 timeout:	0:10:00
@@ -24,7 +24,7 @@ fadeTicks:	20
 captureStderr:	True
 ignoreUninstalledPrograms:False
 font:		*-medium-r-*-140-*-m-*
-dpmsEnabled:	True
+dpmsEnabled:	False
 dpmsQuickOff:	True
 dpmsStandby:	0:05:00
 dpmsSuspend:	0:30:00

@@ -157,7 +157,7 @@
     <right>0</right>
   </margins>
   <dock>
-    <position>BottomLeft</position>
+    <position>BottomRight</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>1106</floatingX>
     <floatingY>766</floatingY>
@@ -820,12 +820,6 @@
     <application class="jd-Main" name="sun-awt-X11-XFramePeer" type="normal">
       <desktop>2</desktop>
       <maximized>true</maximized>
-    </application>
-    <application class="Gmpc" name="gmpc" type="normal">
-      <fullscreen>no</fullscreen>
-      <decor>no</decor>
-      <iconic>yes</iconic>
-      <maximized>yes</maximized>
     </application>
     <application class="Chromium" name="chromium" role="browser" type="normal">
       <decor>no</decor>
