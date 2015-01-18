@@ -54,9 +54,9 @@ case "$1" in
     (sleep 2s && dropboxd) &
 
     # xscreensaver
-    ( ( sleep 2s && /usr/bin/xscreensaver -no-splash -display :0.0 ) & )
+    ( ( sleep 0.5s && /usr/bin/xscreensaver -no-splash  ) & )
     # automatically lock when suspending/hibernating
-    (sleep 4s && xss-lock -- xscreensaver-command -lock)  &
+    (sleep 1s && xss-lock -- xscreensaver-command -lock)  &
     ;;
   "mate")
 #    synclient TapButton1=1

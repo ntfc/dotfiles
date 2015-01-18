@@ -10,7 +10,7 @@ composite = true
 transparency = true
 transparent = 0.75
 theme = faenza
-buttons = cancel logout restart shutdown
+buttons = cancel logout restart suspend hibernate shutdown
 
 [actions]
 logout = openbox --exit
@@ -19,7 +19,7 @@ restart = sudo systemctl reboot
 lock = 
 switch = 
 suspend = sudo systemctl suspend
-hibernate = 
+hibernate = sudo systemctl hibernate
 custom = 
 
 [shortcuts]
