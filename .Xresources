@@ -92,7 +92,7 @@ URxvt*foreground: white
 
 ! Set the application icon pixmap; option -icon.
 !URxvt*iconFile: /usr/share/icons/gnome-colors-common/scalable/apps/terminal.svg
-URxvt*iconFile: /usr/share/icons/mate/48x48/apps/utilities-terminal.png
+URxvt*iconFile: /usr/share/icons/Faience/apps/96/utilities-terminal.png
 
 ! Use the specified colour for the scrollbar [default #B2B2B2].
 ! URxvt*scrollColor: colour
