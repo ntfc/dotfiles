@@ -7,12 +7,13 @@
 USER=ntfc
 case $1/$2 in
   pre/*)
-    su $USER -c 'export DISPLAY=:0.0; xscreensaver-command -lock'
     if [[ ! -z "`pidof spotify`" ]]; then
-      su $USER -c 'export DISPLAY=:0.0; spotifycli -s'
+      su $USER -c 'export DISPLAY=:0.0; spotifycli -s' &
     fi
+    su $USER -c 'export DISPLAY=:0.0; xscreensaver-command -lock'
     ;;
   post/*)
-    su $USER -c '/.scripts/power/powersave'
+    su $USER -c '/.scripts/power/powersave' &
+    numlockx on &
     ;;
 esac
