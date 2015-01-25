@@ -30,6 +30,8 @@ case "$1" in
     # openbox stuff, including systray
     # see ~/.config/openbox/autostart
 
+    # xbindkeys
+    [ -f ~/.xbindkeysrc ] && xbindkeys -f ~/.xbindkeysrc &
     # "desktop" backgroud
     (feh --image-bg black --bg-center --no-fehbg ~/Pictures/sea.jpg) &
 

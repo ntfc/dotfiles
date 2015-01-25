@@ -183,11 +183,6 @@
         <command>xfce4-screenshooter</command>
       </action>
     </keybind>
-    <keybind key="XF86PowerOff">
-      <action name="Execute">
-        <command>obshutdown -c ~/.config/obshutdown</command>
-      </action>
-    </keybind>
     <keybind key="W-Right">
       <action name="DesktopRight"/>
     </keybind>

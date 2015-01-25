@@ -33,6 +33,9 @@ case "$1" in
       ;;
     esac
   ;;
+  button/sleep)
+    systemctl suspend
+  ;;
   video/brightnessup)
     light -A 10 &
   ;;

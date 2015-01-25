@@ -41,9 +41,29 @@
     Mod2 + XF86TouchpadToggle 
 
 #External monitor
-"arandr"
+"~/.scripts/acpi/screen.sh"
     m:0x50 + c:33
     Mod2+Mod4 + p 
+
+#Browser
+"chomium"
+    m:0x10 + c:180
+    Mod2 + XF86HomePage 
+
+#File explorer
+"thunar"
+    m:0x10 + c:152
+    Mod2 + XF86Explorer 
+
+#Calculator
+"speedcrunch"
+    m:0x10 + c:148
+    Mod2 + XF86Calculator 
+
+#Poweroff Key
+"obshutdown -c ~/.config/obshutdown"
+    m:0x10 + c:124
+    Mod2 + XF86PowerOff 
 
 #
 # End of xbindkeys configuration
