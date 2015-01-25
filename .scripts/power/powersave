@@ -1,10 +1,6 @@
 #!/bin/bash
-if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run as root" 1>&2
-  exit 1
-fi
 
 USER=ntfc
-[[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && /home/$USER/.scripts/power/powerup &> /dev/null &
-[[ $(cat /sys/class/power_supply/AC/online) -eq 0 ]] && /home/$USER/.scripts/power/powerdown &> /dev/null &
+[[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && /home/$USER/.scripts/power/powerup
+[[ $(cat /sys/class/power_supply/AC/online) -eq 0 ]] && /home/$USER/.scripts/power/powerdown
 

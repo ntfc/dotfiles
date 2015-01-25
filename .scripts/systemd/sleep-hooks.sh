@@ -4,16 +4,17 @@
 # $1 = pre or post
 # $2 = suspend, hibernate or hybrid-sleep
 
-USER=ntfc
+NC_USER="ntfc"
+
 case $1/$2 in
   pre/*)
     if [[ ! -z "`pidof spotify`" ]]; then
-      su $USER -c 'export DISPLAY=:0.0; spotifycli -s' &
+      su $NC_USER -c 'export DISPLAY=:0.0; spotifycli -s'
     fi
-    su $USER -c 'export DISPLAY=:0.0; xscreensaver-command -lock'
+    su $NC_USER -c 'export DISPLAY=:0.0; xscreensaver-command -lock'
     ;;
   post/*)
-    su $USER -c '/.scripts/power/powersave' &
+    /home/$NC_USER/.scripts/power/powersave &> /dev/null
     numlockx on &
     ;;
 esac
