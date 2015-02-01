@@ -1,6 +1,8 @@
 #!/bin/bash
 
 USER=ntfc
-[[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && /home/$USER/.scripts/power/powerup
-[[ $(cat /sys/class/power_supply/AC/online) -eq 0 ]] && /home/$USER/.scripts/power/powerdown
+
+whoami > /tmp/aqui
+[[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && /home/$USER/.scripts/power/powerup &
+[[ $(cat /sys/class/power_supply/AC/online) -eq 0 ]] && /home/$USER/.scripts/power/powerdown &
 

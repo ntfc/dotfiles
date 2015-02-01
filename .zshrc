@@ -48,9 +48,9 @@ git_prompt_string() {
   [ -n "$git_where" ] && echo "%{$fg[blue]%}[$git_where]%{$reset_color%}"
 }
 
-PROMPT="%{$fg[green]%}[%n@%m %1~] %{$reset_color%}%# "
+PROMPT="%{$fg[green]%}[%n@%m %1~] %{$reset_color%}%# %B"
 # Set the right-hand prompt to the current branch
-RPROMPT='$(git_prompt_string)'
+RPROMPT='%b$(git_prompt_string)'
 
 ####################################
 # Keybindings

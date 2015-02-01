@@ -58,7 +58,7 @@ case "$1" in
     # xscreensaver
     ( ( sleep 0.5s && /usr/bin/xscreensaver -no-splash  ) & )
     # automatically lock when suspending/hibernating
-    (sleep 1s && xss-lock -- xscreensaver-command -lock)  &
+    #(sleep 1s && xss-lock -- xscreensaver-command -lock)  &
     ;;
   "mate")
 #    synclient TapButton1=1
