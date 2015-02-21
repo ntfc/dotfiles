@@ -18,4 +18,5 @@ export PULSE_RUNTIME_PATH="/run/user/"`id -u ntfc`"/pulse/"
 # java stuff
 # done in /etc/environment as explained here:
 # https://wiki.archlinux.org/index.php/Java_Runtime_Environment_Fonts
-#
+
+export VAGRANT_HOME="/Vagrant"

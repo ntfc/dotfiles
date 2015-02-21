@@ -45,7 +45,8 @@ case "$1" in
     #pasystray &
 
     # battery
-    cbatticon -i notification &
+    #cbatticon -i notification &
+    cbatticon -i symbolic -l 10 -r 5 -c "systemctl hibernate" &
 
     # disable touchpad accelaration
     xset m 0 0 &
