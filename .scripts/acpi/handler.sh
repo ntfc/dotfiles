@@ -26,35 +26,34 @@ case "$1" in
     case "$2" in
       PBTN|PWRF)
         logger "Power button pressed"
-          su nc -c 'export DISPLAY=:0.0 ; /usr/bin/pygtk-shutdown-systemd'
-
+        su nc -c 'export DISPLAY=:0.0 ; /usr/bin/obshutdown -c /home/nc/.config/obshutdown'
       ;;
     esac
   ;;
+  button/mute)
+    su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/" ; \
+      export DISPLAY=:0.0 ; \
+      /home/nc/.scripts/pacontrol mute 1' &
+    ;;
+  button/volumedown)
+    su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/" ; \
+      export DISPLAY=:0.0 ; \
+      /home/nc/.scripts/pacontrol down 1' &
+    ;;
+  button/volumeup)
+    su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/" ; \
+      export DISPLAY=:0.0 ; \
+      /home/nc/.scripts/pacontrol up 1' &
+    ;;
+  cd/prev|cd/stop|cd/next|cd/play)
+    /home/nc/.scripts/acpi/mpd-control "$1"
+    ;;
   hotkey)
     case "$3" in
       00000034) # screen off
         su nc -c 'export DISPLAY=:0.0 ; xscreensaver-command -lock' &
       ;;
       00000033) # screen on
-      ;;
-      00000040|00000041|00000043|00000045) # multimedia keys
-        /home/nc/.scripts/acpi/mpd-control "$3"
-      ;;
-      00000032) # mute
-        su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/" ; \
-          export DISPLAY=:0.0 ; \
-          /home/nc/.scripts/pacontrol mute 1' &
-      ;;
-      00000031) # vol down
-        su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/" ; \
-          export DISPLAY=:0.0 ; \
-          /home/nc/.scripts/pacontrol down 1' &
-      ;;
-      00000030) # vol up
-        su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/" ; \
-          export DISPLAY=:0.0 ; \
-          /home/nc/.scripts/pacontrol up 1' &
       ;;
       00000055) # calculator
         su nc -c 'export DISPLAY=:0.0 ; /usr/bin/speedcrunch' &

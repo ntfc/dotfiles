@@ -44,10 +44,12 @@ xset m 0 0 &
 urxvtd -q -o -f &
 
 # dropbox 
-(sleep 2s && dropboxd) &
+#(sleep 2s && dropboxd) &
 
 # turn num lock on
 (sleep 3s && numlockx on) &
 
 # thunar daemon
 thunar --daemon &
+
+nm-applet &

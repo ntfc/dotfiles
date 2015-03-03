@@ -2,13 +2,31 @@
 #
 # controls mpd ie, prev, next, stop and play/pause
 #
-# $1 = 00000040 => prev
-# $1 = 00000041 => next
-# $1 = 00000043 => stop
-# $1 = 00000045 => play/pause
+# $1 = cd/prev | cd/next | cd/stop | cd/play
+# $2 is no longer used!
+# $2 = 00000040 => prev
+# $2 = 00000041 => next
+# $2 = 00000043 => stop
+# $2 = 00000045 => play/pause
 
+
+echo "hey" > /tmp/aa
 if [ ! -z `pidof mpd` ]; then # check if pid exists
   case "$1" in
+    cd/prev)
+      mpc prev &> /dev/null
+      ;;
+    cd/next)
+      mpc next &> /dev/null
+      ;;
+    cd/stop)
+      mpc stop &> /dev/null
+      ;;
+    cd/play)
+      mpc toggle &> /dev/null
+      ;;
+  esac
+  case "$2" in
     00000040) # prev
       mpc prev &> /dev/null
     ;;

@@ -1,9 +1,12 @@
 style "simple-black-window"
 {
     bg[NORMAL] = "#000000"
-    XfceNotifyWindow::border-color = "#000000"
-    XfceNotifyWindow::border-radius = 10.0
-    XfceNotifyWindow::border-width-hover = 0.0
+    XfceNotifyWindow::border-color = "#a7a7a7"
+    XfceNotifyWindow::border-radius = 5.0
+    XfceNotifyWindow::border-width = 1.0
+    XfceNotifyWindow::border-width-hover = 1.0
+    XfceNotifyWindow::border-radius-hover= 5.0
+    XfceNotifyWindow::border-color-hover = "#121212"
 }
 class "XfceNotifyWindow" style "simple-black-window"
 
