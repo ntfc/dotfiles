@@ -37,10 +37,10 @@ case "$1" in
     systemctl suspend
   ;;
   video/brightnessup)
-    light -A 10 &
+    light -A 3 &
   ;;
   video/brightnessdown)
-    light -U 10 &
+    light -U 3 &
   ;;
   button/volumeup)
         su $USER -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u $USER`"/pulse/" ; \

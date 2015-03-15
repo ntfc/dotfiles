@@ -10,7 +10,7 @@
 urxvtd -q -o -f &
 
 # thunar daemon
-thunar --daemon &
+#(sleep 5s && thunar --daemon) &
 
 # clipboard manager
 (sleep 1s && copyq) &
@@ -54,7 +54,7 @@ case "$1" in
     # connman notifications
     connman-notify &
     # dropbox 
-    (sleep 2s && dropboxd) &
+    (sleep 2s && dropbox) &
 
     # xscreensaver
     ( ( sleep 0.5s && /usr/bin/xscreensaver -no-splash  ) & )
