@@ -1,0 +1,8 @@
+acestream:
+  image: mathieuruellan/acestream 
+  volumes:
+    - /dev/log:/dev/log
+  privileged: true
+  net: "host"
+
+
