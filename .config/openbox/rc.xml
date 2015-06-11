@@ -1,4 +1,5 @@
-<?xml version="1.0" ?><openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
+<?xml version="1.0"?>
+<openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
     <strength>10</strength>
     <screen_edge_strength>20</screen_edge_strength>
@@ -160,7 +161,7 @@
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>1106</floatingX>
     <floatingY>766</floatingY>
-    <noStrut>yes</noStrut>
+    <noStrut>no</noStrut>
     <stacking>Above</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
     <direction>Horizontal</direction>
@@ -859,6 +860,8 @@
     <application class="NetBeans IDE 8.0.2" name="sun-awt-X11-XDialogPeer" type="dialog">
       <decor>no</decor>
     </application>
-  <application class="VirtualBox" name="Qt-subapplication" type="normal"><decor>yes</decor></application>
-</applications>
+    <application class="VirtualBox" name="Qt-subapplication" type="normal">
+      <decor>yes</decor>
+    </application>
+  </applications>
 </openbox_config>
