@@ -433,7 +433,7 @@
           <to>next</to>
         </action>
       </mousebind>
-      <mousebind action="Click" button="C-A-Up">
+<!--      <mousebind action="Click" button="C-A-Up">
         <action name="GoToDesktop">
           <to>previous</to>
         </action>
@@ -442,7 +442,7 @@
         <action name="GoToDesktop">
           <to>next</to>
         </action>
-      </mousebind>
+      </mousebind>-->
       <mousebind action="Click" button="A-S-Up">
         <action name="SendToDesktop">
           <to>previous</to>
@@ -666,7 +666,7 @@
           <to>next</to>
         </action>
       </mousebind>
-      <mousebind action="Click" button="C-A-Up">
+<!--      <mousebind action="Click" button="C-A-Up">
         <action name="GoToDesktop">
           <to>previous</to>
         </action>
@@ -675,7 +675,7 @@
         <action name="GoToDesktop">
           <to>next</to>
         </action>
-      </mousebind>
+      </mousebind>-->
       <mousebind action="Press" button="Left">
         <action name="Focus"/>
         <action name="Raise"/>

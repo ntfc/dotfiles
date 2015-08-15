@@ -59,6 +59,7 @@ case "$1" in
   ;;
   cd/play)
     [[ ! -z "`pidof spotify`" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -p' &
+    su $USER -c 'export DISPLAY=:0.0 ; /home/$USER/.scripts/spotify/webspotify.sh play' &
   ;;
   cd/next)
     [[ ! -z "`pidof spotify`" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -n' &

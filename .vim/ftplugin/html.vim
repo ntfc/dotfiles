@@ -1,5 +1,7 @@
-" wrap text longer than 120 characters
-setlocal wrap
-setlocal textwidth=120
-" Add a column at the 121 character position
-setlocal colorcolumn=+1
+" Maintainer:  	othree <othree@gmail.com>
+" URL:		      http://github.com/othree/html5.vim
+" Last Change:  2014-05-02
+" License:      MIT
+" Changes:      Add - to keyword
+
+" setlocal iskeyword+=-
