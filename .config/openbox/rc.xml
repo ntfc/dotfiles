@@ -860,8 +860,5 @@
     <application class="NetBeans IDE 8.0.2" name="sun-awt-X11-XDialogPeer" type="dialog">
       <decor>no</decor>
     </application>
-    <application class="VirtualBox" name="Qt-subapplication" type="normal">
-      <decor>yes</decor>
-    </application>
   </applications>
 </openbox_config>

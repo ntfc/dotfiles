@@ -40,7 +40,7 @@ colors
 setopt prompt_subst
 # Show Git branch/tag, or name-rev if on detached head
 parse_git_branch() {
-  ((git symbolic-ref -q HEAD | cut -d'/' -f3) || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+  ((git symbolic-ref -q HEAD | cut -d'/' -f3-) || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
 }
 parse_svn_branch() {
   if $(svn info >/dev/null 2>&1); then
@@ -51,11 +51,11 @@ parse_svn_branch() {
 vcs_prompt_string() {
   local git_where="$(parse_git_branch)"
   local svn_where="$(parse_svn_branch)"
-  [ -n "$git_where" ] && echo "%{$fg[blue]%}[$git_where]%{$reset_color%}"
-  [ -n "$svn_where" ] && echo "%{$fg[blue]%}[$svn_where]%{$reset_color%}"
+  [ -n "$git_where" ] && echo "%{$fg_bold[blue]$bg[green]%}[$git_where]%{$reset_color%}"
+  [ -n "$svn_where" ] && echo "%{$fg[blue]$bg[green]%}[$svn_where]%{$reset_color%}"
 }
 
-PROMPT="%{$fg[green]%}[%n@%m %1~] %{$reset_color%}%# "
+PROMPT="%{$fg[green]%}[%n@%m %1~]%{$reset_color%}%# "
 # Set the right-hand prompt to the current branch
 #RPROMPT='$(git_prompt_string)'
 RPROMPT='$(vcs_prompt_string)'
