@@ -20,3 +20,4 @@
 
 ## Misc
 - Use `gq` to enforce linewidth on the current selection
+- Use `j` to join multiple lines
