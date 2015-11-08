@@ -6,7 +6,7 @@ if [[ $EUID != 0 ]]; then
   exit 1
 fi
 
-USER=ntfc
+USER=who -s | grep "(:0)" | awk '{print $1}'
 # please use this with xset dpms, hdparm
 # autosuspend value for usb on battery: default = 2 (or 10)
 AUTOSUSPEND=10

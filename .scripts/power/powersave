@@ -1,8 +1,7 @@
 #!/bin/bash
 
-USER=ntfc
+USER=who -s | grep "(:0)" | awk '{print $1}'
 
-whoami > /tmp/aqui
 [[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && /home/$USER/.scripts/power/powerup &
 [[ $(cat /sys/class/power_supply/AC/online) -eq 0 ]] && /home/$USER/.scripts/power/powerdown &
 

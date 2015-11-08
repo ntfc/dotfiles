@@ -6,7 +6,7 @@ if [[ $EUID != 0 ]]; then
   exit 1
 fi
 
-USER=ntfc
+USER=who -s | grep "(:0)" | awk '{print $1}'
 # autosuspend value for usb on ac: default = 2
 AUTOSUSPEND=2
 USBPOWER=on
@@ -104,14 +104,14 @@ if [ $DISPLAY ]; then
   echo "Ok, I am on a X session"
   if [[ -z "`pidof compton`" ]]; then
     echo "compton not running, starting compton.."
-    su ntfc -c '/usr/bin/compton --config /home/ntfc/.config/compton.conf -b' \
+    su $USER-c '/usr/bin/compton --config /home/$USER.config/compton.conf -b' \
       &> /dev/null || echo "cannot run compton.."
   else
     echo "compton already running, nothing else to do"
   fi
 else
   echo "Hmm, I am not on a X session.. Try to run anyway.."
-  su ntfc -c 'export DISPLAY=:0.0 ; /usr/bin/compton --config /home/ntfc/.config/compton.conf -b' \
+  su $USER -c 'export DISPLAY=:0.0 ; /usr/bin/compton --config /home/$USER.config/compton.conf -b' \
       &> /dev/null || echo "could not run compton.."
 fi
 

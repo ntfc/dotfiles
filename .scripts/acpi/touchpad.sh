@@ -1,6 +1,7 @@
 #!/bin/sh
 
 STATE=$(synclient | grep TouchpadOff | awk '{print $3}')
+USER=who -s | grep "(:0)" | awk '{print $1}'
 
 if [[ "$STATE" == "0" ]]; then
   synclient TouchpadOff=1
@@ -11,7 +12,7 @@ else
 fi
 
 if [[ "$USER" == "root" ]]; then
-  su ntfc -c 'export DISPLAY=:0.0; notify-send "Touchpad '$STATE'"'
+  su $USER -c 'export DISPLAY=:0.0; notify-send "Touchpad '$STATE'"'
 else
   notify-send "Touchpad $STATE"
 fi

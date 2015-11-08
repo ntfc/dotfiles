@@ -6,6 +6,7 @@ fi
 
 GOVERNORS=('powersave' 'ondemand' 'performance');
 POLICY=$(cpupower frequency-info -p | tail -n1 | awk '{print $3}')
+USER=who -s | grep "(:0)" | awk '{print $1}'
 
 # if governor is passed as parameter
 if [ -n "$1" ]; then
@@ -42,5 +43,5 @@ if [ -n "$SET" ]; then
   cpupower frequency-set -g "$SET"
   ICON='cpupower'
   TITLE='CPU governor'
-  su ntfc -c "export DISPLAY=:0.0 ; notify-send '$TITLE' '<b>$SET</b>' -i '$ICON'"
+  su $USER -c "export DISPLAY=:0.0 ; notify-send '$TITLE' '<b>$SET</b>' -i '$ICON'"
 fi
