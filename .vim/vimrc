@@ -154,3 +154,6 @@ let g:Tex_ViewRule_ps ='zathura'
 let g:Tex_ViewRuleComplete_pdf='zathura $*.pdf &>/dev/null &'
 let g:Tex_ViewRuleComplete_ps ='zathura $*.ps  &>/dev/null &'
 let g:Tex_ViewRuleComplete_dvi='zathura $*.dvi &>/dev/null &'
+
+" asciidoc and asciidoctor
+autocmd BufRead,BufNewFile *.adoc,*.asciidoc setlocal filetype=asciidoc

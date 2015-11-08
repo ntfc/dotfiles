@@ -42,6 +42,10 @@ setopt prompt_subst
 parse_git_branch() {
   ((git symbolic-ref -q HEAD | cut -d'/' -f3-) || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
 }
+# show the git remote name
+parse_git_remote_name() {
+  (git remote -v | head -n1 | awk '{print $2}' | sed -e 's,.*:\(.*/\)\?,,' -e 's/\.git$//') 2> /dev/null
+}
 parse_svn_branch() {
   if $(svn info >/dev/null 2>&1); then
     svn info | grep '^URL:' | egrep -o '(tags|branches)/[^/]+|trunk' | egrep -o '[^/]+$'
@@ -51,7 +55,8 @@ parse_svn_branch() {
 vcs_prompt_string() {
   local git_where="$(parse_git_branch)"
   local svn_where="$(parse_svn_branch)"
-  [ -n "$git_where" ] && echo "%{$fg_bold[blue]$bg[green]%}[$git_where]%{$reset_color%}"
+  local git_name="$(parse_git_remote_name)"
+  [ -n "$git_where" ] && echo "%{$fg_bold[blue]$bg[green]%}[$git_where]%{$reset_color%} remote: %{$fg_bold[red]$bg[green]%}$git_name%{$reset_color%}"
   [ -n "$svn_where" ] && echo "%{$fg[blue]$bg[green]%}[$svn_where]%{$reset_color%}"
 }
 

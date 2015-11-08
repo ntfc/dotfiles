@@ -1,3 +1,3 @@
-setlocal tw=72
+setlocal textwidth=71
 setlocal spell 
 setlocal colorcolumn=50
