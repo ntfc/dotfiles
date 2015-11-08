@@ -9,7 +9,9 @@
 # $3 = 
 # $4 = 00000000 or 00000001
 
-USER=ntfc
+USER=who -s | grep "(:0)" | awk '{print $1}'
+MPD=pidof mpd
+SPOTIFY=pidof spotify
 
 case "$1" in
   ac_adapter)
@@ -37,10 +39,16 @@ case "$1" in
     systemctl suspend
   ;;
   video/brightnessup)
-    light -A 3 &
+    # check if light command exists
+    if hash light 2>/dev/null; then
+      light -A 3 &
+    fi
   ;;
   video/brightnessdown)
-    light -U 3 &
+    # check if light command exists
+    if hash light 2>/dev/null; then
+      light -U 3 &
+    fi
   ;;
   button/volumeup)
         su $USER -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u $USER`"/pulse/" ; \
@@ -58,13 +66,32 @@ case "$1" in
           /home/$USER/.scripts/pacontrol mute 1' &
   ;;
   cd/play)
-    [[ ! -z "`pidof spotify`" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -p' &
+    [[ ! -z "$SPOTIFY" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -p' &
+    [[ ! -z "$MPD" ]] && su $USER /home/$USER/.scripts/acpi/mpd-control "$1" &
     su $USER -c 'export DISPLAY=:0.0 ; /home/$USER/.scripts/spotify/webspotify.sh play' &
   ;;
   cd/next)
-    [[ ! -z "`pidof spotify`" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -n' &
+    [[ ! -z "$SPOTIFY" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -n' &
+    [[ ! -z "$MPD" ]] && su $USER /home/$USER/.scripts/acpi/mpd-control "$1" &
   ;;
   cd/prev)
-    [[ ! -z "`pidof spotify`" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -r' &
+    [[ ! -z "$SPOTIFY" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -r' &
+    [[ ! -z "$MPD" ]] && su $USER /home/$USER/.scripts/acpi/mpd-control "$1" &
+  ;;
+  cd/stop)
+    [[ ! -z "$SPOTIFY" ]] && su $USER -c 'export DISPLAY=:0.0 ; spotifycli -s' &
+    [[ ! -z "$MPD" ]] && su $USER /home/$USER/.scripts/acpi/mpd-control "$1" &
+  ;;
+  hotkey)
+    case "$3" in
+      00000034) # screen off
+        su $USER -c 'export DISPLAY=:0.0 ; xscreensaver-command -lock' &
+      ;;
+      00000033) # screen on
+      ;;
+      00000055) # calculator
+        su $USER -c 'export DISPLAY=:0.0 ; /usr/bin/speedcrunch' &
+    esac
   ;;
 esac
+

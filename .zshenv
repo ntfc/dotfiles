@@ -16,7 +16,7 @@ export VISUAL='vim'
 export EDITOR='vim'
 
 # pulseaudio with X11
-export PULSE_RUNTIME_PATH="/run/user/"`id -u ntfc`"/pulse/"
+export PULSE_RUNTIME_PATH="/run/user/"`id -u`"/pulse/"
 
 # java stuff
 # done in /etc/environment as explained here:

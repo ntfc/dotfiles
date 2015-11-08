@@ -1,7 +1,12 @@
 #!/bin/sh
 #
-# $1 = session name (openbox, mate)
+# $1 = session name (openbox, mate). defaults to openbox
 #
+
+SESSION_NAME="$1"
+if [[ -z "$1" ]]; then
+  SESSION_NAME="openbox"
+fi
 
 # more low level stuff, like X or audio stuff
 [ -f ~/.scripts/start-up-lowlevel ] && ~/.scripts/start-up-lowlevel &
@@ -25,7 +30,10 @@ xset dpms 0 0 300 &
 # composite
 (sleep 2s && /usr/bin/compton --config ~/.config/compton.conf -b) &
 
-case "$1" in
+# turn num lock on
+(sleep 3s && numlockx on) &
+
+case "$SESSION_NAME" in
   "openbox")
     # openbox stuff, including systray
     # see ~/.config/openbox/autostart
