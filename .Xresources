@@ -104,13 +104,14 @@ URxvt*iconFile: /usr/share/icons/Faba/64x64/apps/utilities-terminal.svg
 ! URxvt*borderColor: colour
 
 ! Select the fonts to be used. This is a comma separated list of font
-URxvt*font: xft:Bitstream Vera Sans Mono:style=Roman:pixelsize=12:antialias=false
-URxvt*boldFont: xft:Bitstream Vera Sans Mono:style=Bold:pixelsize=12:antialias=false
-URxvt*italicFont: xft:Bitstream Vera Sans Mono:style=Oblique:pixelsize=12:antialias=false
+URxvt*font: xft:Bitstream Vera Sans Mono:style=Roman:pixelsize=12:antialias=true
+URxvt*boldFont: xft:Bitstream Vera Sans Mono:style=Bold:pixelsize=12
+URxvt*italicFont: xft:Bitstream Vera Sans Mono:style=Oblique:pixelsize=12
+URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:style=Bold Oblique:pixelsize=12
 ! The font list to use for displaying bold, italic or bold italic
 URxvt*boldItalicFont: fontlist
 
-URxvt*letterSpace: -2
+! URxvt*letterSpace: -2
 
 
 ! When font styles are not enabled, or this option is enabled (True,
