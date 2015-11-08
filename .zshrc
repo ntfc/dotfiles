@@ -40,24 +40,40 @@ colors
 setopt prompt_subst
 # Show Git branch/tag, or name-rev if on detached head
 parse_git_branch() {
-  ((git symbolic-ref -q HEAD | cut -d'/' -f3) || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+  ((git symbolic-ref -q HEAD | cut -d'/' -f3-) || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
 }
-# If inside a Git repository, print its branch and state
-git_prompt_string() {
+# show the git remote name
+parse_git_remote_name() {
+  (git remote -v | head -n1 | awk '{print $2}' | sed -e 's,.*:\(.*/\)\?,,' -e 's/\.git$//') 2> /dev/null
+}
+parse_svn_branch() {
+  if $(svn info >/dev/null 2>&1); then
+    svn info | grep '^URL:' | egrep -o '(tags|branches)/[^/]+|trunk' | egrep -o '[^/]+$'
+  fi
+}
+# If inside a Git or SVN repository, print its branch and state
+vcs_prompt_string() {
   local git_where="$(parse_git_branch)"
-  [ -n "$git_where" ] && echo "%{$fg[blue]%}[$git_where]%{$reset_color%}"
+  local svn_where="$(parse_svn_branch)"
+  local git_name="$(parse_git_remote_name)"
+  [ -n "$git_where" ] && echo "%{$fg_bold[blue]$bg[green]%}[$git_where]%{$reset_color%} remote: %{$fg_bold[red]$bg[green]%}$git_name%{$reset_color%}"
+  [ -n "$svn_where" ] && echo "%{$fg[blue]$bg[green]%}[$svn_where]%{$reset_color%}"
 }
 
-PROMPT="%{$fg[green]%}[%n@%m %1~] %{$reset_color%}%# "
+PROMPT="%{$fg[green]%}[%n@%m %1~]%{$reset_color%}%# "
 # Set the right-hand prompt to the current branch
-RPROMPT='$(git_prompt_string)'
+#RPROMPT='$(git_prompt_string)'
+RPROMPT='$(vcs_prompt_string)'
 
 ####################################
 # Keybindings
 ####################################
 autoload zkbd
 # https://wiki.archlinux.org/index.php/Zsh#Alternative_method_without_using_terminfo
-source ~/.zkbd/rxvt-unicode-256color.zkbd
+[[ -f ~/.zkbd/rxvt-unicode-256color ]] && source ~/.zkbd/rxvt-unicode-256color
+
+# vi mode
+bindkey -v
 
 # setup key accordingly
 [[ -n "${key[Home]}"      ]] && bindkey  "${key[Home]}"      beginning-of-line

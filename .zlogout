@@ -1,3 +1,3 @@
 
 
-/usr/bin/mpd --kill
+#/usr/bin/mpd --kill

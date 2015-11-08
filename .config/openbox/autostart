@@ -4,11 +4,12 @@
 
 [ -f ~/.scripts/openbox/setlayout ] && (~/.scripts/openbox/setlayout 0 2 2 0) &
 
+# using xfce4-panel now
 xfce4-panel &
-## this is still not in the right order.....
-## clock
-#(sleep 2s && ~/.scripts/exec-clock) &
-## systray
-#(sleep 5s && stalonetray -c ~/.config/stalonetrayrc) &
-## dzen2 statusbar
-#(sleep 0s && ~/.scripts/exec-dzen2) &
+
+
+#
+# this is still not in the right order.....
+# (sleep 0s && tint2) &
+# (sleep 1s && stalonetray -c ~/.config/stalonetrayrc) &
+# (sleep 1.5s && lal -f " %a %d  %H:%M:%S " -b --font "Inconsolata" -s 16 -w 160) &

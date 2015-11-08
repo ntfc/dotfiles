@@ -41,7 +41,7 @@
   </placement>
   <theme>
     <name>Turquoise Nights Ob</name>
-    <titleLayout>CMIL</titleLayout>
+    <titleLayout>LIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
@@ -52,7 +52,7 @@
       S: shade (roll up/down)
       D: omnipresent (on all desktops).
   -->
-    <keepBorder>no</keepBorder>
+    <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
       <name>Droid Sans</name>
@@ -381,13 +381,18 @@
         <x>25</x>
       </action>
     </keybind>
+    <keybind key="C-A-l">
+      <action name="Execute">
+        <command>xscreensaver-command -lock</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>5</dragThreshold>
     <!-- number of pixels the mouse must move before a drag begins -->
     <doubleClickTime>200</doubleClickTime>
     <!-- in milliseconds (1000 = 1 second) -->
-    <screenEdgeWarpTime>400</screenEdgeWarpTime>
+    <screenEdgeWarpTime>500</screenEdgeWarpTime>
     <!-- Time before changing desktops when the pointer touches the edge of the
        screen while moving a window, in milliseconds (1000 = 1 second).
        Set this to 0 to disable warping -->
@@ -428,7 +433,7 @@
           <to>next</to>
         </action>
       </mousebind>
-      <mousebind action="Click" button="C-A-Up">
+<!--      <mousebind action="Click" button="C-A-Up">
         <action name="GoToDesktop">
           <to>previous</to>
         </action>
@@ -437,7 +442,7 @@
         <action name="GoToDesktop">
           <to>next</to>
         </action>
-      </mousebind>
+      </mousebind>-->
       <mousebind action="Click" button="A-S-Up">
         <action name="SendToDesktop">
           <to>previous</to>
@@ -661,7 +666,7 @@
           <to>next</to>
         </action>
       </mousebind>
-      <mousebind action="Click" button="C-A-Up">
+<!--      <mousebind action="Click" button="C-A-Up">
         <action name="GoToDesktop">
           <to>previous</to>
         </action>
@@ -670,7 +675,7 @@
         <action name="GoToDesktop">
           <to>next</to>
         </action>
-      </mousebind>
+      </mousebind>-->
       <mousebind action="Press" button="Left">
         <action name="Focus"/>
         <action name="Raise"/>
@@ -812,6 +817,9 @@
 
   # end of the example
 -->
+    <application class="*">
+      <decor>no</decor>
+    </application>
     <application class="jd-Main" name="sun-awt-X11-XFramePeer" type="normal">
       <desktop>2</desktop>
       <maximized>true</maximized>
@@ -859,5 +867,21 @@
     <application class="Spotify" name="spotify" type="normal">
       <decor>no</decor>
     </application>
-  </applications>
+    <application class="Spring Tool Suite" name="Spring Tool Suite" type="dialog">
+      <decor>no</decor>
+    </application>
+    <application class="Spring Tool Suite" name="Spring Tool Suite" type="normal">
+      <decor>no</decor>
+    </application>
+    <application class="Eclipse" name="Eclipse" type="dialog">
+      <decor>no</decor>
+    </application>
+    <application class="Eclipse" name="Eclipse" type="normal">
+      <decor>no</decor>
+    </application>
+    <application class="NetBeans IDE 8.0.2" name="sun-awt-X11-XDialogPeer" type="dialog">
+      <decor>no</decor>
+    </application>
+  <application class="VirtualBox" name="VirtualBox" type="normal"><decor>yes</decor></application>
+</applications>
 </openbox_config>

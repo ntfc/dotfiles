@@ -5,3 +5,4 @@ setlocal textwidth=80
 setlocal colorcolumn=+1
 " automatically spell check tex files
 setlocal spell spelllang=en_us
+

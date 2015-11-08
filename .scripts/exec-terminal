@@ -1,7 +1,9 @@
 #!/bin/sh
 #
-# If a terminal is already open, focus on it. If not, execute a new one
+# If a terminal is already open, focus on it. If not, execute a new one.
+# ONLY works if tmux is running
 #
+
 
 TERM_NAME=urxvt
 TERM_CLASS=URxvt

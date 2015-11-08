@@ -6,13 +6,14 @@ if [[ $EUID != 0 ]]; then
   exit 1
 fi
 
+USER=who -s | grep "(:0)" | awk '{print $1}'
 # please use this with xset dpms, hdparm
 # autosuspend value for usb on battery: default = 2 (or 10)
 AUTOSUSPEND=10
 USBPOWER=auto
 # default governor on battery: default = powersave
 #GOVERNOR=powersave
-GOVERNOR=ondemand
+GOVERNOR=powersave
 # second cpu online on battery: default = 1
 CPU_ONLINE=0
 # disk powersave on battery: default = min_power
@@ -66,7 +67,7 @@ for i in /sys/bus/usb/devices/*/power/control; do opt $i $USBPOWER; done
 
 # cpu
 #for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do opt $i $GOVERNOR; done
-run /home/nc/.scripts/cpupower-set $GOVERNOR &
+run /home/$USER/.scripts/cpupower-set $GOVERNOR &
 # turn cpu1 off
 #for i in /sys/devices/system/cpu/cpu*/online; do opt $i $CPU_ONLINE; done
 
@@ -80,9 +81,9 @@ opt /proc/sys/vm/dirty_expire_centisecs 60000
 opt /proc/sys/vm/dirty_writeback_centisecs 1500
 
 # Disk powersave
-run hdparm -S $SPINDOWN -B $APM_LEVEL -a $HDPARM_READAHEAD /dev/sda
-for dev in $(awk '/^\/dev\/sd/ {print $1}' /etc/mtab); do run blockdev --setra $READAHED $dev; done
-for i in /sys/class/scsi_host/host*/link_power_management_policy; do opt $i $POWER_MANAG_POLICY; done
+#run hdparm -S $SPINDOWN -B $APM_LEVEL -a $HDPARM_READAHEAD /dev/sda
+#for dev in $(awk '/^\/dev\/sd/ {print $1}' /etc/mtab); do run blockdev --setra $READAHED $dev; done
+#for i in /sys/class/scsi_host/host*/link_power_management_policy; do opt $i $POWER_MANAG_POLICY; done
 
 # wireless powersave
 run iwconfig $WLAN0 power on
@@ -94,8 +95,8 @@ for i in /sys/bus/pci/devices/*/power/control; do opt $i $RUNTIME_PM; done
 
 # Screen powersave
 for i in /sys/class/backlight/acpi_video*/brightness; do opt $i $BRIGHTNESS; done
-#opt /sys/module/i915/parameters/i915_enable_rc6 1
-#opt /sys/module/i915/parameters/i915_enable_fbc 1
+opt /sys/module/i915/parameters/i915_enable_rc6 1
+opt /sys/module/i915/parameters/i915_enable_fbc 1
 
 # Disable webcam
 unload uvcvideo
@@ -111,8 +112,10 @@ opt /sys/module/snd_hda_intel/parameters/power_save_controller $SND_POWERSAVE_CO
 #opt /sys/module/snd_ac97_codec/parameters/power_save 1
 
 # composition, if present
-if [[ -n `pidof compton` ]]; then
-  echo "Compton running, trying to kill it.."
-  run kill -9 `pidof compton` &> /dev/null || echo "Error killing compton"
-fi
+#if [[ ! -z "`pidof compton`" ]]; then
+#  echo "Compton running, trying to kill it.."
+#  run kill -9 `pidof compton` &> /dev/null || echo "Error killing compton"
+#fi
 
+# brightness
+run light -S 2

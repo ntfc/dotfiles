@@ -7,10 +7,10 @@
 /usr/bin/start-pulseaudio-x11 &
 
 # xfonts, so i can use terminus font and others
-xset +fp ~/.fonts/dwm
 xset +fp /usr/share/fonts/local
 xset fp rehash &
 
 # Xresources
 xrdb -merge ~/.Xresources
 
+numlockx on &

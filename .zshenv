@@ -2,10 +2,12 @@
 # Exports
 ###############################
 
+typeset -U path
+#path=(/home/ntfc/.gem/ruby/2.2.0/bin $path)
+
 # by default: export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 # we take out the slash, period, angle brackets, dash here.
-export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-#export WORDCHARS='*?_[]~=&;!#$%^(){}'
+export WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
 
 # Browser
 export BROWSER='chromium'
@@ -14,9 +16,10 @@ export VISUAL='vim'
 export EDITOR='vim'
 
 # pulseaudio with X11
-export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse/"
+export PULSE_RUNTIME_PATH="/run/user/"`id -u`"/pulse/"
 
 # java stuff
 # done in /etc/environment as explained here:
 # https://wiki.archlinux.org/index.php/Java_Runtime_Environment_Fonts
-#
+
+export VAGRANT_HOME="/Vagrant"
