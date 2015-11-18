@@ -6,6 +6,9 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
 zstyle :compinstall filename '/home/nc/.zshrc'
 
+# vi mode
+bindkey -v
+
 # auto completion for command aliases
 setopt completealiases
 
@@ -60,10 +63,18 @@ vcs_prompt_string() {
   [ -n "$svn_where" ] && echo "%{$fg[blue]$bg[green]%}[$svn_where]%{$reset_color%}"
 }
 
+# set VIMODE according to the current mode (default “[i]”). VIMODE can be used on the PROMPT
+VIMODE='[i]'
+function zle-keymap-select {
+  VIMODE="${${KEYMAP/vicmd/[n]}/(main|viins)/[i]}"
+  zle reset-prompt
+}
+zle -N zle-keymap-select
+
 PROMPT="%{$fg[green]%}[%n@%m %1~]%{$reset_color%}%# "
 # Set the right-hand prompt to the current branch
 #RPROMPT='$(git_prompt_string)'
-RPROMPT='$(vcs_prompt_string)'
+RPROMPT='${VIMODE} $(vcs_prompt_string)'
 
 ####################################
 # Keybindings
@@ -71,9 +82,6 @@ RPROMPT='$(vcs_prompt_string)'
 autoload zkbd
 # https://wiki.archlinux.org/index.php/Zsh#Alternative_method_without_using_terminfo
 [[ -f ~/.zkbd/rxvt-unicode-256color ]] && source ~/.zkbd/rxvt-unicode-256color
-
-# vi mode
-bindkey -v
 
 # setup key accordingly
 [[ -n "${key[Home]}"      ]] && bindkey  "${key[Home]}"      beginning-of-line
@@ -94,6 +102,12 @@ bindkey -v
 # use 'cat > /dev/null' to discover key-definition
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
+bindkey '^[[1~'   beginning-of-line # home
+bindkey '^[[2~'   overwrite-mode # insert
+bindkey '^[[3~'   delete-char # del
+bindkey '^[[4~'   end-of-line # end
+bindkey '^[[5~'   history-beginning-search-backward # page up
+bindkey '^[[6~'   history-beginning-search-forward # page down
 
 # reverse search with Ctrl+R
 bindkey '^R' history-incremental-search-backward
