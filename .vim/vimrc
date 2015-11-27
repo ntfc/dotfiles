@@ -15,6 +15,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-latex/vim-latex'
 "Plugin 'othree/html5.vim'
+Plugin 'kien/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -47,8 +48,10 @@ syntax enable
 
 " insert space characters whenever tab is pressed
 set expandtab
-" To insert a Tab use: Ctrl-V<Tab>
+" number of visual spaces per tab
 set tabstop=2
+" number of spaces in tab when editing
+set softtabstop=4
 set shiftwidth=2
 
 set wildmenu " visual autocomplete for command menu
