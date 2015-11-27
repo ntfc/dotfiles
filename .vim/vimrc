@@ -51,7 +51,7 @@ set expandtab
 " number of visual spaces per tab
 set tabstop=2
 " number of spaces in tab when editing
-set softtabstop=4
+set softtabstop=2
 set shiftwidth=2
 
 set wildmenu " visual autocomplete for command menu
