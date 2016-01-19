@@ -1,24 +1,26 @@
-"""""""""""""""""""""""""""""""
-" Vundle
-"""""""""""""""""""""""""""""""
-set nocompatible " required
-filetype off " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-" Plugin 'wting/rust.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-latex/vim-latex'
-"Plugin 'othree/html5.vim'
-Plugin 'kien/ctrlp.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+if v:version >= 700
+  try
+    """""""""""""""""""""""""""""""
+    " Vundle
+    """""""""""""""""""""""""""""""
+    set nocompatible " required
+    filetype off " required
+    
+    " set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'vim-latex/vim-latex'
+    Plugin 'kien/ctrlp.vim'
+    
+    " All of your Plugins must be added before the following line
+    call vundle#end()            " required
+  catch
+  endtry
+endif
 filetype plugin indent on    " required
 
 """""""""""""""""""""""""""""""
@@ -72,7 +74,6 @@ set autoread
 set showmatch " highlight matching [{()}]
 set gfn=DejaVu\ Sans\ Mono\ 10
 
-set shell=/usr/bin/zsh
 " enable mouse
 set mouse=a
 set showcmd " Show (partial) command in status line
@@ -97,6 +98,9 @@ endif
 set backupdir=/tmp
 set directory=/tmp
 
+" remove ~/.vim/.netrwhist
+au VimLeave * if filereadable("~/.vim/.netrwhist")|call delete("~/.vim//.netrwhist")|endif 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -109,13 +113,15 @@ vnoremap <S-Tab> <gv
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" maps NERDTree to F10
-noremap <silent> <F10> :NERDTreeToggle<CR>
-noremap! <silent> <F10> <ESC>:NERDTreeToggle<CR>
-" tells NERDTree to use ASCII chars
-let g:NERDTreeDirArrows=0
-" How can I close vim if the only window left open is a NERDTree?
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+if exists(":NERDTree")
+  " maps NERDTree to F10
+  noremap <silent> <F10> :NERDTreeToggle<CR>
+  noremap! <silent> <F10> <ESC>:NERDTreeToggle<CR>
+  " tells NERDTree to use ASCII chars
+  let g:NERDTreeDirArrows=0
+  " How can I close vim if the only window left open is a NERDTree?
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-latex
@@ -158,5 +164,8 @@ let g:Tex_ViewRuleComplete_pdf='zathura $*.pdf &>/dev/null &'
 let g:Tex_ViewRuleComplete_ps ='zathura $*.ps  &>/dev/null &'
 let g:Tex_ViewRuleComplete_dvi='zathura $*.dvi &>/dev/null &'
 
-" asciidoc and asciidoctor
-autocmd BufRead,BufNewFile *.adoc,*.asciidoc setlocal filetype=asciidoc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set custom filetypes
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" see .vim/filetype.vim
