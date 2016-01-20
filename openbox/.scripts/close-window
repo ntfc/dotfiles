@@ -1,7 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Checks if currently focused windows is a terminal, and if not, closes it.
 # Otherwise, does nothing
+
+if ! hash xprop 2>/dev/null || ! hash wmctrl 2>/dev/null; then
+  echo
+  echo "Error: xprop and wmctrl must be installed"
+  echo
+  exit 1
+fi
 
 # extract the _NET_ACTIVE_WINDOW. return the XID of the window with cut
 ACT_WIN=$(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)

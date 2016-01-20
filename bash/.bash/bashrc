@@ -1,0 +1,11 @@
+#!/bin/bash
+
+export EDITOR=vim
+
+# If not running interactively, stop here
+[[ $- != *i* ]] && return
+
+# load the aliases file
+[ -f ~/.config/alias/aliasrc ] && . ~/.config/alias/aliasrc
+[ -f ~/.config/alias/gitaliasrc ] && . ~/.config/alias/gitaliasrc
+

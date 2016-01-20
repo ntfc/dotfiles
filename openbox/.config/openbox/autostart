@@ -1,0 +1,24 @@
+#
+# These things are run when an Openbox X Session is started.
+#
+
+[ -f ~/.config/openbox/setlayout ] && (~/.config/openbox/setlayout 0 2 2 0) &
+
+# this will also start xfce4-panel
+xfce4-session &
+
+# volume
+hash volumeicon 2>/dev/null && volumeicon &
+
+# battery
+#cbatticon -i symbolic -l 10 -r 5 -c "systemctl hibernate" &
+
+# connman notifications
+hash connman-notify 2>/dev/null && connman-notify &
+
+# dropbox 
+(sleep 2s && dropbox) &
+
+# xscreensaver
+xscreensaver -no-splash &
+

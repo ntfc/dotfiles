@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# lightdm session file
-SESSION=$(grep "Session" ~/.dmrc | sed 's/Session=//')
-
-# execute openbox X programs at startup
-[ -f ~/.scripts/start-up ] && ~/.scripts/start-up $SESSION &

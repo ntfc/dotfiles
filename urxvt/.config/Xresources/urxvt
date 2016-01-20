@@ -1,35 +1,3 @@
-! xscreensaver ---------------------------------------------------------------
-!
-!font settings
-!-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-!-*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
-!-*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
-xscreensaver.Dialog.headingFont:        -*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:         	-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:          	-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
-!general dialog box (affects main hostname, username, password text)
-! 3C3C3C => 5C5C5C
-xscreensaver.Dialog.foreground:         #E6E6E6
-xscreensaver.Dialog.background:         #5C5C5C
-xscreensaver.Dialog.topShadowColor:     #5C5C5C
-xscreensaver.Dialog.bottomShadowColor:  #5C5C5C
-xscreensaver.Dialog.Button.foreground:  #E6E6E6
-xscreensaver.Dialog.Button.background:  #2E2E2E
-!username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:    #E6E6E6
-xscreensaver.Dialog.text.background:    #2E2E2E
-xscreensaver.Dialog.internalBorderWidth:24
-xscreensaver.Dialog.borderWidth:        2
-xscreensaver.Dialog.shadowThickness:    2
-!timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #E6E6E6
-xscreensaver.passwd.thermometer.background:  #2E2E2E
-xscreensaver.passwd.thermometer.width:       4
-!
 !
 ! urxvt ----------------------------------------------------------------------
 !
@@ -40,7 +8,7 @@ URxvt*depth: 32
 ! URxvt*buffered: boolean
 
 ! Create the window with the specified X window geometry [default
-URxvt*geometry: 156x50
+URxvt*geometry: 126x30
 
 ! Use the specified colour as the windows background colour [default
 URxvt*background: black
@@ -91,8 +59,9 @@ URxvt*foreground: white
 ! URxvt*fadeColor: colour
 
 ! Set the application icon pixmap; option -icon.
-!URxvt*iconFile: /usr/share/icons/gnome-colors-common/scalable/apps/terminal.svg
-URxvt*iconFile: /usr/share/icons/Faience/apps/96/utilities-terminal.png
+!URxvt*iconFile: file
+! this property should be set on ~/.config/Xresources/urxvt-icon with command:
+! echo "Urxvt*iconFile: /home/$USER/.local/share/icons/hicolor/128x128/apps/urxvt.png" > ~/.config/Xresources/urxvt-icon
 
 ! Use the specified colour for the scrollbar [default #B2B2B2].
 ! URxvt*scrollColor: colour
@@ -311,3 +280,4 @@ URxvt.keysym.Control-Left:    \033[1;5D
 URxvt.keysym.Control-Right:    \033[1;5C
 
 URxvt*.transparent: false
+

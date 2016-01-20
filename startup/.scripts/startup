@@ -1,0 +1,65 @@
+#!/bin/sh
+#
+# $1 = session name (openbox, mate). defaults to openbox
+#
+
+SESSION_NAME="$1"
+if [[ -z "$1" ]]; then
+  SESSION_NAME="openbox"
+fi
+
+# xfonts, so i can use terminus font and others
+xset +fp /usr/share/fonts/local
+xset fp rehash &
+
+# Xresources
+
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
+if [[ -d ~/.config/Xresources ]]; then
+  for xres in ~/.config/Xresources/*; do
+    xrdb -merge "$xres"
+  done
+fi
+
+# start a urxvt daemon
+hash urxvtd 2>/dev/null && (urxvtd -q -o -f) &
+
+# clipboard manager
+hash copyq 2>/dev/null && copyq &
+
+# screen powersave
+xset +dpms 
+xset dpms 0 0 300 &
+
+# /etc/xdg/autostart/nm-applet.desktop
+#nm-applet &
+
+# composite
+hash compton && 2>/dev/null && (sleep 2s && compton --config ~/.config/compton.conf -b) &
+
+# turn num lock on
+(sleep 2s && numlockx on) &
+
+# xbindkeys
+[ -f ~/.xbindkeysrc ] && xbindkeys -f ~/.xbindkeysrc &
+# "desktop" backgroud
+(feh --image-bg black --bg-center --no-fehbg ~/Pictures/mountains.jpg) &
+
+# volume notification daemon
+if [ -z `pidof volnoti` ]; then
+  volnoti -t 1 &
+fi
+
+# disable touchpad accelaration
+xset m 0 0 &
+
+case "$SESSION_NAME" in
+  "openbox")
+    # see ~/.config/openbox/autostart
+    ;;
+  "mate")
+#    synclient TapButton1=1
+#    synclient TapButton2=2
+#    synclient TapButton3=3
+    ;;
+esac

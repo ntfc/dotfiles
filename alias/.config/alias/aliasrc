@@ -10,21 +10,17 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 alias rsync='rsync -v'
 
-alias mpd-start='~/.scripts/exec-mpd'
-
 alias symlink='ln -siv ORIG SYMLINK'
 
-# colorize svn
-alias svn='python2 ~/.scripts/svn-color.py'
-
 # aliases arguments is zsh: http://struct.tumblr.com/post/20358217330/arguments-passed-to-an-alias-in-zsh-the-right
-start.service () { sudo systemctl start $1.service }
-restart.service () { sudo systemctl restart $1.service }
-stop.service () { sudo systemctl stop $1.service }
-enable.service () { sudo systemctl enable $1.service }
-status.service () { sudo systemctl status $1.service }
-is-enabled.service () { systemctl is-enabled $1.service }
-disable.service () { sudo systemctl disable $1.service }
+# works on bash too
+start.service () { sudo systemctl start $1.service; }
+restart.service () { sudo systemctl restart $1.service; }
+stop.service () { sudo systemctl stop $1.service; }
+enable.service () { sudo systemctl enable $1.service; }
+status.service () { sudo systemctl status $1.service; }
+is-enabled.service () { systemctl is-enabled $1.service; }
+disable.service () { sudo systemctl disable $1.service; }
 
 extract() {
   if [ -f "$1" ]; then
@@ -47,8 +43,3 @@ extract() {
   fi
 }
 
-
-##
-## docker aliases
-##
-alias dockerRemoveDangling='docker rmi $(docker images -q -f dangling=true)'
