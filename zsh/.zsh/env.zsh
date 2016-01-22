@@ -3,7 +3,8 @@
 ###############################
 
 typeset -U path
-#path=(/home/ntfc/.gem/ruby/2.2.0/bin $path)
+path+=("$HOME/.scripts/")
+export PATH
 
 # by default: export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 # we take out the slash, period, angle brackets, dash here.
