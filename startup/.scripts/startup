@@ -1,6 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 #
 # $1 = session name (openbox, mate). defaults to openbox
+#
+# this file contains only things that should be started by all WM/DE/wtv
+#
+# the GUI applications (like copyq or cmst) are on the WM/DE/wtv startup script
 #
 
 SESSION_NAME="$1"
@@ -8,50 +12,40 @@ if [[ -z "$1" ]]; then
   SESSION_NAME="openbox"
 fi
 
+# first of all, I don't wan't to autostart application on ~/.config/autostart
+for autostart in ~/.config/autostart/*; do
+  rm -f "$autostart"
+done
+
 # xfonts, so i can use terminus font and others
 xset +fp /usr/share/fonts/local
 xset fp rehash &
 
 # Xresources
+for xres in ~/.config/Xresources/*; do
+  xrdb -quiet -merge "$xres"
+done
 
-[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
-if [[ -d ~/.config/Xresources ]]; then
-  for xres in ~/.config/Xresources/*; do
-    xrdb -merge "$xres"
-  done
-fi
+start-pulseaudio-x11 &
 
 # start a urxvt daemon
 hash urxvtd 2>/dev/null && (urxvtd -q -o -f) &
 
-# clipboard manager
-hash copyq 2>/dev/null && copyq &
+# xscreensaver
+xscreensaver -no-splash &
 
-# screen powersave
-xset +dpms 
-xset dpms 0 0 300 &
-
-# /etc/xdg/autostart/nm-applet.desktop
-#nm-applet &
-
-# composite
-hash compton && 2>/dev/null && (sleep 2s && compton --config ~/.config/compton.conf -b) &
-
-# turn num lock on
-(sleep 2s && numlockx on) &
-
-# xbindkeys
-[ -f ~/.xbindkeysrc ] && xbindkeys -f ~/.xbindkeysrc &
-# "desktop" backgroud
-(feh --image-bg black --bg-center --no-fehbg ~/Pictures/mountains.jpg) &
-
-# volume notification daemon
-if [ -z `pidof volnoti` ]; then
-  volnoti -t 1 &
-fi
+# screen powersave: we have xscreensaver already, right?
+#xset +dpms 
+#xset dpms 0 0 300 &
 
 # disable touchpad accelaration
 xset m 0 0 &
+
+# turn num lock on
+numlockx on &
+
+# xbindkeys
+[ -f ~/.xbindkeysrc ] && xbindkeys -f ~/.xbindkeysrc &
 
 case "$SESSION_NAME" in
   "openbox")

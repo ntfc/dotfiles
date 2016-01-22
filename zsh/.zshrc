@@ -1,1 +1,3 @@
-[ -f ~/.zsh/zshrc ] && source ~/.zsh/zshrc
+for config in ~/.zsh/*.zsh; do
+  source "$config"
+done

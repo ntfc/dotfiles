@@ -4,4 +4,4 @@
 SESSION=$(grep "Session" ~/.dmrc | sed 's/Session=//')
 
 # execute programs at startup
-[ -f ~/.scripts/startup ] && ~/.scripts/startup $SESSION &
+[ -f ~/.scripts/startup ] && (sleep 1s && ~/.scripts/startup $SESSION) &
