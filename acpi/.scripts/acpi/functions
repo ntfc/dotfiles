@@ -1,0 +1,7 @@
+
+# command
+run_as_nc() {
+#  su nc -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u nc`"/pulse" ; export DISPLAY=:0.0 ; $@' &> /dev/null || echo "[acpi] cannot run $@ as nc"
+
+  su nc -c 'export DISPLAY=:0.0 ; $@'
+}
