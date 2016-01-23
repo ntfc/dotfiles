@@ -241,7 +241,7 @@ URxvt*termName: rxvt-unicode-256color
 
 ! Comma-separated list(s) of perl extension scripts (default:
 ! URxvt*perl-ext: string
-URxvt*perl-ext: selection-to-clipboard
+URxvt*perl-ext: selection-to-clipboard,default,matcher
 
 ! Perl code to be evaluated when all extensions have been registered.
 ! URxvt*perl-eval: string
@@ -260,6 +260,7 @@ URxvt*perl-ext: selection-to-clipboard
 
 ! Specifies the program to be started with a URL argument. Used by
 ! URxvt*url-launcher: string
+URxvt*url-launcher: /usr/bin/firefox
 
 ! Compile frills: Sets the WM_TRANSIENT_FOR property to the given
 ! URxvt*transient-for: windowid
@@ -281,3 +282,7 @@ URxvt.keysym.Control-Right:    \033[1;5C
 
 URxvt*.transparent: false
 
+! Clickable URLs
+URxvt.matcher.button: 1
+! URL color 
+URxvt.matcher.rend.0: Uline Bold fg5
