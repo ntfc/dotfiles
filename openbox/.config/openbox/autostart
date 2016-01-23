@@ -24,7 +24,7 @@ hash compton && 2>/dev/null && (compton --config ~/.config/compton.conf -b) &
 cmst -m -w 1 &
 
 # "desktop" backgroud
-[ -f ~/Pictures/ocean1.jpg ] && (feh --image-bg black --bg-center --no-fehbg ~/Pictures/ocean1.jpg) &
+[ -f ~/Pictures/ocean1.jpg ] && (feh --image-bg black --bg-fill --no-fehbg ~/Pictures/ocean1.jpg) &
 
 # volume notification daemon
 if hash volnoti 2>/dev/null; then
