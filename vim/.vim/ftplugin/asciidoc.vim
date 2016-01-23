@@ -1,11 +1,14 @@
 setlocal autoindent
 " replace Tab for spaces
 setlocal expandtab
-" wrap text longer than 80 characters
+" visual wrap text
 setlocal wrap
-setlocal textwidth=80
-" Add a column at the 81 character position
-setlocal colorcolumn=+1
+setlocal textwidth=0
+setlocal wrapmargin=0
+setlocal nolist
+
 setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
 setlocal comments=s1:/*,ex:*/,://,b:#,:%,:XCOMM,fb:-,fb:*,fb:+,fb:.,fb:>
 setlocal spell spelllang=en_us
+
+
