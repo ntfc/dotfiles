@@ -1,3 +1,5 @@
+> **NOTE:** some configs are not yet "stow friendly"
+
 These are my dotfiles for ArchLinux with Openbox. I am using [GNU stow][stow] to manage symlinks across the system. stow makes it very easy to have a central repository of dotfiles that can be used in many machines and by different users.
 
 # Managing with stow
