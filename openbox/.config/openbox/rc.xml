@@ -210,16 +210,6 @@
         <desktop>4</desktop>
       </action>
     </keybind>
-    <keybind key="A-5">
-      <action name="Desktop">
-        <desktop>5</desktop>
-      </action>
-    </keybind>
-    <keybind key="A-6">
-      <action name="Desktop">
-        <desktop>6</desktop>
-      </action>
-    </keybind>
     <keybind key="S-A-1">
       <action name="SendToDesktop">
         <follow>no</follow>
@@ -240,18 +230,6 @@
     <keybind key="S-A-4">
       <action name="SendToDesktop">
         <desktop>4</desktop>
-        <follow>no</follow>
-      </action>
-    </keybind>
-    <keybind key="S-A-5">
-      <action name="SendToDesktop">
-        <desktop>5</desktop>
-        <follow>no</follow>
-      </action>
-    </keybind>
-    <keybind key="S-A-6">
-      <action name="SendToDesktop">
-        <desktop>6</desktop>
         <follow>no</follow>
       </action>
     </keybind>
