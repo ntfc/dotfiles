@@ -27,6 +27,8 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""
 " Custom
 """""""""""""""""""""""""""""""
+" show utf-8 characters
+set encoding=utf-8
 " show invisible characters
 " show tab as →, new line as ¬
 set list
