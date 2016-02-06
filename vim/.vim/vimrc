@@ -14,7 +14,7 @@ if v:version >= 700
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'scrooloose/nerdtree'
     "Plugin 'vim-latex/vim-latex'
-    "Plugin 'kien/ctrlp.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'airblade/vim-gitgutter'
     
     " All of your Plugins must be added before the following line
@@ -104,6 +104,16 @@ set directory=/tmp
 " remove ~/.vim/.netrwhist
 au VimLeave * if filereadable("~/.vim/.netrwhist")|call delete("~/.vim//.netrwhist")|endif 
 
+" dont't tab complete these extensions
+set wildignore=*.o,*.obj,*~,*.pyc
+set wildignore+=.tmp
+set wildignore+=*DS_Store*
+set wildignore+=.git,.svn,.hg
+set wildignore+=__pycache__/
+set wildignore+=.idea/**
+set wildignore+=.vagrant/*
+set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.ico
+set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/Library/**,*/.rbenv/**
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
