@@ -49,7 +49,7 @@ I always have issues when dealing with these two together, so here is what I usu
 
 ```
 # pacman -S virtualbox virtualbox-host-modules virtualbox-guest-modules virtualbox-guest-iso virtualbox-guest-utils
-# modprobe vboxdrv vboxnetadp vboxnetflt vboxpci vboxnetadp
+# modprobe vboxdrv vboxnetadp vboxnetflt vboxpci vboxnetadp vboxguest
 ```
 
 After this, you should be good to `vagrant up`. Or not.

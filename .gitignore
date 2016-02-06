@@ -9,3 +9,9 @@ Downloads/*
 projects/*
 NetBeansProjects/*
 .ssh/*
+vim/.vim/bundle/
+openbox/.config/openbox/setlayout
+# copyq
+copyq/.config/copyq/*.dat
+copyq/.config/copyq/*geometry.ini
+copyq/.config/copyq/*tabs.ini
