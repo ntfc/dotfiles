@@ -16,6 +16,7 @@ if v:version >= 700
     "Plugin 'vim-latex/vim-latex'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'airblade/vim-gitgutter'
+    Plugin 'rust-lang/rust'
     
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -124,11 +125,6 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" check after/plugin/NERDTree.vim
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-latex
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check .vim/ftplugin for some file type definitions
@@ -170,9 +166,8 @@ let g:Tex_ViewRuleComplete_ps ='zathura $*.ps  &>/dev/null &'
 let g:Tex_ViewRuleComplete_dvi='zathura $*.dvi &>/dev/null &'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" git gutter
+" plugin configurations: check `after/plugin/<plugin name>.vim`
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" check after/plugin/GitGutter.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set custom filetypes
