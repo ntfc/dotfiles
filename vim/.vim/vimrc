@@ -16,7 +16,7 @@ if v:version >= 700
     "Plugin 'vim-latex/vim-latex'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'airblade/vim-gitgutter'
-    Plugin 'rust-lang/rust'
+    Plugin 'rust-lang/rust.vim'
     
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
