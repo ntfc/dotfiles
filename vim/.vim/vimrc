@@ -13,6 +13,8 @@ if v:version >= 700
     " let Vundle manage Vundle, required
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'scrooloose/nerdtree'
+    Plugin 'jistr/vim-nerdtree-tabs'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
     "Plugin 'vim-latex/vim-latex'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'airblade/vim-gitgutter'
