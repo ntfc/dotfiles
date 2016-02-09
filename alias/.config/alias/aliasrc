@@ -14,13 +14,13 @@ alias symlink='ln -siv ORIG SYMLINK'
 
 # aliases arguments is zsh: http://struct.tumblr.com/post/20358217330/arguments-passed-to-an-alias-in-zsh-the-right
 # works on bash too
-start.service () { sudo systemctl start $1.service; }
-restart.service () { sudo systemctl restart $1.service; }
-stop.service () { sudo systemctl stop $1.service; }
-enable.service () { sudo systemctl enable $1.service; }
-status.service () { sudo systemctl status $1.service; }
-is-enabled.service () { systemctl is-enabled $1.service; }
-disable.service () { sudo systemctl disable $1.service; }
+start.service () { service=$1; shift; sudo systemctl start $service.service $@; }
+restart.service () { service=$1; shift; sudo systemctl restart $service.service $@; }
+stop.service () { service=$1; shift; sudo systemctl stop $service.service $@; }
+enable.service () { service=$1; shift; sudo systemctl enable $service.service $@; }
+status.service () { service=$1; shift; sudo systemctl status $service.service $@ $@; }
+is-enabled.service () { service=$1; shift; systemctl is-enabled $service.service $@; }
+disable.service () { service=$1; shift; sudo systemctl disable $service.service $@; }
 
 extract() {
   if [ -f "$1" ]; then
