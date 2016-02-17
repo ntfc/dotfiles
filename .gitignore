@@ -11,6 +11,7 @@ NetBeansProjects/*
 .ssh/*
 vim/.vim/bundle/
 openbox/.config/openbox/setlayout
+zsh/.zsh/antigen/
 # copyq
 copyq/.config/copyq/*.dat
 copyq/.config/copyq/*geometry.ini
