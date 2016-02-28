@@ -172,7 +172,7 @@ let g:Tex_ViewRuleComplete_ps ='zathura $*.ps  &>/dev/null &'
 let g:Tex_ViewRuleComplete_dvi='zathura $*.dvi &>/dev/null &'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin configurations: check `after/plugin/<plugin name>.vim`
+" plugin configurations: check `plugin/<plugin name>.vim`or `after/plugin/<plugin name>.vim`
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
