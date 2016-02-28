@@ -39,7 +39,6 @@ zle -N zle-keymap-select
 
 PROMPT="%{$fg[green]%}[%n@%m %1~]%{$reset_color%}%# "
 # Set the right-hand prompt to the current branch
-#RPROMPT='$(git_prompt_string)'
 RPROMPT='${VIMODE} $(vcs_prompt_string)'
 
 

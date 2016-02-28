@@ -117,6 +117,10 @@ set wildignore+=.idea/**
 set wildignore+=.vagrant/*
 set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.ico
 set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/Library/**,*/.rbenv/**
+
+" Autojump to the last edited position when a file is reopened
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
+                     \ exe "normal g'\"" | endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
