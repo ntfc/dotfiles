@@ -36,4 +36,11 @@ bindkey '^[[8~'   end-of-line # end
 # reverse search with Ctrl+R
 bindkey '^R' history-incremental-search-backward
 
-
+# use Ctrl+Backspace to remove words
+function remove_word() {
+  # use a different WORDCHARS for this command
+  WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle backward-kill-word
+}
+# register new keymap function
+zle -N _backward-kill-word remove_word
+bindkey '^H' _backward-kill-word
