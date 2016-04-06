@@ -4,7 +4,7 @@
 # $1 = pre or post
 # $2 = suspend, hibernate or hybrid-sleep
 
-USER=who -s | grep "(:0)" | awk '{print $1}'
+USER=$(who -s | grep "(:0)" | awk '{print $1}')
 
 case $1/$2 in
   pre/*)
