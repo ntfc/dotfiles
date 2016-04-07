@@ -6,7 +6,7 @@ if [[ $EUID != 0 ]]; then
   exit 1
 fi
 
-USER=who -s | grep "(:0)" | awk '{print $1}'
+USER=$(who -s | grep "(:0)" | awk '{print $1}')
 # autosuspend value for usb on ac: default = 2
 AUTOSUSPEND=2
 USBPOWER=on

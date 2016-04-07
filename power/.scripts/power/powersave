@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USER=who -s | grep "(:0)" | awk '{print $1}'
+USER=$(who -s | grep "(:0)" | awk '{print $1}')
 
 [[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && /home/$USER/.scripts/power/powerup &
 [[ $(cat /sys/class/power_supply/AC/online) -eq 0 ]] && /home/$USER/.scripts/power/powerdown &
