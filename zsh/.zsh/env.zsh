@@ -3,7 +3,10 @@
 ###############################
 
 typeset -U path
-path+=("$HOME/.scripts/")
+path+=(
+  "$HOME/.scripts/"
+  "$HOME/.rvm/bin/"
+)
 export PATH
 
 # by default: export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
