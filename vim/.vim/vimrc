@@ -121,8 +121,16 @@ set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.ico
 set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/Library/**,*/.rbenv/**
 
 " Autojump to the last edited position when a file is reopened
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
-                     \ exe "normal g'\"" | endif
+" from http://stackoverflow.com/a/6496995
+au BufReadPost * call AutoJumpToLastPosition()
+
+fun! AutoJumpToLastPosition()
+  " ignore on these filetypes
+  if &ft =~ 'gitcommit'
+    return
+  endif
+  if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+endfun
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
