@@ -10,7 +10,6 @@
 # $2 = 00000045 => play/pause
 
 
-echo "hey" > /tmp/aa
 if [ ! -z `pidof mpd` ]; then # check if pid exists
   case "$1" in
     cd/prev)

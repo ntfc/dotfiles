@@ -65,5 +65,15 @@
     m:0x10 + c:124
     Mod2 + XF86PowerOff 
 
+# Fn+F5 is previous track in microsoft keyboard
+"[ ! -z $(pidof clementine) ] && clementine --previous"
+    m:0x51 + c:199
+    Shift+Mod2+Mod4 + XF86TouchpadToggle 
+
+# Fn+F8 is next track in microsoft keyboard
+"[ ! -z $(pidof clementine) ] && clementine --next"
+    m:0x50 + c:199
+    Mod2+Mod4 + XF86TouchpadToggle 
+
 #
 # End of xbindkeys configuration
