@@ -16,3 +16,5 @@ zsh/.zsh/antigen/
 copyq/.config/copyq/*.dat
 copyq/.config/copyq/*geometry.ini
 copyq/.config/copyq/*tabs.ini
+
+alias/.config/alias/alias.private
