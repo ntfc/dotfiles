@@ -45,4 +45,4 @@ extract() {
 
 alias dockerRemoveDangling='docker rmi $(docker images -q -f dangling=true)'
 
-. ~/.config/alias/alias.private
+[ -f ~/.config/alias/alias.private ] && . ~/.config/alias/alias.private
