@@ -24,7 +24,7 @@ Besides `~/.xprofile`, some applications (mostly GUI) are started by Openbox's `
 | <kbd>Shift</kbd><kbd>Alt</kbd><kbd>Return</kbd> | Open or focus on a currenly existing `urxvt` terminal. Since I use `tmux`, I don't need multiple terminal windows
 | <kbd>Alt</kbd><kbd>P</kbd> | show a `dmenu_run` prompt to execute applications
 | <kbd>Shift</kbd><kbd>Win</kbd><kbd>Up/Down</kbd> | Maximize/Minimize window
-| <kbd>Alt</kbd><kbd>1..4</kbd> | Show desktop number `1..4`
+| <kbd>Win</kbd><kbd>1..4</kbd> | Show desktop number `1..4`
 | <kbd>Shift</kbd><kbd>Alt</kbd><kbd>1..4</kbd> | Move current window to desktop number `1..4`
 | <kbd>Win</kbd><kbd>Arrow</kbd> | Go to desktop
 | <kbd>Alt</kbd><kbd>I/M</kbd> | Grow window up/down
@@ -32,7 +32,7 @@ Besides `~/.xprofile`, some applications (mostly GUI) are started by Openbox's `
 | <kbd>Shift</kbd><kbd>Alt</kbd><kbd>I/M</kbd> | Shrink window up/down
 | <kbd>Shift</kbd><kbd>Alt</kbd><kbd>H/L</kbd> | Shrink window left/right
 | <kbd>Shift</kbd><kbd>Alt</kbd><kbd>Arrow</kbd> | Move the window
-| <kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>L</kbd> | Lock screen
+| <kbd>Ctrl</kbd><kbd>Win</kbd><kbd>L</kbd> | Lock screen
 | <kbd>Shift</kbd><kbd>Alt</kbd><kbd>T</kbd> | Keep current window on top
 
 # terminal

@@ -192,26 +192,29 @@
     <keybind key="W-Down">
       <action name="DesktopDown"/>
     </keybind>
-    <keybind key="A-1">
-      <action name="Desktop"/>
+    <keybind key="W-1">
+      <action name="Desktop">
+        <desktop>1</desktop>
+      </action>
     </keybind>
-    <keybind key="A-2">
+    <keybind key="W-2">
       <action name="Desktop">
         <desktop>2</desktop>
       </action>
     </keybind>
-    <keybind key="A-3">
+    <keybind key="W-3">
       <action name="Desktop">
         <desktop>3</desktop>
       </action>
     </keybind>
-    <keybind key="A-4">
+    <keybind key="W-4">
       <action name="Desktop">
         <desktop>4</desktop>
       </action>
     </keybind>
     <keybind key="S-A-1">
       <action name="SendToDesktop">
+        <desktop>1</desktop>
         <follow>no</follow>
       </action>
     </keybind>
@@ -355,7 +358,7 @@
         <x>25</x>
       </action>
     </keybind>
-    <keybind key="C-A-l">
+    <keybind key="C-W-l">
       <action name="Execute">
         <command>xscreensaver-command -lock</command>
       </action>
