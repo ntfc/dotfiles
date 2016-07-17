@@ -14,7 +14,7 @@ export PATH
 export WORDCHARS='*?[]~=&;!#$%^(){}<>'
 
 # Browser
-export BROWSER='firefox'
+export BROWSER='chromium'
 # editor
 export VISUAL='vim'
 export EDITOR='vim'
