@@ -7,3 +7,6 @@
 [commit]
   # from git 2.9, --verbose will show the diff when writing the COMMIT_MSG
   verbose = true
+
+[init]
+  templatedir = ~/.git-templates
