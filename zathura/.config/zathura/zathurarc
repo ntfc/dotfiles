@@ -14,3 +14,7 @@ map [fullscreen] <Up> scroll up
 # options
 set font "droid sans normal 9.5"
 set show-v-scrollbar true
+
+set window-width 1150
+set window-height 950
+set adjust-open width
