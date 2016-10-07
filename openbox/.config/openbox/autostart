@@ -9,6 +9,8 @@ xfce4-session &
 
 # dropbox. this is the first because the tray icon gets messed up if others are started before
 dropbox &
+# gradually remove dropbox and replace with something else
+hash syncthing-gtk && syncthing-gtk &
 
 # volume
 hash volumeicon 2>/dev/null && volumeicon &
@@ -32,3 +34,6 @@ if hash volnoti 2>/dev/null; then
     (sleep 2s && volnoti -t 1) &
   fi
 fi
+
+# rest reminder
+hash workrave && 2>/dev/null && (workrave) &
