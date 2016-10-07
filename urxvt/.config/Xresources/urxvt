@@ -260,7 +260,7 @@ URxvt*perl-ext: selection-to-clipboard,default,matcher
 
 ! Specifies the program to be started with a URL argument. Used by
 ! URxvt*url-launcher: string
-URxvt*url-launcher: /usr/bin/firefox
+URxvt*url-launcher: /usr/bin/xdg-open
 
 ! Compile frills: Sets the WM_TRANSIENT_FOR property to the given
 ! URxvt*transient-for: windowid
