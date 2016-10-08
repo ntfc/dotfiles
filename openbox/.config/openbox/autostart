@@ -23,7 +23,8 @@ hash copyq 2>/dev/null && copyq &
 # composite
 hash compton && 2>/dev/null && (compton --config ~/.config/compton.conf -b) &
 
-cmst -m -w 1 &
+# wait some seconds for connman daemon to start..
+(sleep 5s && cmst -m -w 1) &
 
 # "desktop" backgroud
 [ -f ~/Pictures/bg.jpg ] && (feh --image-bg black --bg-fill --no-fehbg ~/Pictures/bg.jpg) &
