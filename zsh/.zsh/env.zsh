@@ -6,6 +6,7 @@ typeset -U path
 path+=(
   "$HOME/.scripts/"
   "$HOME/.rvm/bin/"
+  "$HOME/.go/bin"
 )
 export PATH
 
@@ -27,3 +28,5 @@ export PULSE_RUNTIME_PATH="/run/user/"`id -u`"/pulse/"
 # https://wiki.archlinux.org/index.php/Java_Runtime_Environment_Fonts
 
 export VAGRANT_HOME="/Vagrant"
+
+export GOPATH=~/.go
