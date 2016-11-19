@@ -46,6 +46,8 @@ xset m 0 0 &
 # turn num lock on
 numlockx on &
 
+cbatticon &
+
 # xbindkeys
 [ -f ~/.xbindkeysrc ] && xbindkeys -f ~/.xbindkeysrc &
 
