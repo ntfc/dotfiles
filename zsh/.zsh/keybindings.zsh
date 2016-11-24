@@ -44,3 +44,8 @@ function remove_word() {
 # register new keymap function
 zle -N _backward-kill-word remove_word
 bindkey '^H' _backward-kill-word
+
+# press Ctrl+Q to put current command on queue, execute another command, and
+# the first command comes back
+# see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
+bindkey "^Q" push-line-or-edit
