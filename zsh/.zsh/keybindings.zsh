@@ -48,4 +48,6 @@ bindkey '^H' _backward-kill-word
 # press Ctrl+Q to put current command on queue, execute another command, and
 # the first command comes back
 # see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
+# access to C^Q: https://github.com/thoughtbot/dotfiles/commit/a1a9f6d6947791d7b2c9a216aa56a5a12cc39c51
+stty -ixon
 bindkey "^Q" push-line-or-edit
