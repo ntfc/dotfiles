@@ -1,5 +1,3 @@
-setlocal tabstop=2
-" dont replace Tab for spaces
-setlocal noexpandtab
-setlocal shiftwidth=2
+setlocal tabstop=4
+setlocal shiftwidth=4
 setlocal smarttab

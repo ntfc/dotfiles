@@ -7,6 +7,7 @@ path+=(
   "$HOME/.scripts/"
   "$HOME/.rvm/bin/"
   "$HOME/.go/bin"
+  "$HOME/.local/bin" # python-pip
 )
 export PATH
 
