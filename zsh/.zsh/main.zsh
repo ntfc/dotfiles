@@ -15,6 +15,8 @@ setopt completealiases
 # command completion
 autoload -Uz compinit
 compinit
+# https://unix.stackexchange.com/questions/308315/how-can-i-configure-zsh-completion-to-show-hidden-files-and-folders/308322
+_comp_options+=(globdots)
 # End of lines added by compinstall
 
 # rehash automatically
