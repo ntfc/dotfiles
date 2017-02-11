@@ -31,12 +31,12 @@ case "$1" in
       PBTN|PWRF)
         logger "Power button pressed"
           su "$USER" -c 'export DISPLAY=:0.0 ; /usr/bin/pygtk-shutdown-systemd'
-
       ;;
     esac
   ;;
   button/sleep)
-    systemctl suspend
+    # let systemd-logind handle suspend events
+    #systemctl suspend
   ;;
   video/brightnessup)
     # check if light command exists
