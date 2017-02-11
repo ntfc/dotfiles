@@ -80,7 +80,7 @@ URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:style=Bold Oblique:pixelsize=
 ! The font list to use for displaying bold, italic or bold italic
 URxvt*boldItalicFont: fontlist
 
-! This messes ip the font spacing....
+! This messes up the font spacing....
 !URxvt*letterSpace: -2
 
 

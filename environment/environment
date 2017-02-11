@@ -3,4 +3,4 @@
 #
 # Syntax: simple "KEY=VAL" pairs on separate lines
 #
-_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
