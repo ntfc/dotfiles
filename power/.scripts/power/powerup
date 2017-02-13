@@ -104,14 +104,14 @@ if [ $DISPLAY ]; then
   echo "Ok, I am on a X session"
   if [[ -z "`pidof compton`" ]]; then
     echo "compton not running, starting compton.."
-    su $USER-c '/usr/bin/compton --config /home/$USER.config/compton.conf -b' \
+    su $USER -c '/usr/bin/compton --config /home/$USER/.config/compton.conf -b' \
       &> /dev/null || echo "cannot run compton.."
   else
     echo "compton already running, nothing else to do"
   fi
 else
   echo "Hmm, I am not on a X session.. Try to run anyway.."
-  su $USER -c 'export DISPLAY=:0.0 ; /usr/bin/compton --config /home/$USER.config/compton.conf -b' \
+  su $USER -c 'export DISPLAY=:0.0 ; /usr/bin/compton --config /home/$USER/.config/compton.conf -b' \
       &> /dev/null || echo "could not run compton.."
 fi
 
