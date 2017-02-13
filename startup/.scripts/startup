@@ -46,6 +46,9 @@ xset m 0 0 &
 # turn num lock on
 numlockx on &
 
+# disable caps lock
+setxkbmap -option ctrl:nocaps
+
 cbatticon &
 
 # xbindkeys
