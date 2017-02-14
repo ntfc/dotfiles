@@ -40,6 +40,9 @@ xscreensaver -no-splash &
 #xset +dpms 
 #xset dpms 0 0 300 &
 
+# when suspending/hibernate, lock screen
+hash xss-lock 2>/dev/null && (xss-lock -- xscreensaver-command -lock) &
+
 # disable touchpad accelaration
 xset m 0 0 &
 
