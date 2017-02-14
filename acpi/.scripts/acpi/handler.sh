@@ -50,6 +50,9 @@ case "$1" in
       light -U 3 &
     fi
   ;;
+  video/switchmode)
+    su "$USER" -c 'export DISPLAY=:0.0 ; /home/"$USER"/.scripts/acpi/screen.sh' &
+  ;;
   button/volumeup)
         su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
           export DISPLAY=:0.0 ; \

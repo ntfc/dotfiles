@@ -1,9 +1,10 @@
 #!/bin/sh
 
-USER=who -s | grep "(:0)" | awk '{print $1}'
+set -e
 
-if [[ $EUID == 0 ]]; then
-  su $USER -c 'export DISPLAY=:0.0; arandr' &
-else
-  arandr &
-fi
+hash mons &> /dev/null || echo "error: mons is not installed"
+
+# for now, just activate the preferred monitor. this is used as a way to
+# restore a usable monitor if external monitor is abruptly disconnected
+mons -o
+
