@@ -19,3 +19,4 @@ copyq/.config/copyq/*tabs.ini
 
 alias/.config/alias/alias.private
 git/.gitconfig-private
+vdirsyncer/**/status/

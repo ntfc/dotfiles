@@ -1,0 +1,31 @@
+# Run `vdirsyncer --help` for CLI usage.
+#
+# Optional parameters are commented out.
+# This file doesn't document all available parameters, see
+# http://vdirsyncer.pimutils.org/ for the rest of them.
+
+[general]
+# A folder where vdirsyncer can store some metadata about each pair.
+status_path = "~/.config/vdirsyncer/status/"
+
+# CALDAV
+[pair ntfc_calendar]
+a = "ntfc_calendar_local"
+b = "ntfc_calendar_remote"
+collections = ["from a", "from b"]
+
+# Synchronize displayname and color metadata
+metadata = ["displayname", "color"]
+
+[storage ntfc_calendar_local]
+type = "filesystem"
+path = "~/.calendars/"
+fileext = ".ics"
+
+[storage ntfc_calendar_remote]
+type = "caldav"
+# fetch personal information from keyring
+url.fetch = [ "command", "keyring", "get", "Radicale", "url" ]
+username.fetch = [ "command", "keyring", "get", "Radicale", "username" ]
+password.fetch = [ "command", "keyring", "get", "Radicale", "password" ]
+auth = "basic"
