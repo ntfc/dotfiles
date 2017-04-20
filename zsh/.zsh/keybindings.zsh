@@ -7,7 +7,7 @@ which_term(){
   term=$(ps -p $(ps -p $$ -o ppid=) -o args=)
   found=0
   case $term in
-    *rxvt*)
+    rxvt*)
       found=1
       echo "rxvt"
       ;;
@@ -49,9 +49,9 @@ function remove_word() {
 zle -N _backward-kill-word remove_word
 
 # rxvt specific configurations
-case which_term in
-  # rxvt specific configurations
-  rxvt)
+case $(which_term) in
+  # rxvt or tmux specific configurations. assume that tmux is executed everytime with zsh
+  rxvt|tmux)
     # https://wiki.archlinux.org/index.php/Zsh#Alternative_method_without_using_terminfo
     [[ -f ~/.zkbd/rxvt-unicode-256color ]] && source ~/.zkbd/rxvt-unicode-256color
 
