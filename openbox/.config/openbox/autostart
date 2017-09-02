@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #
 # These things are run when an Openbox X Session is started.
 #
@@ -18,23 +19,29 @@ hash volumeicon 2>/dev/null && volumeicon &
 # battery
 #cbatticon -i symbolic -l 10 -r 5 -c "systemctl hibernate" &
 
-hash copyq 2>/dev/null && copyq &
+hash copyq 2>/dev/null && (sleep 2s && copyq) &
 
 # composite
-hash compton && 2>/dev/null && (compton --config ~/.config/compton.conf -b) &
+hash compton 2>/dev/null && (compton --config ~/.config/compton.conf -b) &
 
-# wait some seconds for connman daemon to start..
-(sleep 5s && cmst -m -w 1) &
+if systemctl is-enabled -q connman; then
+  # wait some seconds for connman daemon to start..
+  (sleep 5s && cmst -m -w 1) &
+elif systemctl is-enabled -q NetworkManager; then
+  (sleep 2s && nm-applet) &
+fi
 
 # "desktop" backgroud
 [ -f ~/Pictures/bg.jpg ] && (feh --image-bg black --bg-fill --no-fehbg ~/Pictures/bg.jpg) &
 
 # volume notification daemon
 if hash volnoti 2>/dev/null; then
-  if [ -z `pidof volnoti` ]; then
+  if [ -z "$(pidof volnoti)" ]; then
     (sleep 2s && volnoti -t 1) &
   fi
 fi
 
 # rest reminder
-hash workrave && 2>/dev/null && (workrave) &
+hash workrave 2>/dev/null && (workrave) &
+
+# vim: set ft=sh:
