@@ -12,11 +12,6 @@ if [[ -z "$1" ]]; then
   SESSION_NAME="openbox"
 fi
 
-# first of all, I don't wan't to autostart application on ~/.config/autostart
-for autostart in ~/.config/autostart/*; do
-  rm -f "$autostart"
-done
-
 # xfonts, so i can use terminus font and others
 [ -d /usr/share/fonts/local ] && xset +fp /usr/share/fonts/local
 xset fp rehash &
@@ -25,23 +20,16 @@ xset fp rehash &
 for xres in ~/.config/Xresources/*; do
   xrdb -quiet -merge "$xres"
 done
+# first of all, I don't wan't to autostart application on ~/.config/autostart
+for autostart in ~/.config/autostart/*; do
+  rm -f "$autostart"
+done
 
+# I believe this will only execute if pulseaudio is not running
 start-pulseaudio-x11 &
 
 # start a urxvt daemon
 hash urxvtd 2>/dev/null && (urxvtd -q -o -f) &
-
-# xscreensaver
-xscreensaver -no-splash &
-
-# disable xscreensaver on fullscreen apps are running
-[ -f ~/.scripts/xscreensaverstopperany.sh ] && ~/.scripts/xscreensaverstopperany.sh &
-# screen powersave: we have xscreensaver already, right?
-#xset +dpms 
-#xset dpms 0 0 300 &
-
-# when suspending/hibernate, lock screen
-hash xss-lock 2>/dev/null && (xss-lock -- xscreensaver-command -lock) &
 
 # disable touchpad accelaration
 xset m 0 0 &
@@ -52,14 +40,20 @@ numlockx on &
 # disable caps lock
 setxkbmap -option ctrl:nocaps
 
-cbatticon &
-
 # xbindkeys
 [ -f ~/.xbindkeysrc ] && xbindkeys -f ~/.xbindkeysrc &
 
 case "$SESSION_NAME" in
   "openbox")
     # see ~/.config/openbox/autostart
+    # xscreensaver
+    xscreensaver -no-splash &
+
+    # disable xscreensaver on fullscreen apps are running
+    [ -f ~/.scripts/xscreensaverstopperany.sh ] && ~/.scripts/xscreensaverstopperany.sh &
+
+    # when suspending/hibernate, lock screen
+    hash xss-lock 2>/dev/null && (xss-lock -- xscreensaver-command -lock) &
     ;;
   "mate")
 #    synclient TapButton1=1
