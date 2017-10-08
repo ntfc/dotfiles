@@ -12,6 +12,8 @@
 USER=$(who -s | grep "(:0)" | awk '{print $1}')
 MPD=$(pidof mpd)
 SPOTIFY=$(pidof spotify)
+# lightdm session file
+SESSION=$(grep "Session" "$HOME"/.dmrc | sed 's/Session=//')
 
 case "$1" in
   ac_adapter)
@@ -39,34 +41,44 @@ case "$1" in
     #systemctl suspend
   ;;
   video/brightnessup)
-    # check if light command exists
-    if hash light 2>/dev/null; then
-      light -A 3 &
+    if [[ "$SESSION" == "openbox" ]]; then
+      if hash light 2>/dev/null; then
+        light -A 3 &
+      fi
     fi
   ;;
   video/brightnessdown)
-    # check if light command exists
-    if hash light 2>/dev/null; then
-      light -U 3 &
+    if [[ "$SESSION" == "openbox" ]]; then
+      if hash light 2>/dev/null; then
+        light -U 3 &
+      fi
     fi
   ;;
   video/switchmode)
-    su "$USER" -c 'export DISPLAY=:0.0 ; /home/"$USER"/.scripts/acpi/screen.sh' &
+    if [[ "$SESSION" == "openbox" ]]; then
+      su "$USER" -c 'export DISPLAY=:0.0 ; /home/"$USER"/.scripts/acpi/screen.sh' &
+    fi
   ;;
   button/volumeup)
+    if [[ "$SESSION" == "openbox" ]]; then
         su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
           export DISPLAY=:0.0 ; \
           /home/"$USER"/.scripts/pacontrol up 1' &
+    fi
   ;;
   button/volumedown)
+    if [[ "$SESSION" == "openbox" ]]; then
         su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
           export DISPLAY=:0.0 ; \
           /home/"$USER"/.scripts/pacontrol down 1' &
+    fi
   ;;
   button/mute)
+    if [[ "$SESSION" == "openbox" ]]; then
         su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
           export DISPLAY=:0.0 ; \
           /home/"$USER"/.scripts/pacontrol mute 1' &
+    fi
   ;;
   cd/play)
     [[ ! -z "$SPOTIFY" ]] && su "$USER" -c 'export DISPLAY=:0.0 ; spotifycli -p' &
@@ -96,19 +108,25 @@ case "$1" in
         /home/"$USER"/.scripts/acpi/mpd-control "$3"
       ;;
       00000032) # mute
-        su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
-          export DISPLAY=:0.0 ; \
-          /home/"$USER"/.scripts/pacontrol mute 1' &
+        if [[ "$SESSION" == "openbox" ]]; then
+          su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
+            export DISPLAY=:0.0 ; \
+            /home/"$USER"/.scripts/pacontrol mute 1' &
+        fi
       ;;
       00000031) # vol down
-        su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
-          export DISPLAY=:0.0 ; \
-          /home/"$USER"/.scripts/pacontrol down 1' &
+        if [[ "$SESSION" == "openbox" ]]; then
+          su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
+            export DISPLAY=:0.0 ; \
+            /home/"$USER"/.scripts/pacontrol down 1' &
+        fi
       ;;
       00000030) # vol up
-        su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
-          export DISPLAY=:0.0 ; \
-          /home/"$USER"/.scripts/pacontrol up 1' &
+        if [[ "$SESSION" == "openbox" ]]; then
+          su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
+            export DISPLAY=:0.0 ; \
+            /home/"$USER"/.scripts/pacontrol up 1' &
+        fi
       ;;
       00000055) # calculator
         su "$USER" -c 'export DISPLAY=:0.0 ; /usr/bin/speedcrunch' &

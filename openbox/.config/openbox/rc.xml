@@ -335,8 +335,7 @@
     </keybind>
     <keybind key="A-p">
       <action name="Execute">
-        <command>rofi -font 'Terminus 14' -show run</command>
-        <!--<command>dmenu_run -fn '-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*' -p 'Execute:'</command>-->
+        <command>rofi -show run</command>
       </action>
     </keybind>
     <keybind key="S-A-Up">

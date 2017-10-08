@@ -3,8 +3,6 @@
 # These things are run when an Openbox X Session is started.
 #
 
-[ -f ~/.config/openbox/setlayout ] && (~/.config/openbox/setlayout 0 2 2 0) &
-
 # this will also start xfce4-panel
 xfce4-session &
 
@@ -34,6 +32,7 @@ fi
 
 # "desktop" backgroud
 [ -f ~/Pictures/bg.jpg ] && (feh --image-bg black --bg-fill --no-fehbg ~/Pictures/bg.jpg) &
+[ -f ~/Pictures/bg.png ] && (feh --image-bg black --bg-fill --no-fehbg ~/Pictures/bg.png) &
 
 # volume notification daemon
 if hash volnoti 2>/dev/null; then
@@ -42,7 +41,12 @@ if hash volnoti 2>/dev/null; then
   fi
 fi
 
+# redshift
+hash redshift-gtk 2>/dev/null && (redshift-gtk) &
+
 # rest reminder
 hash workrave 2>/dev/null && (workrave) &
+
+[ -f ~/.config/openbox/setlayout ] && (sleep 2s && ~/.config/openbox/setlayout 0 2 2 0) &
 
 # vim: set ft=sh:

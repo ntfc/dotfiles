@@ -12,9 +12,25 @@ if [[ -z "$1" ]]; then
   SESSION_NAME="openbox"
 fi
 
+start_xscreensaver() {
+  # xscreensaver
+  xscreensaver -no-splash &
+
+  # disable xscreensaver on fullscreen apps are running
+  [ -f ~/.scripts/xscreensaverstopperany.sh ] && ~/.scripts/xscreensaverstopperany.sh &
+
+  # when suspending/hibernate, lock screen
+  hash xss-lock 2>/dev/null && (xss-lock -- xscreensaver-command -lock) &
+}
+
 # xfonts, so i can use terminus font and others
 [ -d /usr/share/fonts/local ] && xset +fp /usr/share/fonts/local
 xset fp rehash &
+# turn off the damn hardward bell
+xset b off
+
+# before loading the Xresources, make sure xscreensaver is not runing
+xscreensaver-command -exit
 
 # Xresources
 for xres in ~/.config/Xresources/*; do
@@ -46,14 +62,11 @@ setxkbmap -option ctrl:nocaps
 case "$SESSION_NAME" in
   "openbox")
     # see ~/.config/openbox/autostart
-    # xscreensaver
-    xscreensaver -no-splash &
 
-    # disable xscreensaver on fullscreen apps are running
-    [ -f ~/.scripts/xscreensaverstopperany.sh ] && ~/.scripts/xscreensaverstopperany.sh &
-
-    # when suspending/hibernate, lock screen
-    hash xss-lock 2>/dev/null && (xss-lock -- xscreensaver-command -lock) &
+    start_xscreensaver &
+    ;;
+  "xfce")
+    start_xscreensaver &
     ;;
   "mate")
 #    synclient TapButton1=1
@@ -61,3 +74,5 @@ case "$SESSION_NAME" in
 #    synclient TapButton3=3
     ;;
 esac
+
+

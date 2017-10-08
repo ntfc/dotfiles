@@ -23,6 +23,7 @@ _comp_options+=(globdots)
 setopt nohashdirs
 
 # load my aliases
+[ -f ~/.aliasrc ] && source ~/.aliasrc
 [ -f ~/.config/alias/aliasrc ] && source ~/.config/alias/aliasrc
 [ -f ~/.config/alias/gitaliasrc ] && source ~/.config/alias/gitaliasrc
 
