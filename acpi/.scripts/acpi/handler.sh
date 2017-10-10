@@ -13,7 +13,7 @@ USER=$(who -s | grep "(:0)" | awk '{print $1}')
 MPD=$(pidof mpd)
 SPOTIFY=$(pidof spotify)
 # lightdm session file
-SESSION=$(grep "Session" "$HOME"/.dmrc | sed 's/Session=//')
+SESSION=$(grep "Session" /home/"$USER"/.dmrc | sed 's/Session=//')
 
 case "$1" in
   ac_adapter)
