@@ -363,6 +363,11 @@
         <command>xscreensaver-command -lock</command>
       </action>
     </keybind>
+    <keybind key="W-F12">
+      <action name="Execute">
+        <command>xfce4-popup-notes --show-hide</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>5</dragThreshold>
