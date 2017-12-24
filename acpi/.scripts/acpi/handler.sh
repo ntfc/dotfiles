@@ -12,8 +12,12 @@
 USER=$(who -s | grep "(:0)" | awk '{print $1}')
 MPD=$(pidof mpd)
 SPOTIFY=$(pidof spotify)
-# lightdm session file
-SESSION=$(grep "Session" /home/"$USER"/.dmrc | sed 's/Session=//')
+# lightdm session file. It outputs openbox even when running a mix of openbox and xfce4.
+if [[ -z "$(pidof xfce4-session)" ]]l then
+  SESSION=openbox
+else
+  SESSION=xfce4
+fi
 
 case "$1" in
   ac_adapter)
