@@ -4,6 +4,9 @@
 [include]
   path = ~/.gitconfig-alias
 
+[user]
+  name = Nuno Carvalho
+
 [commit]
   # from git 2.9, --verbose will show the diff when writing the COMMIT_MSG
   verbose = true
@@ -12,5 +15,19 @@
 #  templatedir = ~/.git-templates
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
-[user]
-  name = Nuno Carvalho
+[color]
+  ui = true
+[color "diff-highlight"]
+  oldNormal = red bold
+  newNormal = green bold
+  newHighlight = green bold 22
+  oldHighlight = red bold 52
+[color "diff"]
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[diff-so-fancy]
+  stripLeadingSymbols = false
