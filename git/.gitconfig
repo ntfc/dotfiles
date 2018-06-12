@@ -5,7 +5,7 @@
   path = ~/.gitconfig-alias
 
 [user]
-  name = Nuno Carvalho
+	name = Nuno Carvalho
 
 [commit]
   # from git 2.9, --verbose will show the diff when writing the COMMIT_MSG

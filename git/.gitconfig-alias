@@ -2,3 +2,4 @@
   graph = log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   show-stash = stash show -p
   reb = "!f() { git rebase -i HEAD~$1; }; f"
+  count = rev-list --count HEAD

@@ -4,6 +4,7 @@
 
 typeset -U path
 path+=(
+  "/usr/share/rvm/bin/"
   "$HOME/.scripts/"
   "$HOME/.rvm/bin/"
   "$HOME/.go/bin"

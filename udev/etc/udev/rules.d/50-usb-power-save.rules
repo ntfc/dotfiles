@@ -7,6 +7,10 @@ ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c31c"
 #  $ lsusb
 #  Bus 003 Device 003: ID 046d:c077 Logitech, Inc. M105 Optical Mouse
 ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c077", GOTO="power_usb_rules_end"
+# asus UX300
+#  $ lsusb
+#  Bus 003 Device 009: ID 1bcf:0005 Sunplus Innovation Technology Inc. Optical Mouse
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1bcf", ATTR{idProduct}=="0005", GOTO="power_usb_rules_end"
 
 ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
 LABEL="power_usb_rules_end"
