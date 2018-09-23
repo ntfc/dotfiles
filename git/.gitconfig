@@ -5,7 +5,8 @@
   path = ~/.gitconfig-alias
 
 [user]
-	name = Nuno Carvalho
+  name = Nuno Carvalho
+  email = me@ntfc.me
 
 [commit]
   # from git 2.9, --verbose will show the diff when writing the COMMIT_MSG
@@ -14,7 +15,7 @@
 #[init]
 #  templatedir = ~/.git-templates
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
   ui = true
 [color "diff-highlight"]
