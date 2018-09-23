@@ -60,27 +60,27 @@ case "$1" in
   ;;
   video/switchmode)
     if [[ "$SESSION" == "openbox" ]]; then
-      su "$USER" -c 'export DISPLAY=:0.0 ; /home/"$USER"/.scripts/acpi/screen.sh' &
+      su "$USER" -c 'export DISPLAY=:0 ; /home/"$USER"/.scripts/acpi/screen.sh' &
     fi
   ;;
   button/volumeup)
     if [[ "$SESSION" == "openbox" ]]; then
         su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
-          export DISPLAY=:0.0 ; \
+          export DISPLAY=:0 ; \
           /home/"$USER"/.scripts/pacontrol up 1' &
     fi
   ;;
   button/volumedown)
     if [[ "$SESSION" == "openbox" ]]; then
         su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
-          export DISPLAY=:0.0 ; \
+          export DISPLAY=:0 ; \
           /home/"$USER"/.scripts/pacontrol down 1' &
     fi
   ;;
   button/mute)
     if [[ "$SESSION" == "openbox" ]]; then
         su "$USER" -c 'export PULSE_RUNTIME_PATH="/run/user/"`id -u "$USER"`"/pulse/" ; \
-          export DISPLAY=:0.0 ; \
+          export DISPLAY=:0 ; \
           /home/"$USER"/.scripts/pacontrol mute 1' &
     fi
   ;;
