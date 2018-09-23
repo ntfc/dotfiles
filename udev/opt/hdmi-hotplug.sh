@@ -8,6 +8,8 @@
 # by XenGi
 ##### edit config #####
 
+set -x
+set -e
 UDEV_RULE_NAME=99-hdmi-hotplug.rules
 export DISPLAY=:0
 USER=$(who | grep $DISPLAY | head -1 | cut -f 1 -d ' ')
