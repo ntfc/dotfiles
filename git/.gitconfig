@@ -6,7 +6,6 @@
 
 [user]
   name = Nuno Carvalho
-  email = me@ntfc.me
 
 [commit]
   # from git 2.9, --verbose will show the diff when writing the COMMIT_MSG
