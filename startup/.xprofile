@@ -6,3 +6,7 @@ SESSION=$(grep "Session" ~/.dmrc | sed 's/Session=//')
 # execute programs at startup
 [ -f ~/.scripts/startup ] && (sleep 1s && ~/.scripts/startup $SESSION) &
 
+if hash gnome-keyring-daemon 2>/dev/null; then
+  eval $(/usr/bin/gnome-keyring-daemon --start)
+  export SSH_AUTH_SOCK
+fi

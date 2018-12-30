@@ -32,3 +32,8 @@ export PULSE_RUNTIME_PATH="/run/user/"`id -u`"/pulse/"
 export VAGRANT_HOME="/Vagrant"
 
 export GOPATH=~/.go
+
+if hash gnome-keyring-daemon 2>/dev/null; then
+  eval $(/usr/bin/gnome-keyring-daemon --start)
+  export SSH_AUTH_SOCK
+fi
