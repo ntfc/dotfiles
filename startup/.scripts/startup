@@ -23,6 +23,13 @@ start_xscreensaver() {
   hash xss-lock 2>/dev/null && (xss-lock -- xscreensaver-command -lock) &
 }
 
+# set openbox as XFCE's window manager
+case "$SESSION_NAME" in
+  "xfce")
+    openbox --replace &
+  ;;
+esac
+
 # xfonts, so i can use terminus font and others
 [ -d /usr/share/fonts/local ] && xset +fp /usr/share/fonts/local
 xset fp rehash &
@@ -47,6 +54,45 @@ start-pulseaudio-x11 &
 # start a urxvt daemon
 hash urxvtd 2>/dev/null && (urxvtd -q -o -f) &
 
+# dropbox. this is the first because the tray icon gets messed up if others are started before
+hash dropbox && dropbox &
+# gradually remove dropbox and replace with something else
+hash syncthing-gtk && syncthing-gtk &
+
+# volume
+hash volumeicon 2>/dev/null && volumeicon &
+
+# battery
+#cbatticon -i symbolic -l 10 -r 5 -c "systemctl hibernate" &
+cbatticon &
+
+hash copyq 2>/dev/null && (sleep 2s && copyq) &
+
+# composite
+hash compton 2>/dev/null && (compton --config ~/.config/compton.conf -b) &
+
+if systemctl is-enabled -q connman; then
+  # wait some seconds for connman daemon to start..
+  (sleep 5s && cmst -m -w 1) &
+elif systemctl is-enabled -q NetworkManager; then
+  (sleep 2s && nm-applet) &
+fi
+
+# volume notification daemon
+if hash volnoti 2>/dev/null; then
+  if [ -z "$(pidof volnoti)" ]; then
+    (sleep 2s && volnoti -t 1) &
+  fi
+fi
+
+# redshift
+hash redshift-gtk 2>/dev/null && (redshift-gtk) &
+
+# rest reminder
+hash workrave 2>/dev/null && (workrave) &
+
+[ -f ~/.config/openbox/setlayout ] && (sleep 2s && ~/.config/openbox/setlayout 0 2 2 0) &
+
 # disable touchpad accelaration
 xset m 0 0 &
 
@@ -61,8 +107,6 @@ setxkbmap -option ctrl:nocaps
 
 case "$SESSION_NAME" in
   "openbox")
-    # see ~/.config/openbox/autostart
-
     start_xscreensaver &
     ;;
   "xfce")
@@ -75,4 +119,9 @@ case "$SESSION_NAME" in
     ;;
 esac
 
+# start the gnome keyring, where some passwords are saved
+if hash gnome-keyring-daemon 2>/dev/null; then
+  eval $(/usr/bin/gnome-keyring-daemon --start)
+  export SSH_AUTH_SOCK
+fi
 
