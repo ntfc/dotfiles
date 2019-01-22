@@ -235,7 +235,7 @@ URxvt*termName: rxvt-unicode-256color
 ! Compile frills: Associate string with keysym sym. The intervening
 ! URxvt*keysym.sym: string
 
-! URxvt*perl-ext-common: string
+URxvt*perl-ext-common: font-size
 
 ! Comma-separated list(s) of perl extension scripts (default:
 ! URxvt*perl-ext: string
