@@ -73,12 +73,10 @@ URxvt*fading: 50
 ! URxvt*borderColor: colour
 
 ! Select the fonts to be used. This is a comma separated list of font
-URxvt*font: xft:Bitstream Vera Sans Mono:style=Roman:pixelsize=12:antialias=true
-URxvt*boldFont: xft:Bitstream Vera Sans Mono:style=Bold:pixelsize=12
-URxvt*italicFont: xft:Bitstream Vera Sans Mono:style=Oblique:pixelsize=12
-URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:style=Bold Oblique:pixelsize=12
-! The font list to use for displaying bold, italic or bold italic
-URxvt*boldItalicFont: fontlist
+URxvt*font: xft:Bitstream Vera Sans Mono:style=Roman:pixelsize=14:antialias=true
+URxvt*boldFont: xft:Bitstream Vera Sans Mono:style=Bold:pixelsize=14
+URxvt*italicFont: xft:Bitstream Vera Sans Mono:style=Oblique:pixelsize=14
+URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:style=Bold Oblique:pixelsize=14
 
 ! This messes up the font spacing....
 !URxvt*letterSpace: -2
