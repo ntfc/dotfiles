@@ -14,8 +14,8 @@ UDEV_RULE_NAME=99-hdmi-hotplug.rules
 export DISPLAY=:0
 USER=$(who | grep $DISPLAY | head -1 | cut -f 1 -d ' ')
 
-INTERNAL=$(su "$USER" -c "xrandr --current | grep -E -i '(edp|lvds)' | cut -d' ' -f 1")
-EXTERNAL=$(su "$USER" -c "xrandr --current | grep -i hdmi | head -n1 | cut -d' ' -f 1")
+INTERNAL=$(su "$USER" -c "xrandr --current | grep -v disconnected | grep -E -i '(edp|lvds)' | cut -d' ' -f 1")
+EXTERNAL=$(su "$USER" -c "xrandr --current | grep -v disconnected | grep -i hdmi | head -n1 | cut -d' ' -f 1")
 ##### end config  #####
 
 # Check if we are root
