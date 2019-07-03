@@ -12,15 +12,9 @@ if [[ -z "$1" ]]; then
   SESSION_NAME="openbox"
 fi
 
-start_xscreensaver() {
-  # xscreensaver
-  xscreensaver -no-splash &
-
-  # disable xscreensaver on fullscreen apps are running
-  [ -f ~/.scripts/xscreensaverstopperany.sh ] && ~/.scripts/xscreensaverstopperany.sh &
-
+start_screensaver() {
   # when suspending/hibernate, lock screen
-  hash xss-lock 2>/dev/null && (xss-lock -- xscreensaver-command -lock) &
+  hash slock 2>/dev/null && (xss-lock -- slock) &
 }
 
 # set openbox as XFCE's window manager
@@ -35,9 +29,6 @@ esac
 xset fp rehash &
 # turn off the damn hardward bell
 xset b off
-
-# before loading the Xresources, make sure xscreensaver is not runing
-xscreensaver-command -exit
 
 # Xresources
 for xres in ~/.config/Xresources/*; do
@@ -107,10 +98,10 @@ setxkbmap -option ctrl:nocaps
 
 case "$SESSION_NAME" in
   "openbox")
-    start_xscreensaver &
+    start_screensaver &
     ;;
   "xfce")
-    start_xscreensaver &
+    start_screensaver &
     ;;
   "mate")
 #    synclient TapButton1=1
