@@ -10,7 +10,7 @@ USER=$(who -s | grep "(:0)" | awk '{print $1}')
 
 case $1/$2 in
   pre/*)
-    su $USER -c 'export DISPLAY=:0.0; xscreensaver-command -lock' &
+    su $USER -c 'export DISPLAY=:0.0; slock' &
     if [[ ! -z "`pidof spotify`" ]]; then
       su $USER -c 'export DISPLAY=:0.0; spotifycli -s' &
     fi
