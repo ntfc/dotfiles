@@ -31,9 +31,10 @@ xset fp rehash &
 xset b off
 
 # Xresources
-for xres in ~/.config/Xresources/*; do
+for xres in ~/.config/Xresources/*.xresource; do
   xrdb -quiet -merge "$xres"
 done
+
 # first of all, I don't wan't to autostart application on ~/.config/autostart
 for autostart in ~/.config/autostart/*; do
   rm -f "$autostart"

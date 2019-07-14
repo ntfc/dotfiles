@@ -124,7 +124,7 @@ set backupdir=/tmp
 set directory=/tmp
 
 " remove ~/.vim/.netrwhist
-au VimLeave * if filereadable("~/.vim/.netrwhist")|call delete("~/.vim//.netrwhist")|endif 
+autocmd VimLeave * if filereadable("~/.vim/.netrwhist")|call delete("~/.vim//.netrwhist")|endif 
 
 " dont't tab complete these extensions
 set wildignore=*.o,*.obj,*~,*.pyc
@@ -139,7 +139,7 @@ set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/Library/**,*/.rbenv/*
 
 " Autojump to the last edited position when a file is reopened
 " from http://stackoverflow.com/a/6496995
-au BufReadPost * call AutoJumpToLastPosition()
+autocmd BufReadPost * call AutoJumpToLastPosition()
 
 fun! AutoJumpToLastPosition()
   " ignore on these filetypes
@@ -148,6 +148,9 @@ fun! AutoJumpToLastPosition()
   endif
   if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 endfun
+
+" invoke xrdb everytime a .xresource file is updated
+autocmd BufWritePost *.xresource !xrdb -merge -quiet %
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -177,7 +180,6 @@ let g:tex_flavor='latex'
 " all the figure labels. Very useful
 set iskeyword+=:
 
-" use Ctrl+N and Ctrl+P in insert mode
 set complete+=kspell
 
 let g:Tex_DefaultTargetFormat = 'pdf'
