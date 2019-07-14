@@ -214,7 +214,6 @@
     </keybind>
     <keybind key="S-A-1">
       <action name="SendToDesktop">
-        <desktop>1</desktop>
         <follow>no</follow>
       </action>
     </keybind>
@@ -360,7 +359,7 @@
     </keybind>
     <keybind key="C-W-l">
       <action name="Execute">
-        <command>xscreensaver-command -lock</command>
+        <command>slock</command>
       </action>
     </keybind>
     <keybind key="W-F12">
