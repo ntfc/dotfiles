@@ -45,14 +45,16 @@ case "$1" in
     #systemctl suspend
   ;;
   video/brightnessup)
-    if [[ "$SESSION" == "openbox" ]]; then
+    # check if xfce4-power-manager is NOT running, and then use light
+    if [[ -z "$(pidof xfce4-power-manager)" ]]; then
       if hash light 2>/dev/null; then
         light -A 3 &
       fi
     fi
   ;;
   video/brightnessdown)
-    if [[ "$SESSION" == "openbox" ]]; then
+    # check if xfce4-power-manager is NOT running, and then use light
+    if [[ -z "$(pidof xfce4-power-manager)" ]]; then
       if hash light 2>/dev/null; then
         light -U 3 &
       fi
