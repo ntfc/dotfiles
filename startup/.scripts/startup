@@ -35,11 +35,6 @@ for xres in ~/.config/Xresources/*.xresource; do
   xrdb -quiet -merge "$xres"
 done
 
-# first of all, I don't wan't to autostart application on ~/.config/autostart
-for autostart in ~/.config/autostart/*; do
-  rm -f "$autostart"
-done
-
 # I believe this will only execute if pulseaudio is not running
 start-pulseaudio-x11 &
 
