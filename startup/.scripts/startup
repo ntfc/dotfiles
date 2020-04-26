@@ -66,7 +66,10 @@ elif systemctl is-enabled -q NetworkManager; then
 fi
 
 if systemctl is-enabled -q bluetooth; then
-  (sleep 2s && blueman-applet) &
+  # since blueman-applet could be executed by xdg autostart, let's check if a process is already running
+  if ! pidof --check-root -x blueman-applet &>/dev/null; then
+    (sleep 2s && blueman-applet) &
+  fi
 fi
 
 # volume notification daemon
