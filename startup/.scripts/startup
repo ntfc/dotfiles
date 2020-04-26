@@ -70,6 +70,10 @@ elif systemctl is-enabled -q NetworkManager; then
   (sleep 2s && nm-applet) &
 fi
 
+if systemctl is-enabled -q bluetooth; then
+  (sleep 2s && blueman-applet) &
+fi
+
 # volume notification daemon
 if hash volnoti 2>/dev/null; then
   if [ -z "$(pidof volnoti)" ]; then
