@@ -83,6 +83,7 @@ hash redshift-gtk 2>/dev/null && (redshift-gtk) &
 # rest reminder
 hash workrave 2>/dev/null && (workrave) &
 
+[ -f /opt/setlayout ] && (sleep 2s && /opt/setlayout 0 2 2 0) &
 [ -f ~/.config/openbox/setlayout ] && (sleep 2s && ~/.config/openbox/setlayout 0 2 2 0) &
 
 # disable touchpad accelaration
