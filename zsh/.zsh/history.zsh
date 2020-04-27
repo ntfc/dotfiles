@@ -4,6 +4,14 @@ SAVEHIST=2000
 setopt appendhistory
 unsetopt beep
 
+# https://shapeshed.com/zsh-corrupt-history-file/
+function zsh_history_fix() {
+  mv ${HISTFILE} ${HISTFILE}.bad
+  strings ${HISTFILE}.bad > ${HISTFILE}
+  fc -R ${HISTFILE}
+  rm ${HISTFILE}.bad
+}
+
 # remember the DIRSTACKSIZE last visited folders. Use dirs -v to print the
 # dirstack, and use cd -NUM to cd to that folder
 DIRSTACKFILE="$HOME/.cache/zsh/dirs"
