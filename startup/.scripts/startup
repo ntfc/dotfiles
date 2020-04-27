@@ -80,7 +80,13 @@ if hash volnoti 2>/dev/null; then
 fi
 
 # redshift
-hash redshift-gtk 2>/dev/null && (redshift-gtk) &
+if hash redshift-gtk 2>/dev/null; then
+  redshift-gtk &
+else
+  if hash redshift-qt 2>/dev/null; then
+    redshift-qt &
+  fi
+fi
 
 # rest reminder
 hash workrave 2>/dev/null && (workrave) &
