@@ -33,7 +33,8 @@ export VAGRANT_HOME="/Vagrant"
 
 export GOPATH=~/.go
 
+# NOTE: this must match with what is defined in .xprofile
 if hash gnome-keyring-daemon 2>/dev/null; then
-  eval $(/usr/bin/gnome-keyring-daemon --start)
+  eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
   export SSH_AUTH_SOCK
 fi
