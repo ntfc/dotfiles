@@ -104,7 +104,9 @@ numlockx on &
 setxkbmap -option ctrl:nocaps
 
 # xbindkeys
-[ -f ~/.xbindkeysrc ] && xbindkeys -f ~/.xbindkeysrc &
+if hash xbindkeys 2>/dev/null; then
+  [ -f ~/.xbindkeysrc ] && xbindkeys -f ~/.xbindkeysrc &
+fi
 
 case "$SESSION_NAME" in
   "openbox")
