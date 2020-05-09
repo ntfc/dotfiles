@@ -13,8 +13,9 @@ if [[ -z "$1" ]]; then
 fi
 
 start_screensaver() {
-  # when suspending/hibernate, lock screen
-  hash slock 2>/dev/null && (xss-lock -- slock) &
+  # when suspending/hibernate, lock screen. Some WM/DE (like openbox) are set
+  # up to lock screen on certain keybindg
+  (hash slock && hash xss-lock) 2>/dev/null && (xss-lock -- slock) &
 }
 
 # set openbox as XFCE's window manager
