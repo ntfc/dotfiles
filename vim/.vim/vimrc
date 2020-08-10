@@ -17,11 +17,9 @@ if v:version >= 700
     Plugin 'Xuyuanp/nerdtree-git-plugin'
     "Plugin 'vim-latex/vim-latex'
     Plugin 'ctrlpvim/ctrlp.vim'
-    Plugin 'airblade/vim-gitgutter'
-    Plugin 'rust-lang/rust.vim'
-    Plugin 'cespare/vim-toml'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'neoclide/coc.nvim'
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
   catch
@@ -30,7 +28,7 @@ endif
 filetype plugin indent on    " required
 
 """""""""""""""""""""""""""""""
-" Custom
+" Custom mappings
 """""""""""""""""""""""""""""""
 " Disable arrow keys
 nnoremap <Left> :echo "No left for you!"<CR>
@@ -48,6 +46,15 @@ inoremap <Up> <Nop>
 nnoremap <Down> :echo "No down for you!"<CR>
 vnoremap <Down> :<C-u>echo "No down for you!"<CR>
 inoremap <Down> <Nop>
+
+" set gvim font to DejaVu Sans Mono for Powerline
+if has("gui_running")
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+endif
+
+" https://medium.com/usevim/vim-101-set-hidden-f78800142855
+" TextEdit (something from coc.nvim) might fail if hidden is not set.
+set hidden
 
 " show utf-8 characters
 set encoding=utf-8
@@ -97,16 +104,29 @@ set formatoptions+=l
 set autoread
 
 set showmatch " highlight matching [{()}]
-set gfn=DejaVu\ Sans\ Mono\ 10
 
 " enable mouse
 set mouse=a
-set showcmd " Show (partial) command in status line
-
 set hlsearch " highlight search results
 
 " keys delay?? https://news.ycombinator.com/item?id=4246452
 set timeout timeoutlen=1000 ttimeoutlen=100
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 " unicode
 " http://vim.wikia.com/wiki/Working_with_Unicode
@@ -120,8 +140,14 @@ if has("multi_byte")
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
+" could these two be removed since backups are disabled as per coc.nvim
+" recommendation?
 set backupdir=/tmp
 set directory=/tmp
+" Some servers have issues with backup files, see:
+" https://github.com/neoclide/coc.nvim/issues/649
+set nobackup
+set nowritebackup
 
 " remove ~/.vim/.netrwhist
 autocmd VimLeave * if filereadable("~/.vim/.netrwhist")|call delete("~/.vim//.netrwhist")|endif 
@@ -152,53 +178,13 @@ endfun
 " invoke xrdb everytime a .xresource file is updated
 autocmd BufWritePost *.xresource !xrdb -merge -quiet %
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings
+" Vanilla mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " On insert mode, Shift-Tab to unindent
 inoremap <S-Tab> <C-D>
 " On visual mode, use tab and shift tab to indent the current selected text
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-latex
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Check .vim/ftplugin for some file type definitions
-"
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-
-" TIP: if you write your \label's as \label{fig:something}, then if you
-" type in \ref{fig: and press <C-n> you will automatically cycle through
-" all the figure labels. Very useful
-set iskeyword+=:
-
-set complete+=kspell
-
-let g:Tex_DefaultTargetFormat = 'pdf'
-
-"http://vim-latex.sourceforge.net/documentation/latex-suite.html#Tex_MultipleCompileFormats
-let g:Tex_MultipleCompileFormats='dvi,pdf'
-
-let g:Tex_UseMakefile=1
-
-" I don't like to execute zathura this way, because all stdout/stderr is dumped
-" into vim.. So I use g:Tex_ViewRuleComplete_<format>. I could also use xdg-open
-" instead of zathura, but well..
-let g:Tex_ViewRule_dvi='zathura'
-let g:Tex_ViewRule_pdf='zathura'
-let g:Tex_ViewRule_ps ='zathura'
-" http://vim-latex.sourceforge.net/documentation/latex-suite.html#Tex_ViewRuleComplete_format
-let g:Tex_ViewRuleComplete_pdf='zathura $*.pdf &>/dev/null &'
-let g:Tex_ViewRuleComplete_ps ='zathura $*.ps  &>/dev/null &'
-let g:Tex_ViewRuleComplete_dvi='zathura $*.dvi &>/dev/null &'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugin configurations: check `plugin/<plugin name>.vim`or `after/plugin/<plugin name>.vim`
