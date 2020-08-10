@@ -73,10 +73,13 @@ URxvt*fading: 50
 ! URxvt*borderColor: colour
 
 ! Select the fonts to be used. This is a comma separated list of font
-URxvt*font: xft:Bitstream Vera Sans Mono:style=Roman:pixelsize=14:antialias=true
-URxvt*boldFont: xft:Bitstream Vera Sans Mono:style=Bold:pixelsize=14
-URxvt*italicFont: xft:Bitstream Vera Sans Mono:style=Oblique:pixelsize=14
-URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:style=Bold Oblique:pixelsize=14
+! `fc-match "monospace:bold"` will return which font Xresources will use for monospace
+! `fc-match "DejaVu Sans Mono for Powerline"` will return in case the font is installed.
+! If DejaVu Sans Mono for Powerline is not installed no symbols will be shown in vim-airline
+URxvt*font: xft:DejaVu Sans Mono for Powerline:size=12,xft:monospace:size=12
+URxvt*boldFont: xft:DejaVu Sans Mono for Powerline:size=12:bold,xft:monospace:bold:size=12
+URxvt*italicFont: xft:DejaVu Sans Mono for Powerline:size=12:italic:xft:monospace:italic:size=12
+URxvt*boldItalicFont: xft:DejaVu Sans Mono for Powerline:size=12:bold:italic:xft:monospace:bold:italic:size=12
 
 ! This messes up the font spacing....
 !URxvt*letterSpace: -2
