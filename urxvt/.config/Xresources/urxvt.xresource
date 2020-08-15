@@ -76,10 +76,10 @@ URxvt*fading: 50
 ! `fc-match "monospace:bold"` will return which font Xresources will use for monospace
 ! `fc-match "DejaVu Sans Mono for Powerline"` will return in case the font is installed.
 ! If powerline-fonts-git is not installed no symbols will be shown in vim-airline
-URxvt*font: xft:Droid Sans Mono for Powerline:size=13,xft:monospace:size=12
-URxvt*boldFont: xft:Droid Sans Mono for Powerline:size=13:bold,xft:monospace:bold:size=12
-URxvt*italicFont: xft:Droid Sans Mono for Powerline:size=13:italic:xft:monospace:italic:size=12
-URxvt*boldItalicFont: xft:Droid Sans Mono for Powerline:size=13:bold:italic:xft:monospace:bold:italic:size=12
+URxvt*font: xft:Droid Sans Mono for Powerline:size=12.5,xft:monospace:size=12
+URxvt*boldFont: xft:Droid Sans Mono for Powerline:size=12.5:bold,xft:monospace:bold:size=12
+URxvt*italicFont: xft:Droid Sans Mono for Powerline:size=12.5:italic:xft:monospace:italic:size=12
+URxvt*boldItalicFont: xft:Droid Sans Mono for Powerline:size=12.5:bold:italic:xft:monospace:bold:italic:size=12
 
 ! This messes up the font spacing....
 !URxvt*letterSpace: -2
