@@ -268,11 +268,6 @@
     <keybind key="S-A-Return">
       <action name="Execute">
         <command>~/.scripts/open-terminal</command>
-        <startupnotify>
-          <enabled>yes</enabled>
-          <wmclass>urxvt</wmclass>
-          <name>urxvt</name>
-        </startupnotify>
       </action>
     </keybind>
     <keybind key="S-A-c">
