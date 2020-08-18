@@ -27,7 +27,7 @@ vcs_prompt_string() {
   local git_name="$(parse_git_remote_name)"
   local _full_prompt=""
   [ -n "$svn_where" ] && _full_prompt="${_full_prompt}%{$fg[blue]$bg[green]%}[$svn_where]%{$reset_color%}"
-  [ -n "$git_where" ] && _full_prompt="${_full_prompt}%{$fg_bold[blue]$bg[green]%}[$git_where]%{$reset_color%} remote: %{$fg_bold[red]$bg[green]%}$git_name%{$reset_color%}"
+  [ -n "$git_where" ] && _full_prompt="${_full_prompt}%{$fg_bold[blue]%}$git_where%{$reset_color%} @ %{$fg_bold[red]%}$git_name%{$reset_color%}"
   echo "${_full_prompt}"
 }
 
