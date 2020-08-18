@@ -6,10 +6,10 @@
 #cell_width_scale = 1.0
 #clickable_url = true
 #dynamic_title = true
-font = DejaVu Sans Mono for Powerline 12
+font = DejaVu Sans Mono for Powerline 10
 #fullscreen = true
 #icon_name = terminal
-#mouse_autohide = false
+mouse_autohide = true
 #scroll_on_output = false
 #scroll_on_keystroke = true
 # Length of the scrollback buffer, 0 disabled the scrollback buffer

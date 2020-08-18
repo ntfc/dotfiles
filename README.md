@@ -37,6 +37,8 @@ Besides `~/.xprofile`, some applications (mostly GUI) are started by Openbox's `
 
 # terminal
 
+TODO: update this since I switched to [`termite`][termite]
+
 I use [`urxvt`][urxvt] as my terminal emulator, [`zsh`][zsh] is my shell and [`tmux`][tmux] is how I manage multiple shell sessions. 
 
 I like to have only one terminal window open (with as much tmux windows inside), and so I have a script to open a new `urxvt` terminal only if it doesn't already exists, in which case it simply focus on the terminal 
@@ -72,3 +74,4 @@ After this, you should be good to `vagrant up`. Or not.
 [tmux]: https://wiki.archlinux.org/index.php/tmux
 [xero]: https://github.com/xero/dotfiles
 [ansiblearch]: https://github.com/dharmab/ansible-archlinux/
+[termite]: https://github.com/thestinger/termite
