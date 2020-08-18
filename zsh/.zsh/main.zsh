@@ -12,6 +12,9 @@ bindkey -v
 # auto completion for command aliases
 setopt completealiases
 
+# fish-like suggestions https://github.com/zsh-users/zsh-autosuggestions/
+[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # command completion
 autoload -Uz compinit
 compinit
