@@ -3,14 +3,11 @@
 ###############################
 
 typeset -U path
+# at the end of this file we export PATH, since the path variable is
+# incremented throughout this file
 path+=(
-  "/usr/share/rvm/bin/"
   "$HOME/.scripts/"
-  "$HOME/.rvm/bin/"
-  "$HOME/.go/bin"
-  "$HOME/.local/bin" # python-pip
 )
-export PATH
 
 # by default: export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 # we take out the slash, period, angle brackets, dash here.
@@ -29,10 +26,24 @@ export PULSE_RUNTIME_PATH="/run/user/"`id -u`"/pulse/"
 # done in /etc/environment as explained here:
 # https://wiki.archlinux.org/index.php/Java_Runtime_Environment_Fonts
 
-export GOPATH=~/.go
+if hash go 2>/dev/null; then
+  export GOPATH=~/.local/share/go
+  path+=(
+    "$HOME/.local/share/go/bin"
+  )
+fi
 
 # NOTE: this must match with what is defined in .xprofile
 if hash gnome-keyring-daemon 2>/dev/null; then
   eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
   export SSH_AUTH_SOCK
 fi
+
+# configure virtualenvwrapper
+if hash virtualenvwrapper.sh 2>/dev/null; then
+  export WORKON_HOME=~/.local/share/virtualenvs/
+  source virtualenvwrapper.sh
+fi
+
+# NOTE: this must be the last instruction!
+export PATH
