@@ -186,6 +186,12 @@ inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
+"""""""""""""""""""""""""""""""
+" Custom commands
+"""""""""""""""""""""""""""""""
+" :SudoW to write a file that is sudo protected, without leaving vim
+command SudoW :w !sudo tee %
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugin configurations: check `plugin/<plugin name>.vim`or `after/plugin/<plugin name>.vim`
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
