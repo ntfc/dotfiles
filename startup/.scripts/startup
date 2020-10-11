@@ -42,6 +42,8 @@ start-pulseaudio-x11 &
 # start a urxvt daemon
 hash urxvtd 2>/dev/null && (urxvtd -q -o -f) &
 
+[ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ] && /usr/lib/xfce4/notifyd/xfce4-notifyd &
+
 # dropbox. this is the first because the tray icon gets messed up if others are started before
 hash dropbox && dropbox &
 # gradually remove dropbox and replace with something else
