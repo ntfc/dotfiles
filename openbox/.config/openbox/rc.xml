@@ -379,27 +379,27 @@
     </keybind>
     <keybind key="XF86AudioPlay">
       <action name="Execute">
-        <command>mpc toggle</command>
+        <command>~/.scripts/audio-control.sh toggle</command>
       </action>
     </keybind>
     <keybind key="W-F5">
       <action name="Execute">
-        <command>mpc prev</command>
+        <command>~/.scripts/audio-control.sh prev</command>
       </action>
     </keybind>
     <keybind key="W-F8">
       <action name="Execute">
-        <command>mpc next</command>
+        <command>~/.scripts/audio-control.sh next</command>
       </action>
     </keybind>
     <keybind key="XF86AudioPrev">
       <action name="Execute">
-        <command>mpc prev</command>
+        <command>~/.scripts/audio-control.sh prev</command>
       </action>
     </keybind>
     <keybind key="XF86AudioNext">
       <action name="Execute">
-        <command>mpc next</command>
+        <command>~/.scripts/audio-control.sh next</command>
       </action>
     </keybind>
     <keybind key="XF86MonBrightnessDown">
