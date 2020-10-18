@@ -17,34 +17,50 @@ keystate_capslock = disable
 # Ctrl+Win+L lock screen
 "slock"
     Control+Mod2+Mod4 + l
+"slock"
+    Control+Mod4 + l
 
 # Alt+P to execute programs via rofi
 "rofi -show run"
     Alt+Mod2 + p
+"rofi -show run"
+    Alt + p
 
 # Alt+Shift+C t close window (except terminal)
 "~/.scripts/close-window"
     Shift+Alt+Mod2 + c
+"~/.scripts/close-window"
+    Shift+Alt + c
 
 # Shift+Alt+Return brings up the terminal
 "~/.scripts/open-terminal"
     Shift+Alt+Mod2 + Return
+"~/.scripts/open-terminal"
+    Shift+Alt + Return
 
 # Win+F5 previous track
 "~/.scripts/audio-control.sh prev"
     Mod2+Mod4 + F5
+"~/.scripts/audio-control.sh prev"
+    Mod4 + F5
 
 # Win+F6 stop track
 "~/.scripts/audio-control.sh stop"
     Mod2+Mod4 + F6
+"~/.scripts/audio-control.sh stop"
+    Mod4 + F6
 
 # Win+F7 pause track
 "~/.scripts/audio-control.sh toggle"
     Mod2+Mod4 + F7
+"~/.scripts/audio-control.sh toggle"
+    Mod4 + F7
 
 # Win+F8 next track
 "~/.scripts/audio-control.sh next"
     Mod2+Mod4 + F8
+"~/.scripts/audio-control.sh next"
+    Mod4 + F8
 
 #
 # End of xbindkeys configuration
