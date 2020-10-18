@@ -108,7 +108,7 @@ setxkbmap -option ctrl:nocaps
 
 # xbindkeys
 if hash xbindkeys 2>/dev/null; then
-  [ -f ~/.xbindkeysrc ] && xbindkeys -f ~/.xbindkeysrc &
+  [ -f ~/.xbindkeysrc ] && xbindkeys --file ~/.xbindkeysrc &
 fi
 
 case "$SESSION_NAME" in

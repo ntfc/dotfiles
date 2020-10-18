@@ -178,11 +178,6 @@
     <keybind key="W-Left">
       <action name="DesktopLeft"/>
     </keybind>
-    <keybind key="Print">
-      <action name="Execute">
-        <command>xfce4-screenshooter</command>
-      </action>
-    </keybind>
     <keybind key="W-Right">
       <action name="DesktopRight"/>
     </keybind>
@@ -214,6 +209,7 @@
     </keybind>
     <keybind key="S-A-1">
       <action name="SendToDesktop">
+        <desktop>1</desktop>
         <follow>no</follow>
       </action>
     </keybind>
@@ -263,16 +259,6 @@
       <action name="NextWindow">
         <panels>yes</panels>
         <desktop>yes</desktop>
-      </action>
-    </keybind>
-    <keybind key="S-A-Return">
-      <action name="Execute">
-        <command>~/.scripts/open-terminal</command>
-      </action>
-    </keybind>
-    <keybind key="S-A-c">
-      <action name="Execute">
-        <command>~/.scripts/close-window</command>
       </action>
     </keybind>
     <keybind key="S-W-Up">
@@ -327,11 +313,6 @@
     <keybind key="S-A-t">
       <action name="ToggleAlwaysOnTop"/>
     </keybind>
-    <keybind key="A-p">
-      <action name="Execute">
-        <command>rofi -show run</command>
-      </action>
-    </keybind>
     <keybind key="S-A-Up">
       <action name="MoveRelative">
         <y>-25</y>
@@ -350,66 +331,6 @@
     <keybind key="S-A-Right">
       <action name="MoveRelative">
         <x>25</x>
-      </action>
-    </keybind>
-    <keybind key="C-W-l">
-      <action name="Execute">
-        <command>slock</command>
-      </action>
-    </keybind>
-    <keybind key="W-F12">
-      <action name="Execute">
-        <command>xfce4-popup-notes --show-hide</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioLowerVolume">
-      <action name="Execute">
-        <command>pactl set-sink-volume @DEFAULT_SINK@ -1000</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioRaiseVolume">
-      <action name="Execute">
-        <command>pactl set-sink-volume @DEFAULT_SINK@ +1000</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioMute">
-      <action name="Execute">
-        <command>pactl set-sink-mute @DEFAULT_SINK@ toggle</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioPlay">
-      <action name="Execute">
-        <command>~/.scripts/audio-control.sh toggle</command>
-      </action>
-    </keybind>
-    <keybind key="W-F5">
-      <action name="Execute">
-        <command>~/.scripts/audio-control.sh prev</command>
-      </action>
-    </keybind>
-    <keybind key="W-F8">
-      <action name="Execute">
-        <command>~/.scripts/audio-control.sh next</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioPrev">
-      <action name="Execute">
-        <command>~/.scripts/audio-control.sh prev</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioNext">
-      <action name="Execute">
-        <command>~/.scripts/audio-control.sh next</command>
-      </action>
-    </keybind>
-    <keybind key="XF86MonBrightnessDown">
-      <action name="Execute">
-        <command>light -U 3</command>
-      </action>
-    </keybind>
-    <keybind key="XF86MonBrightnessUp">
-      <action name="Execute">
-        <command>light -A 3</command>
       </action>
     </keybind>
   </keyboard>
@@ -459,16 +380,6 @@
           <to>next</to>
         </action>
       </mousebind>
-<!--      <mousebind action="Click" button="C-A-Up">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind action="Click" button="C-A-Down">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>-->
       <mousebind action="Click" button="A-S-Up">
         <action name="SendToDesktop">
           <to>previous</to>
