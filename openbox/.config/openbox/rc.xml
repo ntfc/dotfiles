@@ -333,6 +333,56 @@
         <x>25</x>
       </action>
     </keybind>
+    <keybind key="XF86AudioPlay">
+      <action name="Execute">
+        <command>~/.scripts/audio-control.sh toggle</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPrev">
+      <action name="Execute">
+        <command>~/.scripts/audio-control.sh prev</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioNext">
+      <action name="Execute">
+        <command>~/.scripts/audio-control.sh next</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioMicMute">
+      <action name="Execute">
+        <command>pactl set-source-mute @DEFAULT_SOURCE@ toggle</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioMute">
+      <action name="Execute">
+        <command>pactl set-sink-mute @DEFAULT_SINK@ toggle</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioLowerVolume">
+      <action name="Execute">
+        <command>pactl set-sink-volume @DEFAULT_SINK@ -1000</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioRaiseVolume">
+      <action name="Execute">
+        <command>pactl set-sink-volume @DEFAULT_SINK@ +1000</command>
+      </action>
+    </keybind>
+    <keybind key="XF86MonBrightnessDown">
+      <action name="Execute">
+        <command>light -U 3</command>
+      </action>
+    </keybind>
+    <keybind key="XF86MonBrightnessUp">
+      <action name="Execute">
+        <command>light -A 3</command>
+      </action>
+    </keybind>
+    <keybind key="XF86Calculator">
+      <action name="Execute">
+        <command>speedcrunch</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>5</dragThreshold>

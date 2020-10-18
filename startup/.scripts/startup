@@ -25,6 +25,11 @@ case "$SESSION_NAME" in
   ;;
 esac
 
+# xbindkeys
+if hash xbindkeys 2>/dev/null; then
+  [ -f ~/.xbindkeysrc ] && xbindkeys --file ~/.xbindkeysrc
+fi
+
 # xfonts, so i can use terminus font and others
 [ -d /usr/share/fonts/local ] && xset +fp /usr/share/fonts/local
 xset fp rehash &
@@ -35,6 +40,15 @@ xset b off
 for xres in ~/.config/Xresources/*.xresource; do
   xrdb -quiet -merge "$xres"
 done
+
+# disable touchpad accelaration
+xset m 0 0 &
+
+# turn num lock on
+numlockx on &
+
+# disable caps lock
+setxkbmap -option ctrl:nocaps
 
 # I believe this will only execute if pulseaudio is not running
 start-pulseaudio-x11 &
@@ -96,20 +110,6 @@ hash workrave 2>/dev/null && (workrave) &
 
 [ -f /opt/setlayout ] && (sleep 2s && /opt/setlayout 0 2 2 0) &
 [ -f ~/.config/openbox/setlayout ] && (sleep 2s && ~/.config/openbox/setlayout 0 2 2 0) &
-
-# disable touchpad accelaration
-xset m 0 0 &
-
-# turn num lock on
-numlockx on &
-
-# disable caps lock
-setxkbmap -option ctrl:nocaps
-
-# xbindkeys
-if hash xbindkeys 2>/dev/null; then
-  [ -f ~/.xbindkeysrc ] && xbindkeys --file ~/.xbindkeysrc &
-fi
 
 case "$SESSION_NAME" in
   "openbox")

@@ -10,6 +10,10 @@ keystate_numlock = enable
 #keystate_scrolllock = enable
 keystate_capslock = disable
 
+#
+# XF86 events are controlled by openbox/XFCE applications
+#
+
 # Ctrl+Win+L lock screen
 "slock"
     Control+Mod2+Mod4 + l
@@ -26,15 +30,9 @@ keystate_capslock = disable
 "~/.scripts/open-terminal"
     Shift+Alt+Mod2 + Return
 
-# Take a screeshot
-"xfce4-screenshooter"
-    Mod2 + Print
-
 # Win+F5 previous track
 "~/.scripts/audio-control.sh prev"
     Mod2+Mod4 + F5
-"~/.scripts/audio-control.sh next"
-    Mod2 + XF86AudioPrev
 
 # Win+F6 stop track
 "~/.scripts/audio-control.sh stop"
@@ -43,37 +41,10 @@ keystate_capslock = disable
 # Win+F7 pause track
 "~/.scripts/audio-control.sh toggle"
     Mod2+Mod4 + F7
-"~/.scripts/audio-control.sh toggle"
-    Mod2 + XF86AudioPlay
 
 # Win+F8 next track
 "~/.scripts/audio-control.sh next"
     Mod2+Mod4 + F8
-"~/.scripts/audio-control.sh next"
-    Mod2 + XF86AudioNext
-
-# mute microphone
-"pactl set-source-mute @DEFAULT_SOURCE@ toggle"
-    Mod2 + XF86AudioMicMute
-
-"pactl set-sink-mute @DEFAULT_SINK@ toggle"
-    Mod2 + XF86AudioMute
-
-"pactl set-sink-volume @DEFAULT_SINK@ -1000"
-    Mod2 + XF86AudioLowerVolume
-
-"pactl set-sink-volume @DEFAULT_SINK@ +1000"
-    Mod2 + XF86AudioRaiseVolume
-
-"light -A 3"
-    Mod2 + XF86MonBrightnessUp
-
-"light -U 3"
-    Mod2 + XF86MonBrightnessDown
-
-#Calculator
-"speedcrunch"
-    Mod2 + XF86Calculator 
 
 #
 # End of xbindkeys configuration
