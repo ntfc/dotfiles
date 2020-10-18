@@ -52,6 +52,10 @@ keystate_capslock = disable
 "~/.scripts/audio-control.sh next"
     Mod2 + XF86AudioNext
 
+# mute microphone
+"pactl set-source-mute @DEFAULT_SINK@ toggle"
+    Mod2 + XF86AudioMicMute
+
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     Mod2 + XF86AudioMute
 
