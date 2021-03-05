@@ -8,6 +8,8 @@
 # this will also start xfce4-panel
 startxfce4 &
 
+# TODO: everything below should be removed as it duplicates ~/.scripts/startup
+
 # "desktop" backgroud
 [ -f ~/Pictures/bg.jpg ] && (feh --image-bg black --bg-fill --no-fehbg ~/Pictures/bg.jpg) &
 [ -f ~/Pictures/bg.png ] && (feh --image-bg black --bg-fill --no-fehbg ~/Pictures/bg.png) &
