@@ -12,6 +12,12 @@ if [[ -z "$1" ]]; then
   SESSION_NAME="openbox"
 fi
 
+start_screensaver() {
+  # when suspending/hibernate, lock screen. Some WM/DE (like openbox) are set
+  # up to lock screen on certain keybindg
+  (hash slock && hash xss-lock) 2>/dev/null && (xss-lock -- slock) &
+}
+
 # set openbox as XFCE's window manager
 case "$SESSION_NAME" in
   "xfce")
@@ -67,8 +73,11 @@ fi
 
 # kill nm-applet if NetworkManager is not enabled (it might start automatically
 # because of xdg autostart)
+echo "NetworkManager enabled: $(systemctl is-enabled NetworkManager)" > /tmp/a
 if ! systemctl is-enabled -q NetworkManager; then
+  echo "nm-applet pid: $(pidof nm-applet)" > /tmp/b
   (sleep 2s && kill $(pidof --check-root -x nm-applet)) &
+  echo "nm-applet pid: $(pidof nm-applet)" > /tmp/c
 fi
 
 if systemctl is-enabled -q bluetooth; then
@@ -101,9 +110,21 @@ hash workrave 2>/dev/null && (workrave) &
 setxkbmap -option ctrl:nocaps
 
 case "$SESSION_NAME" in
-  "xfce")
-    ;& # bash fallthrough
   "openbox")
-    # check .config/openbox/autostart
+    # xbindkeys
+    if hash xbindkeys 2>/dev/null; then
+      [ -f ~/.xbindkeysrc ] && xbindkeys --file ~/.xbindkeysrc
+    fi
+    [ -f /opt/setlayout ] && (sleep 2s && /opt/setlayout 0 2 2 0) &
+    [ -f ~/.config/openbox/setlayout ] && (sleep 2s && ~/.config/openbox/setlayout 0 2 2 0) &
+    start_screensaver &
+    ;;
+  "xfce")
+    start_screensaver &
+    ;;
+  "mate")
+#    synclient TapButton1=1
+#    synclient TapButton2=2
+#    synclient TapButton3=3
     ;;
 esac
