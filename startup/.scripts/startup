@@ -67,11 +67,8 @@ fi
 
 # kill nm-applet if NetworkManager is not enabled (it might start automatically
 # because of xdg autostart)
-echo "NetworkManager enabled: $(systemctl is-enabled NetworkManager)" > /tmp/a
 if ! systemctl is-enabled -q NetworkManager; then
-  echo "nm-applet pid: $(pidof nm-applet)" > /tmp/b
   (sleep 2s && kill $(pidof --check-root -x nm-applet)) &
-  echo "nm-applet pid: $(pidof nm-applet)" > /tmp/c
 fi
 
 if systemctl is-enabled -q bluetooth; then
