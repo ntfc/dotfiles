@@ -1,7 +1,20 @@
 #!/bin/sh
 
-# lightdm session file
-SESSION=$(grep "Session" ~/.dmrc | sed 's/Session=//')
+# $1 = session startup command provided by lightdm i.e. `startxfce4`, `/usr/bin/openbox-session` or `i3`
+case "$1" in
+  *openbox*)
+    SESSION=openbox
+    ;;
+  *i3*)
+    SESSION=i3
+    ;;
+  *xfce*)
+    SESSION=xfce
+    ;;
+  *) # default to openbox
+    SESSION=openbox
+    ;;
+esac
 
 # execute programs at startup
 [ -f ~/.scripts/startup ] && ~/.scripts/startup $SESSION

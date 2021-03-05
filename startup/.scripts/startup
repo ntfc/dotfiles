@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $1 = session name (openbox, mate). defaults to openbox
+# $1 = session name (openbox, mate, i3). set by ~/.xprofile
 #
 # this file contains only things that should be started by all WM/DE/wtv
 #
@@ -8,9 +8,6 @@
 #
 
 SESSION_NAME="$1"
-if [[ -z "$1" ]]; then
-  SESSION_NAME="openbox"
-fi
 
 # set openbox as XFCE's window manager
 case "$SESSION_NAME" in
