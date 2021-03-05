@@ -25,11 +25,6 @@ case "$SESSION_NAME" in
   ;;
 esac
 
-# xbindkeys
-if hash xbindkeys 2>/dev/null; then
-  [ -f ~/.xbindkeysrc ] && xbindkeys --file ~/.xbindkeysrc
-fi
-
 # xfonts, so i can use terminus font and others
 [ -d /usr/share/fonts/local ] && xset +fp /usr/share/fonts/local
 xset fp rehash &
@@ -46,9 +41,6 @@ xset m 0 0 &
 
 # turn num lock on
 numlockx on &
-
-# disable caps lock
-setxkbmap -option ctrl:nocaps
 
 # I believe this will only execute if pulseaudio is not running
 start-pulseaudio-x11 &
@@ -72,14 +64,20 @@ cbatticon &
 
 hash copyq 2>/dev/null && (sleep 2s && copyq) &
 
-# composite
-hash compton 2>/dev/null && (compton --config ~/.config/compton.conf -b) &
-
 if systemctl is-enabled -q connman; then
   # wait some seconds for connman daemon to start..
   (sleep 5s && cmst -m -w 1) &
 elif systemctl is-enabled -q NetworkManager; then
   (sleep 2s && nm-applet) &
+fi
+
+# kill nm-applet if NetworkManager is not enabled (it might start automatically
+# because of xdg autostart)
+echo "NetworkManager enabled: $(systemctl is-enabled NetworkManager)" > /tmp/a
+if ! systemctl is-enabled -q NetworkManager; then
+  echo "nm-applet pid: $(pidof nm-applet)" > /tmp/b
+  (sleep 2s && kill $(pidof --check-root -x nm-applet)) &
+  echo "nm-applet pid: $(pidof nm-applet)" > /tmp/c
 fi
 
 if systemctl is-enabled -q bluetooth; then
@@ -108,11 +106,17 @@ fi
 # rest reminder
 hash workrave 2>/dev/null && (workrave) &
 
-[ -f /opt/setlayout ] && (sleep 2s && /opt/setlayout 0 2 2 0) &
-[ -f ~/.config/openbox/setlayout ] && (sleep 2s && ~/.config/openbox/setlayout 0 2 2 0) &
+# disable caps lock
+setxkbmap -option ctrl:nocaps
 
 case "$SESSION_NAME" in
   "openbox")
+    # xbindkeys
+    if hash xbindkeys 2>/dev/null; then
+      [ -f ~/.xbindkeysrc ] && xbindkeys --file ~/.xbindkeysrc
+    fi
+    [ -f /opt/setlayout ] && (sleep 2s && /opt/setlayout 0 2 2 0) &
+    [ -f ~/.config/openbox/setlayout ] && (sleep 2s && ~/.config/openbox/setlayout 0 2 2 0) &
     start_screensaver &
     ;;
   "xfce")
