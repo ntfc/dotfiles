@@ -17,6 +17,8 @@ case "$SESSION_NAME" in
 esac
 
 function lock_with_xidlehook() {
+  # use xss-lock to lock screen before suspending
+  (xss-lock --transfer-sleep-lock -- i3lock) &
   # run xidlehook
   xidlehook \
     `# Don't lock when there's a fullscreen application` \
@@ -28,7 +30,7 @@ function lock_with_xidlehook() {
     `# Finally, suspend an hour after it locks` \
     --timer 3600 \
       'systemctl suspend' \
-      ''
+      '' &
 }
 
 # xfonts, so i can use terminus font and others
@@ -111,6 +113,10 @@ hash workrave 2>/dev/null && (workrave) &
 
 # disable caps lock
 setxkbmap -option ctrl:nocaps
+
+# useful for laptop. when hdmi is disconnected, automatically switch to laptop
+# monitor
+hash mons 2>/dev/null && (sleep 1s && mons -a) &
 
 case "$SESSION_NAME" in
   "xfce")
