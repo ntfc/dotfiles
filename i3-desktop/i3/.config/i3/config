@@ -5,14 +5,10 @@
 # Win key
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-
 set $font pango:DejaVu Sans Mono 11
 set $font-bar pango:DejaVu Sans Mono, Font Awesome 5 Free 11
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:monospace 11
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
 font $font
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
