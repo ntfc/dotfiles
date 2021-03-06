@@ -164,5 +164,5 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         font $font-bar
-        status_command i3status-rs ~/.config/i3/i3status-rs.toml
+        status_command i3status-rs ~/.config/i3/status.toml
 }
