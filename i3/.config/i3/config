@@ -41,11 +41,20 @@ bindsym Print exec xfce4-screenshooter
 # start a terminal
 bindsym $mod+Return exec --no-startup-id termite
 
+# focus on the closest termite
+bindsym $mod+Shift+Return [class=$termite] focus
+
+# Simulate Insert upon pressing Pause Break
+bindsym --release $mod+x exec --no-startup-id xdotool key --clearmodifiers ctrl+v
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
 bindsym $mod+p exec "rofi -modi drun,run -show run"
+
+# focus does not follow mouse
+focus_follows_mouse no
 
 # change focus
 # alternatively, you can use the cursor keys:
@@ -89,16 +98,31 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
+set $ws1 "1: www"
+set $ws2 "2: term"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
+set $ws8 "8: gaming"
 set $ws9 "9"
 set $ws10 "10"
+
+# WM_CLASS values. Use xprop
+set $arandr "(?i)arandr"
+set $chromium "(?i)chromium"
+set $copyq "(?i)copyq"
+set $firefox "(?i)firefox"
+set $pavucontrol "(?i)pavucontrol"
+set $steam "(?i)steam"
+set $termite "(?i)termite"
+set $xfce4_screenshooter "(?i)xfce4-screenshooter"
+
+assign [class=$firefox] $ws1
+assign [class=$chromium] $ws1
+assign [class=$termite] $ws2
+for_window [class=$steam] floating enable, move container to workspace $ws8
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -111,6 +135,11 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+# For instance: Assume you are on workspace "1: www" and switch to "2: IM"
+# using mod+2 because somebody sent you a message. You don’t need to remember
+# where you came from now, you can just press $mod+2 again to switch back to
+# "1: www".
+workspace_auto_back_and_forth yes
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -177,15 +206,15 @@ mode "$mode_display" {
 bindsym $mod+d mode "$mode_display"
 
 # configure specific windows
-for_window [class="(?i)pavucontrol"] floating enable
-for_window [class="(?i)arandr"] floating enable
-for_window [class="(?i)xfce4-screenshooter"] floating enable
-for_window [class="(?i)copyq"] floating enable, border none
-for_window [class="(?i)termite"] border none
+for_window [class=$pavucontrol] floating enable
+for_window [class=$arandr] floating enable
+for_window [class=$xfce4_screeshooter] floating enable
+for_window [class=$copyq] floating enable, border none
+for_window [class=$termite] border none
 
 # external monitor bar
 bar {
-	# The display is connected either via HDMI or via DisplayPort
+        # The display is connected either via HDMI or via DisplayPort
         output DP-1
         output DP-2
         output HDMI-0
