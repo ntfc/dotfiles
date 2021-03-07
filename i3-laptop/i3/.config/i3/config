@@ -154,11 +154,13 @@ bindsym $mod+r mode "resize"
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
-set $mode_display Display: Laptop (L), HDMI (H), Mirror (M), Next Mode (N)
+set $mode_display Display: Primary (P), Second (S), Mirror (M), Extend (R), Extend (L), Next Mode (N)
 mode "$mode_display" {
-    bindsym l exec --no-startup-id mons -o, mode "default"
-    bindsym h exec --no-startup-id mons -s, mode "default"
+    bindsym p exec --no-startup-id mons -o, mode "default"
+    bindsym s exec --no-startup-id mons -s, mode "default"
     bindsym m exec --no-startup-id mons -m, mode "default"
+    bindsym l exec --no-startup-id mons -e left, mode "default"
+    bindsym r exec --no-startup-id mons -e right, mode "default"
     bindsym n exec --no-startup-id mons -n right
 
     # back to normal: Enter or Escape
