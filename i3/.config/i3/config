@@ -51,7 +51,7 @@ bindsym --release $mod+x exec --no-startup-id xdotool key --clearmodifiers ctrl+
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+p exec "rofi -modi drun,run -show run"
+bindsym $mod+p exec --no-startup-id "rofi -modi drun,run -show run"
 
 # focus does not follow mouse
 focus_follows_mouse no
