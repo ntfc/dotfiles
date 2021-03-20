@@ -62,5 +62,19 @@ keystate_capslock = disable
 "~/.scripts/audio-control.sh next"
     Mod4 + F8
 
+# Map Pause Break to Insert (e.g. for freestyle2 keyboard)
+# Added "+ Release" from https://wiki.archlinux.org/index.php/Xbindkeys#Troubleshooting
+"xdotool key --clearmodifiers Insert"
+  Pause + Release
+"xdotool key --clearmodifiers Alt+Insert"
+  Alt + Pause + Release
+"xdotool key --clearmodifiers Shift+Insert"
+  Shift + Pause + Release
+"xdotool key --clearmodifiers Ctrl+Insert"
+  Ctrl + Pause + Release
+"xdotool key --clearmodifiers Alt+Shift+Insert"
+  Shift+Alt + Pause + Release
+"xdotool key --clearmodifiers Alt+Ctrl+Insert"
+  Ctrl+Alt + Pause + Release
 #
 # End of xbindkeys configuration
