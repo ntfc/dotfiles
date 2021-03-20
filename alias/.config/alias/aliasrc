@@ -45,4 +45,10 @@ extract() {
 
 alias dockerRemoveDangling='docker rmi $(docker images -q -f dangling=true)'
 
+ktlintStaged () {
+  set -x
+  git diff --name-only --cached --relative | grep '\.kt[s"]\?$' | xargs ktlint --relative .
+  set +x
+}
+
 [ -f ~/.config/alias/alias.private ] && . ~/.config/alias/alias.private
