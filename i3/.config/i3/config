@@ -118,11 +118,11 @@ set $pavucontrol "(?i)pavucontrol"
 set $steam "(?i)steam"
 set $termite "(?i)termite"
 set $xfce4_screenshooter "(?i)xfce4-screenshooter"
+set $intellij "(?i)jetbrains-idea"
 
 assign [class=$firefox] $ws2
 assign [class=$chromium] $ws2
 assign [class=$termite] $ws1
-for_window [class=$steam] floating enable, move container to workspace $ws8
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -211,6 +211,8 @@ for_window [class=$arandr] floating enable
 for_window [class=$xfce4_screeshooter] floating enable
 for_window [class=$copyq] floating enable, border none
 for_window [class=$termite] border none
+for_window [class=$steam] floating enable, move container to workspace $ws8
+for_window [class=$intellij] border pixel 2
 
 # external monitor bar
 bar {
