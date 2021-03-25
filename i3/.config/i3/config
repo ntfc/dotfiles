@@ -118,10 +118,23 @@ set $steam "(?i)steam"
 set $termite "(?i)termite"
 set $xfce4_screenshooter "(?i)xfce4-screenshooter"
 set $intellij "(?i)jetbrains-idea"
+set $workrave "(?i)workrave"
 
 assign [class=$firefox] $ws2
 assign [class=$chromium] $ws2
 assign [class=$termite] $ws1
+
+# configure specific windows
+for_window [class=$pavucontrol] floating enable
+for_window [class=$arandr] floating enable
+for_window [class=$xfce4_screeshooter] floating enable
+for_window [class=$copyq] floating enable, border none
+for_window [class=$termite] border none
+for_window [class=$steam] floating enable, move container to workspace $ws8
+for_window [class=$intellij] border pixel 2
+no_focus [class=$workrave title="Micro-break"]
+no_focus [class=$workrave title="Rest break"]
+
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -203,15 +216,6 @@ mode "$mode_display" {
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+d mode "$mode_display"
-
-# configure specific windows
-for_window [class=$pavucontrol] floating enable
-for_window [class=$arandr] floating enable
-for_window [class=$xfce4_screeshooter] floating enable
-for_window [class=$copyq] floating enable, border none
-for_window [class=$termite] border none
-for_window [class=$steam] floating enable, move container to workspace $ws8
-for_window [class=$intellij] border pixel 2
 
 # external monitor bar
 bar {
