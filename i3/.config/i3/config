@@ -133,6 +133,7 @@ for_window [class=$termite] border none
 for_window [class=$steam] floating enable, move container to workspace $ws8
 for_window [class=$intellij] border pixel 2
 for_window [class=$workrave title="Micro-break"] border none
+for_window [class=$firefox title="Picture-in-Picture"] border none
 no_focus [class=$workrave title="Micro-break"]
 no_focus [class=$workrave title="Rest break"]
 
