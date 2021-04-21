@@ -119,6 +119,7 @@ set $termite "(?i)termite"
 set $xfce4_screenshooter "(?i)xfce4-screenshooter"
 set $intellij "(?i)jetbrains-idea"
 set $workrave "(?i)workrave"
+set $blueman-applet "(?i)blueman-manager"
 
 assign [class=$firefox] $ws2
 assign [class=$chromium] $ws2
@@ -132,6 +133,7 @@ for_window [class=$copyq] floating enable, border none
 for_window [class=$termite] border none
 for_window [class=$steam] floating enable, move container to workspace $ws8
 for_window [class=$intellij] border pixel 2
+for_window [class=$blueman-applet] floating enable, border none
 for_window [class=$workrave title="Micro-break"] border none
 for_window [class=$firefox title="Picture-in-Picture"] border none
 no_focus [class=$workrave title="Micro-break"]
