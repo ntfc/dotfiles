@@ -9,8 +9,9 @@ name = "awesome5"
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
 info_type = "available"
+format = "{icon} / {used}/{total}"
+alert_absolute = true
 unit = "GB"
 interval = 20
 warning = 20.0
