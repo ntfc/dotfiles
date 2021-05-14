@@ -39,6 +39,12 @@ format = "{1m}"
 block = "sound"
 on_click = "pavucontrol"
 
+[[block]]
+block = "net"
+# device is taken from `ip route show default`
+format = "{signal_strength} {speed_down;K*b} {speed_up;K*b}"
+interval = 5
+
 # if there is no battery, nothing is shown
 [[block]]
 block = "battery"
@@ -58,3 +64,4 @@ block = "custom"
 command = "setxkbmap -query | grep layout | awk '{print $2}'"
 on_click = "~/.config/i3/setxkbmap-cycle.sh"
 interval = 2
+
