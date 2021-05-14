@@ -31,14 +31,15 @@ function is_borgmatic_failed() {
 
 if is_borgmatic_enabled; then
   if is_borgmatic_running; then
-    TEXT="in progress.."
+    TEXT="In progress.."
     STATE="Info"
   else
     if is_borgmatic_failed; then
-      TEXT="failed"
+      TEXT="Failed!"
       STATE="Critical"
     else
-      TEXT="waiting"
+      # do not show anything
+      TEXT=""
       STATE="Idle"
     fi
   fi
