@@ -8,7 +8,14 @@ name = "awesome5"
 [icons.overrides]
 # workaround, might be possible to remove soon
 bat_not_available = "|--|"
+# https://fontawesome.com/icons/file-archive
+file_archive = "\uf1c6"
 
+[[block]]
+block = "custom"
+hide_when_empty = true
+json = true
+command = "~/.config/i3/borg-block.sh"
 
 [[block]]
 block = "disk_space"
@@ -65,3 +72,8 @@ command = "setxkbmap -query | grep layout | awk '{print $2}'"
 on_click = "~/.config/i3/setxkbmap-cycle.sh"
 interval = 2
 
+[[block]]
+block = "custom"
+command = "echo \uf011" # assumes fontawesome icons
+on_click = "systemctl `echo -e 'suspend\nhibernate\npoweroff\nreboot' | rofi -dmenu`"
+interval = "once"
