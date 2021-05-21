@@ -120,6 +120,7 @@ set $xfce4_screenshooter "(?i)xfce4-screenshooter"
 set $intellij "(?i)jetbrains-idea"
 set $workrave "(?i)workrave"
 set $blueman-applet "(?i)blueman-manager"
+set $speedcrunch "(?i)speedcrunch"
 
 assign [class=$firefox] $ws2
 assign [class=$chromium] $ws2
@@ -138,6 +139,7 @@ for_window [class=$workrave title="Micro-break"] border none
 for_window [class=$firefox title="Picture-in-Picture"] border none
 no_focus [class=$workrave title="Micro-break"]
 no_focus [class=$workrave title="Rest break"]
+for_window [class=$speedcrunch] floating enable
 
 
 # switch to workspace
