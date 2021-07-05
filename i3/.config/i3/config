@@ -45,7 +45,14 @@ bindsym $mod+Return exec --no-startup-id termite
 bindsym $mod+Shift+Return [class=$termite] focus
 
 # Simulate Insert upon pressing Pause Break
-bindsym --release $mod+x exec --no-startup-id xdotool key --clearmodifiers ctrl+v
+bindsym --release Pause exec --no-startup-id xdotool key --clearmodifiers Insert
+
+bindsym --release $float_mod+Pause exec --no-startup-id xdotool key --clearmodifiers Alt+Insert
+bindsym --release Shift+Pause exec --no-startup-id xdotool key --clearmodifiers Shift+Insert
+bindsym --release Ctrl+Pause exec --no-startup-id xdotool key --clearmodifiers Ctrl+Insert
+
+bindsym --release $float_mod+Shift+Pause exec --no-startup-id xdotool key --clearmodifiers Alt+Shift+Insert
+bindsym --release Ctrl+Shift+Pause exec --no-startup-id xdotool key --clearmodifiers Ctrl+Shift+Insert
 
 # kill focused window
 bindsym $mod+Shift+q kill
