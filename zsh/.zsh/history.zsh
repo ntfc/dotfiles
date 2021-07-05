@@ -1,8 +1,20 @@
-HISTFILE=~/.local/share/.histfile
-HISTSIZE=2000
-SAVEHIST=2000
-setopt appendhistory
-unsetopt beep
+# must be manually created
+HISTFILE=~/.local/share/zsh/.histfile
+HISTSIZE=1000000
+SAVEHIST=$HISTSIZE
+
+setopt EXTENDED_HISTORY # Prefix each entry with ": <beginning time>:<elapsed seconds>;<command>"
+setopt INC_APPEND_HISTORY # New history lines are added to the $HISTFILE incrementally (as soon as they are entered)
+setopt NO_BEEP
+setopt HIST_REDUCE_BLANKS # Remove superfluous blanks from each command line being added to the history list
+setopt HIST_IGNORE_DUPS # Do not enter command lines into the history list if they are duplicates of the previous event
+setopt autopushd pushdsilent pushdtohome
+
+## Remove duplicate entries
+setopt pushdignoredups
+
+## This reverts the +/- operators.
+setopt pushdminus
 
 # https://shapeshed.com/zsh-corrupt-history-file/
 function zsh_history_fix() {
@@ -25,11 +37,4 @@ chpwd() {
 
 DIRSTACKSIZE=20
 
-setopt autopushd pushdsilent pushdtohome
-
-## Remove duplicate entries
-setopt pushdignoredups
-
-## This reverts the +/- operators.
-setopt pushdminus
 
