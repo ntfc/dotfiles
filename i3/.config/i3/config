@@ -114,7 +114,6 @@ set $chromium "(?i)chromium"
 set $copyq "(?i)copyq"
 set $firefox "(?i)firefox"
 set $pavucontrol "(?i)pavucontrol"
-set $steam "(?i)steam"
 set $termite "(?i)termite"
 set $xfce4_screenshooter "(?i)xfce4-screenshooter"
 set $intellij "(?i)jetbrains-idea"
@@ -132,7 +131,6 @@ for_window [class=$arandr] floating enable
 for_window [class=$xfce4_screeshooter] floating enable
 for_window [class=$copyq] floating enable, border none
 for_window [class=$termite] border none
-for_window [class=$steam] floating enable, move container to workspace $ws8
 for_window [class=$intellij] border pixel 2
 for_window [class=$blueman-applet] floating enable, border none
 for_window [class=$workrave title="Micro-break"] border none
@@ -140,6 +138,18 @@ for_window [class=$firefox title="Picture-in-Picture"] border none
 no_focus [class=$workrave title="Micro-break"]
 no_focus [class=$workrave title="Rest break"]
 for_window [class=$speedcrunch] floating enable
+# steam rules
+# taken from https://github.com/z3ntu/dotfiles/blob/215443574be1227907b9f451749c590d4f2fb1f6/i3/.config/i3/config#L55
+for_window [class="^(?i)steam$" title="^Friends$"] floating enable, move container to workspace $ws8
+for_window [class="^(?i)steam$" title="Steam - News"] floating enable, move container to workspace $ws8
+for_window [class="^(?i)steam$" title=".* - Chat"] floating enable, move container to workspace $ws8
+for_window [class="^(?i)steam$" title="^Settings$"] floating enable, move container to workspace $ws8
+for_window [class="^(?i)steam$" title=".* - event started"] floating enable, move container to workspace $ws8
+for_window [class="^(?i)steam$" title=".* CD key"] floating enable, move container to workspace $ws8
+for_window [class="^(?i)steam$" title="^Steam - Self Updater$"] floating enable, move container to workspace $ws8
+for_window [class="^(?i)steam$" title="^Screenshot Uploader$"] floating enable, move container to workspace $ws8
+for_window [class="^(?i)steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable, move container to workspace $ws8
+for_window [title="^(?i)steam Keyboard$"] floating enable, move container to workspace $ws8
 
 
 # switch to workspace
