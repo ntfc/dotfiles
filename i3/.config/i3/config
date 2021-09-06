@@ -35,6 +35,9 @@ bindsym $mod+F7 exec --no-startup-id "~/.scripts/audio-control.sh toggle && $ref
 bindsym XF86AudioNext exec --no-startup-id ~/.scripts/audio-control.sh next && $refresh_i3status
 bindsym $mod+F8 exec --no-startup-id "~/.scripts/audio-control.sh next && $refresh_i3status"
 
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 15
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 15
+
 # screenshot
 bindsym Print exec xfce4-screenshooter
 
