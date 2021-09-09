@@ -42,10 +42,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 15
 bindsym Print exec xfce4-screenshooter
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id termite
+bindsym $mod+Return exec --no-startup-id alacritty
 
-# focus on the closest termite
-bindsym $mod+Shift+Return [class=$termite] focus
+# focus on the closest terminal
+bindsym $mod+Shift+Return [class=$alacritty] focus
 
 # Simulate Insert upon pressing Pause Break
 bindsym --release Pause exec --no-startup-id xdotool key --clearmodifiers Insert
@@ -125,6 +125,7 @@ set $copyq "(?i)copyq"
 set $firefox "(?i)firefox"
 set $pavucontrol "(?i)pavucontrol"
 set $termite "(?i)termite"
+set $alacritty "(?i)alacritty"
 set $xfce4_screenshooter "(?i)xfce4-screenshooter"
 set $intellij "(?i)jetbrains-idea"
 set $workrave "(?i)workrave"
@@ -134,6 +135,7 @@ set $speedcrunch "(?i)speedcrunch"
 assign [class=$firefox] $ws2
 assign [class=$chromium] $ws2
 assign [class=$termite] $ws1
+assign [class=$alacritty] $ws1
 
 # configure specific windows
 for_window [class=$pavucontrol] floating enable
@@ -141,6 +143,7 @@ for_window [class=$arandr] floating enable
 for_window [class=$xfce4_screeshooter] floating enable
 for_window [class=$copyq] floating enable, border none
 for_window [class=$termite] border none
+for_window [class=$alacritty] border none
 for_window [class=$intellij] border pixel 2
 for_window [class=$blueman-applet] floating enable, border none
 for_window [class=$workrave title="Micro-break"] border none
