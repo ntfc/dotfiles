@@ -3,6 +3,7 @@ HISTFILE=~/.local/share/zsh/.histfile
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
 
+setopt HIST_IGNORE_SPACE # Commands with a leading space are not added to history
 setopt EXTENDED_HISTORY # Prefix each entry with ": <beginning time>:<elapsed seconds>;<command>"
 setopt INC_APPEND_HISTORY # New history lines are added to the $HISTFILE incrementally (as soon as they are entered)
 setopt NO_BEEP
