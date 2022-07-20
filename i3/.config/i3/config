@@ -61,7 +61,7 @@ bindsym --release Ctrl+Shift+Pause exec --no-startup-id xdotool key --clearmodif
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+p exec --no-startup-id "rofi -modi drun,run -show run"
+bindsym $mod+p exec --no-startup-id "rofi -modi drun,run -show drun"
 
 # focus does not follow mouse
 focus_follows_mouse no
@@ -200,6 +200,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# move workspace between screens
+bindsym $mod+Shift+p move workspace to output right
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -250,6 +252,7 @@ bindsym $mod+d mode "$mode_display"
 bar {
         # The display is connected either via HDMI or via DisplayPort
         output DP-1
+        output DP-1-3
         output DP-2
         output HDMI-0
         output HDMI-1
