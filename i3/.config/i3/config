@@ -105,6 +105,11 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+b focus child
 
+# GUI sudo
+# https://old.reddit.com/r/i3wm/comments/qvlubt/gui_sudo_prompt/
+# found the exact path via `pacman -Ql polkit-gnome | grep agent`
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: term"
