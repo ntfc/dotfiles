@@ -1,55 +1,60 @@
 # status bar for external monitor that usually have more horizontal space
 
 [theme]
-name = "slick"
+theme = "slick"
 
 [icons]
-name = "awesome5"
+icons = "awesome5"
 
 [[block]]
 block = "disk_space"
 path = "/"
 info_type = "available"
-format = "{icon} / {used}/{total}"
-alert_absolute = true # use unit (GB) for alerts
-unit = "GB"
-interval = 20
-warning = 20.0
-alert = 10.0
+format = "$icon / $used/$total"
+alert_unit = "GB" # use unit (GB) for alerts
+alert = 10
+warning = 20
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = "{mem_used_percents}%"
-format_swap = "{swap_used_percents}%"
+format = "$icon $mem_used_percents"
+format_alt = "$icon_swap $swap_used_percents"
 
 [[block]]
 block = "cpu"
+format = "$icon $barchart $utilization"
 interval = 1
 
 [[block]]
 block = "load"
 interval = 1
-format = "{1m}"
+format = "$icon $1m"
 
 [[block]]
 block = "sound"
-on_click = "pavucontrol"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
 
-# if there is no battery, nothing is shown
 [[block]]
 block = "battery"
-interval = 10
-format = "{percentage} {time}"
-hide_missing = true
+interval = 5
+format = "$percentage $time"
+# if there is no battery, nothing is shown
+missing_format = ""
 
 [[block]]
 block = "time"
 interval = 1
-format = "%a %d %b %T %:z"
-on_click = "gsimplecal"
+format = "$icon $timestamp.datetime(f:'%a %d %b %T %:z')"
+[[block.click]]
+button = "left"
+cmd = "gsimplecal"
 
 [[block]]
-block = "keyboard_layout"
-driver = "setxkbmap"
-interval = 5
+block = "custom"
+command = "setxkbmap -query | grep layout | awk '{print $2}'"
+interval = 1
+[[block.click]]
+button = "left"
+cmd = "~/.config/i3/setxkbmap-cycle.sh"
